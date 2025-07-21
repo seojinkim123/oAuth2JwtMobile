@@ -15,6 +15,8 @@ const UserProfile = ({ onLogout }) => {
     try {
       setLoading(true);
       const response = await ApiService.getCurrentUser();
+      console.log('사용자 정보 응답:', response.data); // 디버깅용 로그 추가
+      console.log('프로필 이미지 URL:', response.data?.picture); // 프로필 이미지 URL 확인
       setUser(response.data);
     } catch (error) {
       console.error('사용자 정보 조회 실패:', error);
@@ -64,12 +66,25 @@ const UserProfile = ({ onLogout }) => {
   return (
     <div className="bg-white rounded-lg shadow-lg p-6 max-w-md mx-auto">
       <div className="flex items-center space-x-4">
-        {user.picture && (
+        {user.picture ? (
           <img
             src={user.picture}
             alt="프로필"
             className="w-16 h-16 rounded-full"
+            onError={(e) => {
+              console.error('프로필 이미지 로딩 실패:', user.picture);
+              e.target.style.display = 'none';
+            }}
+            onLoad={() => {
+              console.log('프로필 이미지 로딩 성공:', user.picture);
+            }}
           />
+        ) : (
+          <div className="w-16 h-16 rounded-full bg-gray-300 flex items-center justify-center">
+            <span className="text-gray-600 text-xl font-semibold">
+              {user.name ? user.name.charAt(0).toUpperCase() : '?'}
+            </span>
+          </div>
         )}
         <div className="flex-1">
           <h2 className="text-xl font-bold text-gray-800">{user.name}</h2>

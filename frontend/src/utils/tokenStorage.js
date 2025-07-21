@@ -25,7 +25,7 @@ export const TokenStorage = {
   // 🔒 로그아웃 시 서버 API를 통해 쿠키 삭제
   clearTokens: async () => {
     try {
-      const response = await fetch('/api/auth/logout', {
+      const response = await fetch('/api/web/auth/logout', {
         method: 'POST',
         credentials: 'include' // 쿠키 포함
       });
@@ -46,7 +46,7 @@ export const TokenStorage = {
   // 🔒 API 호출을 통해 토큰 유효성 확인
   hasTokens: async () => {
     try {
-      const response = await fetch('/api/auth/verify', {
+      const response = await fetch('/api/web/auth/verify', {
         method: 'GET',
         credentials: 'include' // 쿠키 포함
       });

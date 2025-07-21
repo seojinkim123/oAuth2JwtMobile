@@ -52,6 +52,9 @@ public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationS
         String provider = "google"; // Google OAuth2만 우선 지원
         String providerId = extractProviderId(oAuth2User);
         
+        // 디버깅용 로그 추가
+        log.debug("OAuth2 사용자 정보 - 이메일: {}, 이름: {}, 프로필사진: {}", email, name, picture);
+        
         // 프로세스 3: 사용자 정보 저장/업데이트 (인증)
         User user = saveOrUpdateUser(email, name, picture, provider, providerId);
         

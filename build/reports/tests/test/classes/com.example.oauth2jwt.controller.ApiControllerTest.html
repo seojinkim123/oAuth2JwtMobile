@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="x-ua-compatible" content="IE=edge"/>
+<title>Test results - ApiControllerTest</title>
+<link href="../css/base-style.css" rel="stylesheet" type="text/css"/>
+<link href="../css/style.css" rel="stylesheet" type="text/css"/>
+<script src="../js/report.js" type="text/javascript"></script>
+</head>
+<body>
+<div id="content">
+<h1>ApiControllerTest</h1>
+<div class="breadcrumbs">
+<a href="../index.html">all</a> &gt; 
+<a href="../packages/com.example.oauth2jwt.controller.html">com.example.oauth2jwt.controller</a> &gt; ApiControllerTest</div>
+<div id="summary">
+<table>
+<tr>
+<td>
+<div class="summaryGroup">
+<table>
+<tr>
+<td>
+<div class="infoBox" id="tests">
+<div class="counter">1</div>
+<p>tests</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="failures">
+<div class="counter">0</div>
+<p>failures</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="ignored">
+<div class="counter">0</div>
+<p>ignored</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="duration">
+<div class="counter">0.023s</div>
+<p>duration</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</td>
+<td>
+<div class="infoBox success" id="successRate">
+<div class="percent">100%</div>
+<p>successful</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="tab-container">
+<ul class="tabLinks">
+<li>
+<a href="#">Tests</a>
+</li>
+<li>
+<a href="#">Standard output</a>
+</li>
+</ul>
+<div class="tab">
+<h2>Tests</h2>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>Duration</th>
+<th>Result</th>
+</tr>
+</thead>
+<tr>
+<td class="success">hello_ShouldReturnGreeting()</td>
+<td class="success">0.023s</td>
+<td class="success">passed</td>
+</tr>
+</table>
+</div>
+<div class="tab">
+<h2>Standard output</h2>
+<span class="code">
+<pre>2025-07-21T20:45:17.857+09:00  INFO 30978 --- [oauth2jwt] [    Test worker] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.example.oauth2jwt.controller.ApiControllerTest]: ApiControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2025-07-21T20:45:17.863+09:00  INFO 30978 --- [oauth2jwt] [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.example.oauth2jwt.OAuth2JwtApplication for test class com.example.oauth2jwt.controller.ApiControllerTest
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.2.0)
+
+2025-07-21T20:45:17.874+09:00  INFO 30978 --- [oauth2jwt] [    Test worker] c.e.o.controller.ApiControllerTest       : Starting ApiControllerTest using Java 21.0.7 with PID 30978 (started by kimseojin in /Users/kimseojin/Desktop/oAuth2JwtMobile)
+2025-07-21T20:45:17.874+09:00 DEBUG 30978 --- [oauth2jwt] [    Test worker] c.e.o.controller.ApiControllerTest       : Running with Spring Boot v3.2.0, Spring v6.1.1
+2025-07-21T20:45:17.875+09:00  INFO 30978 --- [oauth2jwt] [    Test worker] c.e.o.controller.ApiControllerTest       : The following 1 profile is active: &quot;dev&quot;
+2025-07-21T20:45:17.942+09:00  INFO 30978 --- [oauth2jwt] [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-07-21T20:45:17.946+09:00  INFO 30978 --- [oauth2jwt] [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 3 ms. Found 1 JPA repository interface.
+2025-07-21T20:45:17.984+09:00  INFO 30978 --- [oauth2jwt] [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-07-21T20:45:17.985+09:00  INFO 30978 --- [oauth2jwt] [    Test worker] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-07-21T20:45:17.986+09:00  INFO 30978 --- [oauth2jwt] [    Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-07-21T20:45:17.986+09:00  INFO 30978 --- [oauth2jwt] [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
+2025-07-21T20:45:18.050+09:00  INFO 30978 --- [oauth2jwt] [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-2 - Added connection com.mysql.cj.jdbc.ConnectionImpl@5d5b07e9
+2025-07-21T20:45:18.050+09:00  INFO 30978 --- [oauth2jwt] [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
+2025-07-21T20:45:18.051+09:00  WARN 30978 --- [oauth2jwt] [    Test worker] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-07-21T20:45:18.051+09:00  WARN 30978 --- [oauth2jwt] [    Test worker] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2025-07-21T20:45:18.051+09:00 DEBUG 30978 --- [oauth2jwt] [    Test worker] o.h.t.d.sql.spi.DdlTypeRegistry          : addDescriptor(12, org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@7aead157) replaced previous registration(org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@52aa84ef)
+2025-07-21T20:45:18.051+09:00 DEBUG 30978 --- [oauth2jwt] [    Test worker] o.h.t.d.sql.spi.DdlTypeRegistry          : addDescriptor(-9, org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@333afc53) replaced previous registration(org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@5ea9f2f3)
+2025-07-21T20:45:18.051+09:00 DEBUG 30978 --- [oauth2jwt] [    Test worker] o.h.t.d.sql.spi.DdlTypeRegistry          : addDescriptor(-3, org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@72e5f018) replaced previous registration(org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@74ee8f57)
+2025-07-21T20:45:18.051+09:00 DEBUG 30978 --- [oauth2jwt] [    Test worker] o.h.t.d.sql.spi.DdlTypeRegistry          : addDescriptor(4003, org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@10522dfd) replaced previous registration(org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@17d6b6e)
+2025-07-21T20:45:18.051+09:00 DEBUG 30978 --- [oauth2jwt] [    Test worker] o.h.t.d.sql.spi.DdlTypeRegistry          : addDescriptor(4001, org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@5c452e69) replaced previous registration(org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@5c519681)
+2025-07-21T20:45:18.051+09:00 DEBUG 30978 --- [oauth2jwt] [    Test worker] o.h.t.d.sql.spi.DdlTypeRegistry          : addDescriptor(4002, org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@5d6d6533) replaced previous registration(org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@372153eb)
+2025-07-21T20:45:18.051+09:00 DEBUG 30978 --- [oauth2jwt] [    Test worker] o.h.t.d.sql.spi.DdlTypeRegistry          : addDescriptor(2004, org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@42e20500) replaced previous registration(org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@12d76643)
+2025-07-21T20:45:18.051+09:00 DEBUG 30978 --- [oauth2jwt] [    Test worker] o.h.t.d.sql.spi.DdlTypeRegistry          : addDescriptor(2005, org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@24a5ddd7) replaced previous registration(org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@19266ca3)
+2025-07-21T20:45:18.052+09:00 DEBUG 30978 --- [oauth2jwt] [    Test worker] o.h.t.d.sql.spi.DdlTypeRegistry          : addDescriptor(2011, org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@4b3ea082) replaced previous registration(org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@627222d8)
+2025-07-21T20:45:18.067+09:00  INFO 30978 --- [oauth2jwt] [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-07-21T20:45:18.087+09:00  INFO 30978 --- [oauth2jwt] [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-07-21T20:45:18.118+09:00  WARN 30978 --- [oauth2jwt] [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-07-21T20:45:18.144+09:00  INFO 30978 --- [oauth2jwt] [    Test worker] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@572d1f18, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@28e12bc5, org.springframework.security.web.context.SecurityContextHolderFilter@4001a5a1, org.springframework.security.web.header.HeaderWriterFilter@5cb4e255, org.springframework.web.filter.CorsFilter@e00f822, org.springframework.security.web.authentication.logout.LogoutFilter@74974165, org.springframework.security.oauth2.client.web.OAuth2AuthorizationRequestRedirectFilter@e9e25b5, org.springframework.security.oauth2.client.web.OAuth2LoginAuthenticationFilter@8588a62, com.example.oauth2jwt.filter.JwtAuthenticationFilter@720b52a7, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@16dc12cf, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@42c7781a, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@34f37ed4, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@4fae8455, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@7d2d7a85, org.springframework.security.web.session.SessionManagementFilter@16c9ec5b, org.springframework.security.web.access.ExceptionTranslationFilter@2aabd5a0, org.springframework.security.web.access.intercept.AuthorizationFilter@391cc6cf]
+2025-07-21T20:45:18.180+09:00 DEBUG 30978 --- [oauth2jwt] [    Test worker] c.e.o.filter.JwtAuthenticationFilter     : Filter 'jwtAuthenticationFilter' configured for use
+2025-07-21T20:45:18.186+09:00  INFO 30978 --- [oauth2jwt] [    Test worker] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2025-07-21T20:45:18.186+09:00  INFO 30978 --- [oauth2jwt] [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2025-07-21T20:45:18.187+09:00  INFO 30978 --- [oauth2jwt] [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 1 ms
+2025-07-21T20:45:18.191+09:00  INFO 30978 --- [oauth2jwt] [    Test worker] c.e.o.controller.ApiControllerTest       : Started ApiControllerTest in 0.326 seconds (process running for 2.697)
+2025-07-21T20:45:18.196+09:00 DEBUG 30978 --- [oauth2jwt] [    Test worker] o.s.security.web.FilterChainProxy        : Securing GET /api/hello
+2025-07-21T20:45:18.199+09:00 DEBUG 30978 --- [oauth2jwt] [    Test worker] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-07-21T20:45:18.200+09:00 DEBUG 30978 --- [oauth2jwt] [    Test worker] o.s.security.web.FilterChainProxy        : Secured GET /api/hello
+</pre>
+</span>
+</div>
+</div>
+<div id="footer">
+<p>
+<div>
+<label class="hidden" id="label-for-line-wrapping-toggle" for="line-wrapping-toggle">Wrap lines
+<input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
+</label>
+</div>Generated by 
+<a href="https://www.gradle.org">Gradle 8.13</a> at 2025. 7. 21. 오후 8:45:19</p>
+</div>
+</div>
+</body>
+</html>

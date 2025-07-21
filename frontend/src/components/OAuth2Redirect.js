@@ -9,8 +9,8 @@ const OAuth2Redirect = ({ onLoginSuccess }) => {
 
     if (success === 'true') {
       // 🔒 HTTP-Only 쿠키에 토큰이 자동으로 설정되어 있음
-      // 토큰 존재 여부 확인을 위해 API 호출로 검증
-      fetch('/api/auth/verify', {
+      // 토큰 존재 여부 확인을 위해 웹용 API 호출로 검증
+      fetch('/api/web/auth/verify', {
         method: 'GET',
         credentials: 'include' // 쿠키 포함
       })

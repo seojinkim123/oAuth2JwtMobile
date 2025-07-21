@@ -1,0 +1,1329 @@
+> Task :compileJava UP-TO-DATE
+> Task :processResources UP-TO-DATE
+> Task :classes UP-TO-DATE
+> Task :resolveMainClassName UP-TO-DATE
+
+> Task :bootRun
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.2.0)
+
+2025-07-21T20:45:59.557+09:00  INFO 31077 --- [oauth2jwt] [           main] c.e.oauth2jwt.OAuth2JwtApplication       : Starting OAuth2JwtApplication using Java 21.0.7 with PID 31077 (/Users/kimseojin/Desktop/oAuth2JwtMobile/build/classes/java/main started by kimseojin in /Users/kimseojin/Desktop/oAuth2JwtMobile)
+2025-07-21T20:45:59.558+09:00 DEBUG 31077 --- [oauth2jwt] [           main] c.e.oauth2jwt.OAuth2JwtApplication       : Running with Spring Boot v3.2.0, Spring v6.1.1
+2025-07-21T20:45:59.558+09:00  INFO 31077 --- [oauth2jwt] [           main] c.e.oauth2jwt.OAuth2JwtApplication       : The following 1 profile is active: "dev"
+2025-07-21T20:45:59.863+09:00  INFO 31077 --- [oauth2jwt] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-07-21T20:45:59.886+09:00  INFO 31077 --- [oauth2jwt] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 19 ms. Found 1 JPA repository interface.
+2025-07-21T20:46:00.084+09:00  INFO 31077 --- [oauth2jwt] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-07-21T20:46:00.088+09:00  INFO 31077 --- [oauth2jwt] [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-07-21T20:46:00.088+09:00  INFO 31077 --- [oauth2jwt] [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.16]
+2025-07-21T20:46:00.116+09:00  INFO 31077 --- [oauth2jwt] [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-07-21T20:46:00.116+09:00  INFO 31077 --- [oauth2jwt] [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 542 ms
+2025-07-21T20:46:00.167+09:00  INFO 31077 --- [oauth2jwt] [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-07-21T20:46:00.185+09:00  INFO 31077 --- [oauth2jwt] [           main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.3.1.Final
+2025-07-21T20:46:00.196+09:00  INFO 31077 --- [oauth2jwt] [           main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-07-21T20:46:00.280+09:00  INFO 31077 --- [oauth2jwt] [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-07-21T20:46:00.289+09:00  INFO 31077 --- [oauth2jwt] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-07-21T20:46:00.474+09:00  INFO 31077 --- [oauth2jwt] [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@7ed7ae
+2025-07-21T20:46:00.475+09:00  INFO 31077 --- [oauth2jwt] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-07-21T20:46:00.498+09:00  WARN 31077 --- [oauth2jwt] [           main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-07-21T20:46:00.498+09:00  WARN 31077 --- [oauth2jwt] [           main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2025-07-21T20:46:00.507+09:00 DEBUG 31077 --- [oauth2jwt] [           main] o.h.t.d.sql.spi.DdlTypeRegistry          : addDescriptor(12, org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@30af23fd) replaced previous registration(org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@65fc8edc)
+2025-07-21T20:46:00.507+09:00 DEBUG 31077 --- [oauth2jwt] [           main] o.h.t.d.sql.spi.DdlTypeRegistry          : addDescriptor(-9, org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@a357c3e) replaced previous registration(org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@7740b0ab)
+2025-07-21T20:46:00.507+09:00 DEBUG 31077 --- [oauth2jwt] [           main] o.h.t.d.sql.spi.DdlTypeRegistry          : addDescriptor(-3, org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@3eb9c575) replaced previous registration(org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@3f322610)
+2025-07-21T20:46:00.508+09:00 DEBUG 31077 --- [oauth2jwt] [           main] o.h.t.d.sql.spi.DdlTypeRegistry          : addDescriptor(4003, org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@1e477944) replaced previous registration(org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@6cf047cf)
+2025-07-21T20:46:00.508+09:00 DEBUG 31077 --- [oauth2jwt] [           main] o.h.t.d.sql.spi.DdlTypeRegistry          : addDescriptor(4001, org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@1c92a549) replaced previous registration(org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@323e026d)
+2025-07-21T20:46:00.508+09:00 DEBUG 31077 --- [oauth2jwt] [           main] o.h.t.d.sql.spi.DdlTypeRegistry          : addDescriptor(4002, org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@1716c037) replaced previous registration(org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@79b63325)
+2025-07-21T20:46:00.508+09:00 DEBUG 31077 --- [oauth2jwt] [           main] o.h.t.d.sql.spi.DdlTypeRegistry          : addDescriptor(2004, org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@708769b7) replaced previous registration(org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@32e830a0)
+2025-07-21T20:46:00.508+09:00 DEBUG 31077 --- [oauth2jwt] [           main] o.h.t.d.sql.spi.DdlTypeRegistry          : addDescriptor(2005, org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@135e49b2) replaced previous registration(org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@5bb97fe7)
+2025-07-21T20:46:00.508+09:00 DEBUG 31077 --- [oauth2jwt] [           main] o.h.t.d.sql.spi.DdlTypeRegistry          : addDescriptor(2011, org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@10b87ff6) replaced previous registration(org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@63262071)
+2025-07-21T20:46:00.796+09:00  INFO 31077 --- [oauth2jwt] [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-07-21T20:46:00.830+09:00  INFO 31077 --- [oauth2jwt] [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-07-21T20:46:00.969+09:00 DEBUG 31077 --- [oauth2jwt] [           main] c.e.o.filter.JwtAuthenticationFilter     : Filter 'jwtAuthenticationFilter' configured for use
+2025-07-21T20:46:01.028+09:00  WARN 31077 --- [oauth2jwt] [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-07-21T20:46:01.129+09:00  INFO 31077 --- [oauth2jwt] [           main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@6d6ddeb5, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@3e574f9c, org.springframework.security.web.context.SecurityContextHolderFilter@73a88711, org.springframework.security.web.header.HeaderWriterFilter@13e5c53c, org.springframework.web.filter.CorsFilter@5cfa9e8a, org.springframework.security.web.authentication.logout.LogoutFilter@68a7f77a, org.springframework.security.oauth2.client.web.OAuth2AuthorizationRequestRedirectFilter@35d145fb, org.springframework.security.oauth2.client.web.OAuth2LoginAuthenticationFilter@4402ed61, com.example.oauth2jwt.filter.JwtAuthenticationFilter@4f5bfbca, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@25c98637, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@218fc40d, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@43f5b014, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@6b7e4db6, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@22942eff, org.springframework.security.web.session.SessionManagementFilter@17f7a1af, org.springframework.security.web.access.ExceptionTranslationFilter@54e3cba2, org.springframework.security.web.access.intercept.AuthorizationFilter@690c3b1f]
+2025-07-21T20:46:01.201+09:00  INFO 31077 --- [oauth2jwt] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path ''
+2025-07-21T20:46:01.205+09:00  INFO 31077 --- [oauth2jwt] [           main] c.e.oauth2jwt.OAuth2JwtApplication       : Started OAuth2JwtApplication in 1.783 seconds (process running for 1.905)
+2025-07-21T20:46:19.339+09:00  INFO 31077 --- [oauth2jwt] [nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-07-21T20:46:19.339+09:00  INFO 31077 --- [oauth2jwt] [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-07-21T20:46:19.340+09:00  INFO 31077 --- [oauth2jwt] [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2025-07-21T20:46:19.342+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Securing GET /api/hello
+2025-07-21T20:46:19.346+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-1] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-07-21T20:46:19.346+09:00  WARN 31077 --- [oauth2jwt] [nio-8080-exec-1] o.s.w.s.h.HandlerMappingIntrospector     : Cache miss for REQUEST dispatch to '/api/hello' (previous null). Performing MatchableHandlerMapping lookup. This is logged once only at WARN level, and every time at TRACE.
+2025-07-21T20:46:19.349+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Secured GET /api/hello
+2025-07-21T20:46:25.902+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Securing GET /api/web/auth/verify
+2025-07-21T20:46:25.902+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-2] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-07-21T20:46:25.903+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Secured GET /api/web/auth/verify
+2025-07-21T20:46:25.905+09:00  WARN 31077 --- [oauth2jwt] [nio-8080-exec-2] c.e.o.controller.WebAuthController       : 토큰 검증 실패
+2025-07-21T20:46:31.267+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Securing GET /api/mobile/auth/verify
+2025-07-21T20:46:31.267+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-4] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-07-21T20:46:31.268+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Secured GET /api/mobile/auth/verify
+2025-07-21T20:46:31.268+09:00  WARN 31077 --- [oauth2jwt] [nio-8080-exec-4] c.e.o.controller.MobileAuthController    : 모바일 토큰 검증 실패
+2025-07-21T20:48:22.595+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Securing GET /api/hello
+2025-07-21T20:48:22.595+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Securing GET /api/web/auth/verify
+2025-07-21T20:48:22.597+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-6] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-07-21T20:48:22.597+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-6] o.s.s.w.session.SessionManagementFilter  : Request requested invalid session id B33FF8DD1DA84ED10B2DEE86F57EF808
+2025-07-21T20:48:22.598+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Secured GET /api/web/auth/verify
+2025-07-21T20:48:22.598+09:00  WARN 31077 --- [oauth2jwt] [nio-8080-exec-6] c.e.o.controller.WebAuthController       : 토큰 검증 실패
+2025-07-21T20:48:22.599+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-7] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-07-21T20:48:22.599+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-7] o.s.s.w.session.SessionManagementFilter  : Request requested invalid session id B33FF8DD1DA84ED10B2DEE86F57EF808
+2025-07-21T20:48:22.600+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Secured GET /api/hello
+2025-07-21T20:48:22.603+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Securing GET /api/hello
+2025-07-21T20:48:22.604+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-8] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-07-21T20:48:22.604+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-8] o.s.s.w.session.SessionManagementFilter  : Request requested invalid session id B33FF8DD1DA84ED10B2DEE86F57EF808
+2025-07-21T20:48:22.605+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Secured GET /api/hello
+2025-07-21T20:48:22.608+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Securing GET /api/web/auth/verify
+2025-07-21T20:48:22.608+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-9] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-07-21T20:48:22.609+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-9] o.s.s.w.session.SessionManagementFilter  : Request requested invalid session id B33FF8DD1DA84ED10B2DEE86F57EF808
+2025-07-21T20:48:22.610+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Secured GET /api/web/auth/verify
+2025-07-21T20:48:22.611+09:00  WARN 31077 --- [oauth2jwt] [nio-8080-exec-9] c.e.o.controller.WebAuthController       : 토큰 검증 실패
+2025-07-21T20:48:22.618+09:00 DEBUG 31077 --- [oauth2jwt] [io-8080-exec-10] o.s.security.web.FilterChainProxy        : Securing GET /favicon.ico
+2025-07-21T20:48:22.618+09:00 DEBUG 31077 --- [oauth2jwt] [io-8080-exec-10] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-07-21T20:48:22.619+09:00 DEBUG 31077 --- [oauth2jwt] [io-8080-exec-10] o.s.s.w.session.SessionManagementFilter  : Request requested invalid session id B33FF8DD1DA84ED10B2DEE86F57EF808
+2025-07-21T20:48:22.620+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Securing GET /api/web/auth/verify
+2025-07-21T20:48:22.620+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-1] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-07-21T20:48:22.620+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-1] o.s.s.w.session.SessionManagementFilter  : Request requested invalid session id B33FF8DD1DA84ED10B2DEE86F57EF808
+2025-07-21T20:48:22.620+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Secured GET /api/web/auth/verify
+2025-07-21T20:48:22.620+09:00  WARN 31077 --- [oauth2jwt] [nio-8080-exec-1] c.e.o.controller.WebAuthController       : 토큰 검증 실패
+2025-07-21T20:48:22.625+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Securing GET /api/web/auth/verify
+2025-07-21T20:48:22.625+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-2] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-07-21T20:48:22.625+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-2] o.s.s.w.session.SessionManagementFilter  : Request requested invalid session id B33FF8DD1DA84ED10B2DEE86F57EF808
+2025-07-21T20:48:22.625+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Secured GET /api/web/auth/verify
+2025-07-21T20:48:22.626+09:00  WARN 31077 --- [oauth2jwt] [nio-8080-exec-2] c.e.o.controller.WebAuthController       : 토큰 검증 실패
+2025-07-21T20:48:22.626+09:00 DEBUG 31077 --- [oauth2jwt] [io-8080-exec-10] s.w.a.DelegatingAuthenticationEntryPoint : Trying to match using And [Not [RequestHeaderRequestMatcher [expectedHeaderName=X-Requested-With, expectedHeaderValue=XMLHttpRequest]], Not [And [Or [Ant [pattern='/login'], Ant [pattern='/favicon.ico']], And [Not [RequestHeaderRequestMatcher [expectedHeaderName=X-Requested-With, expectedHeaderValue=XMLHttpRequest]], MediaTypeRequestMatcher [contentNegotiationStrategy=org.springframework.web.accept.ContentNegotiationManager@49ea4b65, matchingMediaTypes=[application/xhtml+xml, image/*, text/html, text/plain], useEquals=false, ignoredMediaTypes=[*/*]]]]], org.springframework.security.config.annotation.web.configurers.oauth2.client.OAuth2LoginConfigurer$$Lambda/0x0000007001925530@d3e0aee]
+2025-07-21T20:48:22.626+09:00 DEBUG 31077 --- [oauth2jwt] [io-8080-exec-10] s.w.a.DelegatingAuthenticationEntryPoint : No match found. Using default entry point org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint@74611ad4
+2025-07-21T20:48:22.626+09:00 DEBUG 31077 --- [oauth2jwt] [io-8080-exec-10] o.s.s.web.DefaultRedirectStrategy        : Redirecting to http://localhost:8080/login
+2025-07-21T20:48:22.629+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Securing GET /login
+2025-07-21T20:48:22.630+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Securing GET /api/web/auth/verify
+2025-07-21T20:48:22.630+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-4] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-07-21T20:48:22.630+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-4] o.s.s.w.session.SessionManagementFilter  : Request requested invalid session id B33FF8DD1DA84ED10B2DEE86F57EF808
+2025-07-21T20:48:22.631+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Secured GET /api/web/auth/verify
+2025-07-21T20:48:22.631+09:00  WARN 31077 --- [oauth2jwt] [nio-8080-exec-4] c.e.o.controller.WebAuthController       : 토큰 검증 실패
+2025-07-21T20:48:22.635+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Securing GET /api/web/auth/verify
+2025-07-21T20:48:22.635+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-6] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-07-21T20:48:22.635+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-6] o.s.s.w.session.SessionManagementFilter  : Request requested invalid session id B33FF8DD1DA84ED10B2DEE86F57EF808
+2025-07-21T20:48:22.636+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Secured GET /api/web/auth/verify
+2025-07-21T20:48:22.636+09:00  WARN 31077 --- [oauth2jwt] [nio-8080-exec-6] c.e.o.controller.WebAuthController       : 토큰 검증 실패
+2025-07-21T20:48:25.223+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Securing GET /api/hello
+2025-07-21T20:48:25.224+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Securing GET /api/web/auth/verify
+2025-07-21T20:48:25.224+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-7] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-07-21T20:48:25.224+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-7] o.s.s.w.session.SessionManagementFilter  : Request requested invalid session id B33FF8DD1DA84ED10B2DEE86F57EF808
+2025-07-21T20:48:25.225+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-8] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-07-21T20:48:25.225+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-8] o.s.s.w.session.SessionManagementFilter  : Request requested invalid session id B33FF8DD1DA84ED10B2DEE86F57EF808
+2025-07-21T20:48:25.225+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Secured GET /api/hello
+2025-07-21T20:48:25.225+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Secured GET /api/web/auth/verify
+2025-07-21T20:48:25.226+09:00  WARN 31077 --- [oauth2jwt] [nio-8080-exec-8] c.e.o.controller.WebAuthController       : 토큰 검증 실패
+2025-07-21T20:48:25.229+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Securing GET /api/hello
+2025-07-21T20:48:25.231+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-9] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-07-21T20:48:25.231+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-9] o.s.s.w.session.SessionManagementFilter  : Request requested invalid session id B33FF8DD1DA84ED10B2DEE86F57EF808
+2025-07-21T20:48:25.231+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Secured GET /api/hello
+2025-07-21T20:48:25.237+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Securing GET /api/web/auth/verify
+2025-07-21T20:48:25.237+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Securing GET /favicon.ico
+2025-07-21T20:48:25.238+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-2] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-07-21T20:48:25.238+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-1] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-07-21T20:48:25.238+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-2] o.s.s.w.session.SessionManagementFilter  : Request requested invalid session id B33FF8DD1DA84ED10B2DEE86F57EF808
+2025-07-21T20:48:25.238+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-1] o.s.s.w.session.SessionManagementFilter  : Request requested invalid session id B33FF8DD1DA84ED10B2DEE86F57EF808
+2025-07-21T20:48:25.238+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Secured GET /api/web/auth/verify
+2025-07-21T20:48:25.239+09:00  WARN 31077 --- [oauth2jwt] [nio-8080-exec-2] c.e.o.controller.WebAuthController       : 토큰 검증 실패
+2025-07-21T20:48:25.240+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-1] s.w.a.DelegatingAuthenticationEntryPoint : Trying to match using And [Not [RequestHeaderRequestMatcher [expectedHeaderName=X-Requested-With, expectedHeaderValue=XMLHttpRequest]], Not [And [Or [Ant [pattern='/login'], Ant [pattern='/favicon.ico']], And [Not [RequestHeaderRequestMatcher [expectedHeaderName=X-Requested-With, expectedHeaderValue=XMLHttpRequest]], MediaTypeRequestMatcher [contentNegotiationStrategy=org.springframework.web.accept.ContentNegotiationManager@49ea4b65, matchingMediaTypes=[application/xhtml+xml, image/*, text/html, text/plain], useEquals=false, ignoredMediaTypes=[*/*]]]]], org.springframework.security.config.annotation.web.configurers.oauth2.client.OAuth2LoginConfigurer$$Lambda/0x0000007001925530@d3e0aee]
+2025-07-21T20:48:25.240+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-1] s.w.a.DelegatingAuthenticationEntryPoint : No match found. Using default entry point org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint@74611ad4
+2025-07-21T20:48:25.240+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-1] o.s.s.web.DefaultRedirectStrategy        : Redirecting to http://localhost:8080/login
+2025-07-21T20:48:25.245+09:00 DEBUG 31077 --- [oauth2jwt] [io-8080-exec-10] o.s.security.web.FilterChainProxy        : Securing GET /login
+2025-07-21T20:48:25.247+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Securing GET /api/web/auth/verify
+2025-07-21T20:48:25.247+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-4] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-07-21T20:48:25.247+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-4] o.s.s.w.session.SessionManagementFilter  : Request requested invalid session id B33FF8DD1DA84ED10B2DEE86F57EF808
+2025-07-21T20:48:25.248+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Secured GET /api/web/auth/verify
+2025-07-21T20:48:25.248+09:00  WARN 31077 --- [oauth2jwt] [nio-8080-exec-4] c.e.o.controller.WebAuthController       : 토큰 검증 실패
+2025-07-21T20:48:25.253+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Securing GET /api/web/auth/verify
+2025-07-21T20:48:25.253+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-5] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-07-21T20:48:25.253+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-5] o.s.s.w.session.SessionManagementFilter  : Request requested invalid session id B33FF8DD1DA84ED10B2DEE86F57EF808
+2025-07-21T20:48:25.254+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Secured GET /api/web/auth/verify
+2025-07-21T20:48:25.254+09:00  WARN 31077 --- [oauth2jwt] [nio-8080-exec-5] c.e.o.controller.WebAuthController       : 토큰 검증 실패
+2025-07-21T20:48:25.258+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Securing GET /api/web/auth/verify
+2025-07-21T20:48:25.258+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-6] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-07-21T20:48:25.258+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-6] o.s.s.w.session.SessionManagementFilter  : Request requested invalid session id B33FF8DD1DA84ED10B2DEE86F57EF808
+2025-07-21T20:48:25.259+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Secured GET /api/web/auth/verify
+2025-07-21T20:48:25.259+09:00  WARN 31077 --- [oauth2jwt] [nio-8080-exec-6] c.e.o.controller.WebAuthController       : 토큰 검증 실패
+2025-07-21T20:48:25.262+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Securing GET /api/web/auth/verify
+2025-07-21T20:48:25.262+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-7] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-07-21T20:48:25.262+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-7] o.s.s.w.session.SessionManagementFilter  : Request requested invalid session id B33FF8DD1DA84ED10B2DEE86F57EF808
+2025-07-21T20:48:25.263+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Secured GET /api/web/auth/verify
+2025-07-21T20:48:25.263+09:00  WARN 31077 --- [oauth2jwt] [nio-8080-exec-7] c.e.o.controller.WebAuthController       : 토큰 검증 실패
+2025-07-21T20:49:05.071+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Securing GET /api/hello
+2025-07-21T20:49:05.071+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-8] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-07-21T20:49:05.071+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-8] o.s.s.w.session.SessionManagementFilter  : Request requested invalid session id B33FF8DD1DA84ED10B2DEE86F57EF808
+2025-07-21T20:49:05.072+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Secured GET /api/hello
+2025-07-21T20:49:19.703+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Securing GET /api/hello
+2025-07-21T20:49:19.703+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Securing GET /api/web/auth/verify
+2025-07-21T20:49:19.704+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-9] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-07-21T20:49:19.704+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-2] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-07-21T20:49:19.704+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-9] o.s.s.w.session.SessionManagementFilter  : Request requested invalid session id B33FF8DD1DA84ED10B2DEE86F57EF808
+2025-07-21T20:49:19.704+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-2] o.s.s.w.session.SessionManagementFilter  : Request requested invalid session id B33FF8DD1DA84ED10B2DEE86F57EF808
+2025-07-21T20:49:19.704+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Secured GET /api/hello
+2025-07-21T20:49:19.705+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Secured GET /api/web/auth/verify
+2025-07-21T20:49:19.705+09:00  WARN 31077 --- [oauth2jwt] [nio-8080-exec-2] c.e.o.controller.WebAuthController       : 토큰 검증 실패
+2025-07-21T20:49:19.708+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Securing GET /api/hello
+2025-07-21T20:49:19.709+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-1] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-07-21T20:49:19.709+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-1] o.s.s.w.session.SessionManagementFilter  : Request requested invalid session id B33FF8DD1DA84ED10B2DEE86F57EF808
+2025-07-21T20:49:19.710+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Secured GET /api/hello
+2025-07-21T20:49:19.718+09:00 DEBUG 31077 --- [oauth2jwt] [io-8080-exec-10] o.s.security.web.FilterChainProxy        : Securing GET /favicon.ico
+2025-07-21T20:49:19.718+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Securing GET /api/web/auth/verify
+2025-07-21T20:49:19.718+09:00 DEBUG 31077 --- [oauth2jwt] [io-8080-exec-10] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-07-21T20:49:19.718+09:00 DEBUG 31077 --- [oauth2jwt] [io-8080-exec-10] o.s.s.w.session.SessionManagementFilter  : Request requested invalid session id B33FF8DD1DA84ED10B2DEE86F57EF808
+2025-07-21T20:49:19.720+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-3] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-07-21T20:49:19.720+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-3] o.s.s.w.session.SessionManagementFilter  : Request requested invalid session id B33FF8DD1DA84ED10B2DEE86F57EF808
+2025-07-21T20:49:19.721+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Secured GET /api/web/auth/verify
+2025-07-21T20:49:19.721+09:00 DEBUG 31077 --- [oauth2jwt] [io-8080-exec-10] s.w.a.DelegatingAuthenticationEntryPoint : Trying to match using And [Not [RequestHeaderRequestMatcher [expectedHeaderName=X-Requested-With, expectedHeaderValue=XMLHttpRequest]], Not [And [Or [Ant [pattern='/login'], Ant [pattern='/favicon.ico']], And [Not [RequestHeaderRequestMatcher [expectedHeaderName=X-Requested-With, expectedHeaderValue=XMLHttpRequest]], MediaTypeRequestMatcher [contentNegotiationStrategy=org.springframework.web.accept.ContentNegotiationManager@49ea4b65, matchingMediaTypes=[application/xhtml+xml, image/*, text/html, text/plain], useEquals=false, ignoredMediaTypes=[*/*]]]]], org.springframework.security.config.annotation.web.configurers.oauth2.client.OAuth2LoginConfigurer$$Lambda/0x0000007001925530@d3e0aee]
+2025-07-21T20:49:19.721+09:00  WARN 31077 --- [oauth2jwt] [nio-8080-exec-3] c.e.o.controller.WebAuthController       : 토큰 검증 실패
+2025-07-21T20:49:19.721+09:00 DEBUG 31077 --- [oauth2jwt] [io-8080-exec-10] s.w.a.DelegatingAuthenticationEntryPoint : No match found. Using default entry point org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint@74611ad4
+2025-07-21T20:49:19.721+09:00 DEBUG 31077 --- [oauth2jwt] [io-8080-exec-10] o.s.s.web.DefaultRedirectStrategy        : Redirecting to http://localhost:8080/login
+2025-07-21T20:49:19.732+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Securing GET /login
+2025-07-21T20:49:20.295+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Securing GET /api/hello
+2025-07-21T20:49:20.296+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-6] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-07-21T20:49:20.296+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-6] o.s.s.w.session.SessionManagementFilter  : Request requested invalid session id B33FF8DD1DA84ED10B2DEE86F57EF808
+2025-07-21T20:49:20.297+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Secured GET /api/hello
+2025-07-21T20:49:20.299+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Securing GET /api/web/auth/verify
+2025-07-21T20:49:20.299+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-7] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-07-21T20:49:20.299+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-7] o.s.s.w.session.SessionManagementFilter  : Request requested invalid session id B33FF8DD1DA84ED10B2DEE86F57EF808
+2025-07-21T20:49:20.300+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Securing GET /api/hello
+2025-07-21T20:49:20.300+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-8] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-07-21T20:49:20.300+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-8] o.s.s.w.session.SessionManagementFilter  : Request requested invalid session id B33FF8DD1DA84ED10B2DEE86F57EF808
+2025-07-21T20:49:20.301+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Secured GET /api/hello
+2025-07-21T20:49:20.301+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Secured GET /api/web/auth/verify
+2025-07-21T20:49:20.301+09:00  WARN 31077 --- [oauth2jwt] [nio-8080-exec-7] c.e.o.controller.WebAuthController       : 토큰 검증 실패
+2025-07-21T20:49:20.307+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Securing GET /favicon.ico
+2025-07-21T20:49:20.308+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-2] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-07-21T20:49:20.308+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-2] o.s.s.w.session.SessionManagementFilter  : Request requested invalid session id B33FF8DD1DA84ED10B2DEE86F57EF808
+2025-07-21T20:49:20.310+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-2] s.w.a.DelegatingAuthenticationEntryPoint : Trying to match using And [Not [RequestHeaderRequestMatcher [expectedHeaderName=X-Requested-With, expectedHeaderValue=XMLHttpRequest]], Not [And [Or [Ant [pattern='/login'], Ant [pattern='/favicon.ico']], And [Not [RequestHeaderRequestMatcher [expectedHeaderName=X-Requested-With, expectedHeaderValue=XMLHttpRequest]], MediaTypeRequestMatcher [contentNegotiationStrategy=org.springframework.web.accept.ContentNegotiationManager@49ea4b65, matchingMediaTypes=[application/xhtml+xml, image/*, text/html, text/plain], useEquals=false, ignoredMediaTypes=[*/*]]]]], org.springframework.security.config.annotation.web.configurers.oauth2.client.OAuth2LoginConfigurer$$Lambda/0x0000007001925530@d3e0aee]
+2025-07-21T20:49:20.311+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-2] s.w.a.DelegatingAuthenticationEntryPoint : No match found. Using default entry point org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint@74611ad4
+2025-07-21T20:49:20.311+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-2] o.s.s.web.DefaultRedirectStrategy        : Redirecting to http://localhost:8080/login
+2025-07-21T20:49:20.311+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Securing GET /api/web/auth/verify
+2025-07-21T20:49:20.311+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-9] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-07-21T20:49:20.311+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-9] o.s.s.w.session.SessionManagementFilter  : Request requested invalid session id B33FF8DD1DA84ED10B2DEE86F57EF808
+2025-07-21T20:49:20.312+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Secured GET /api/web/auth/verify
+2025-07-21T20:49:20.312+09:00  WARN 31077 --- [oauth2jwt] [nio-8080-exec-9] c.e.o.controller.WebAuthController       : 토큰 검증 실패
+2025-07-21T20:49:20.318+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Securing GET /login
+2025-07-21T20:49:20.723+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Securing GET /api/hello
+2025-07-21T20:49:20.723+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Securing GET /api/web/auth/verify
+2025-07-21T20:49:20.724+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-4] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-07-21T20:49:20.724+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-4] o.s.s.w.session.SessionManagementFilter  : Request requested invalid session id B33FF8DD1DA84ED10B2DEE86F57EF808
+2025-07-21T20:49:20.724+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-3] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-07-21T20:49:20.724+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-3] o.s.s.w.session.SessionManagementFilter  : Request requested invalid session id B33FF8DD1DA84ED10B2DEE86F57EF808
+2025-07-21T20:49:20.725+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Secured GET /api/hello
+2025-07-21T20:49:20.725+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Secured GET /api/web/auth/verify
+2025-07-21T20:49:20.726+09:00  WARN 31077 --- [oauth2jwt] [nio-8080-exec-4] c.e.o.controller.WebAuthController       : 토큰 검증 실패
+2025-07-21T20:49:20.729+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Securing GET /api/hello
+2025-07-21T20:49:20.730+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-5] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-07-21T20:49:20.730+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-5] o.s.s.w.session.SessionManagementFilter  : Request requested invalid session id B33FF8DD1DA84ED10B2DEE86F57EF808
+2025-07-21T20:49:20.731+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Secured GET /api/hello
+2025-07-21T20:49:20.732+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Securing GET /favicon.ico
+2025-07-21T20:49:20.732+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-6] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-07-21T20:49:20.733+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-6] o.s.s.w.session.SessionManagementFilter  : Request requested invalid session id B33FF8DD1DA84ED10B2DEE86F57EF808
+2025-07-21T20:49:20.734+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-6] s.w.a.DelegatingAuthenticationEntryPoint : Trying to match using And [Not [RequestHeaderRequestMatcher [expectedHeaderName=X-Requested-With, expectedHeaderValue=XMLHttpRequest]], Not [And [Or [Ant [pattern='/login'], Ant [pattern='/favicon.ico']], And [Not [RequestHeaderRequestMatcher [expectedHeaderName=X-Requested-With, expectedHeaderValue=XMLHttpRequest]], MediaTypeRequestMatcher [contentNegotiationStrategy=org.springframework.web.accept.ContentNegotiationManager@49ea4b65, matchingMediaTypes=[application/xhtml+xml, image/*, text/html, text/plain], useEquals=false, ignoredMediaTypes=[*/*]]]]], org.springframework.security.config.annotation.web.configurers.oauth2.client.OAuth2LoginConfigurer$$Lambda/0x0000007001925530@d3e0aee]
+2025-07-21T20:49:20.734+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Securing GET /api/web/auth/verify
+2025-07-21T20:49:20.735+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-6] s.w.a.DelegatingAuthenticationEntryPoint : No match found. Using default entry point org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint@74611ad4
+2025-07-21T20:49:20.735+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-6] o.s.s.web.DefaultRedirectStrategy        : Redirecting to http://localhost:8080/login
+2025-07-21T20:49:20.735+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-7] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-07-21T20:49:20.735+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-7] o.s.s.w.session.SessionManagementFilter  : Request requested invalid session id B33FF8DD1DA84ED10B2DEE86F57EF808
+2025-07-21T20:49:20.735+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Secured GET /api/web/auth/verify
+2025-07-21T20:49:20.735+09:00  WARN 31077 --- [oauth2jwt] [nio-8080-exec-7] c.e.o.controller.WebAuthController       : 토큰 검증 실패
+2025-07-21T20:49:20.740+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Securing GET /login
+2025-07-21T20:49:20.909+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Securing GET /api/hello
+2025-07-21T20:49:20.910+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-9] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-07-21T20:49:20.910+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-9] o.s.s.w.session.SessionManagementFilter  : Request requested invalid session id B33FF8DD1DA84ED10B2DEE86F57EF808
+2025-07-21T20:49:20.911+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Secured GET /api/hello
+2025-07-21T20:49:20.911+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Securing GET /api/web/auth/verify
+2025-07-21T20:49:20.911+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-1] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-07-21T20:49:20.912+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-1] o.s.s.w.session.SessionManagementFilter  : Request requested invalid session id B33FF8DD1DA84ED10B2DEE86F57EF808
+2025-07-21T20:49:20.912+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Secured GET /api/web/auth/verify
+2025-07-21T20:49:20.912+09:00  WARN 31077 --- [oauth2jwt] [nio-8080-exec-1] c.e.o.controller.WebAuthController       : 토큰 검증 실패
+2025-07-21T20:49:20.914+09:00 DEBUG 31077 --- [oauth2jwt] [io-8080-exec-10] o.s.security.web.FilterChainProxy        : Securing GET /api/hello
+2025-07-21T20:49:20.915+09:00 DEBUG 31077 --- [oauth2jwt] [io-8080-exec-10] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-07-21T20:49:20.915+09:00 DEBUG 31077 --- [oauth2jwt] [io-8080-exec-10] o.s.s.w.session.SessionManagementFilter  : Request requested invalid session id B33FF8DD1DA84ED10B2DEE86F57EF808
+2025-07-21T20:49:20.915+09:00 DEBUG 31077 --- [oauth2jwt] [io-8080-exec-10] o.s.security.web.FilterChainProxy        : Secured GET /api/hello
+2025-07-21T20:49:20.919+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Securing GET /favicon.ico
+2025-07-21T20:49:20.919+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-3] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-07-21T20:49:20.919+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-3] o.s.s.w.session.SessionManagementFilter  : Request requested invalid session id B33FF8DD1DA84ED10B2DEE86F57EF808
+2025-07-21T20:49:20.921+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-3] s.w.a.DelegatingAuthenticationEntryPoint : Trying to match using And [Not [RequestHeaderRequestMatcher [expectedHeaderName=X-Requested-With, expectedHeaderValue=XMLHttpRequest]], Not [And [Or [Ant [pattern='/login'], Ant [pattern='/favicon.ico']], And [Not [RequestHeaderRequestMatcher [expectedHeaderName=X-Requested-With, expectedHeaderValue=XMLHttpRequest]], MediaTypeRequestMatcher [contentNegotiationStrategy=org.springframework.web.accept.ContentNegotiationManager@49ea4b65, matchingMediaTypes=[application/xhtml+xml, image/*, text/html, text/plain], useEquals=false, ignoredMediaTypes=[*/*]]]]], org.springframework.security.config.annotation.web.configurers.oauth2.client.OAuth2LoginConfigurer$$Lambda/0x0000007001925530@d3e0aee]
+2025-07-21T20:49:20.921+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-3] s.w.a.DelegatingAuthenticationEntryPoint : No match found. Using default entry point org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint@74611ad4
+2025-07-21T20:49:20.921+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-3] o.s.s.web.DefaultRedirectStrategy        : Redirecting to http://localhost:8080/login
+2025-07-21T20:49:20.927+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Securing GET /login
+2025-07-21T20:49:20.928+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Securing GET /api/web/auth/verify
+2025-07-21T20:49:20.928+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-5] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-07-21T20:49:20.928+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-5] o.s.s.w.session.SessionManagementFilter  : Request requested invalid session id B33FF8DD1DA84ED10B2DEE86F57EF808
+2025-07-21T20:49:20.928+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Secured GET /api/web/auth/verify
+2025-07-21T20:49:20.929+09:00  WARN 31077 --- [oauth2jwt] [nio-8080-exec-5] c.e.o.controller.WebAuthController       : 토큰 검증 실패
+2025-07-21T20:49:21.106+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Securing GET /api/hello
+2025-07-21T20:49:21.107+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-7] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-07-21T20:49:21.107+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-7] o.s.s.w.session.SessionManagementFilter  : Request requested invalid session id B33FF8DD1DA84ED10B2DEE86F57EF808
+2025-07-21T20:49:21.108+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Secured GET /api/hello
+2025-07-21T20:49:21.110+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Securing GET /api/web/auth/verify
+2025-07-21T20:49:21.110+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-8] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-07-21T20:49:21.110+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-8] o.s.s.w.session.SessionManagementFilter  : Request requested invalid session id B33FF8DD1DA84ED10B2DEE86F57EF808
+2025-07-21T20:49:21.111+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Securing GET /api/hello
+2025-07-21T20:49:21.111+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Secured GET /api/web/auth/verify
+2025-07-21T20:49:21.111+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-2] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-07-21T20:49:21.111+09:00  WARN 31077 --- [oauth2jwt] [nio-8080-exec-8] c.e.o.controller.WebAuthController       : 토큰 검증 실패
+2025-07-21T20:49:21.111+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-2] o.s.s.w.session.SessionManagementFilter  : Request requested invalid session id B33FF8DD1DA84ED10B2DEE86F57EF808
+2025-07-21T20:49:21.111+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Secured GET /api/hello
+2025-07-21T20:49:21.115+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Securing GET /favicon.ico
+2025-07-21T20:49:21.116+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-9] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-07-21T20:49:21.116+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-9] o.s.s.w.session.SessionManagementFilter  : Request requested invalid session id B33FF8DD1DA84ED10B2DEE86F57EF808
+2025-07-21T20:49:21.117+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-9] s.w.a.DelegatingAuthenticationEntryPoint : Trying to match using And [Not [RequestHeaderRequestMatcher [expectedHeaderName=X-Requested-With, expectedHeaderValue=XMLHttpRequest]], Not [And [Or [Ant [pattern='/login'], Ant [pattern='/favicon.ico']], And [Not [RequestHeaderRequestMatcher [expectedHeaderName=X-Requested-With, expectedHeaderValue=XMLHttpRequest]], MediaTypeRequestMatcher [contentNegotiationStrategy=org.springframework.web.accept.ContentNegotiationManager@49ea4b65, matchingMediaTypes=[application/xhtml+xml, image/*, text/html, text/plain], useEquals=false, ignoredMediaTypes=[*/*]]]]], org.springframework.security.config.annotation.web.configurers.oauth2.client.OAuth2LoginConfigurer$$Lambda/0x0000007001925530@d3e0aee]
+2025-07-21T20:49:21.118+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-9] s.w.a.DelegatingAuthenticationEntryPoint : No match found. Using default entry point org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint@74611ad4
+2025-07-21T20:49:21.118+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-9] o.s.s.web.DefaultRedirectStrategy        : Redirecting to http://localhost:8080/login
+2025-07-21T20:49:21.121+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Securing GET /api/web/auth/verify
+2025-07-21T20:49:21.121+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-1] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-07-21T20:49:21.121+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-1] o.s.s.w.session.SessionManagementFilter  : Request requested invalid session id B33FF8DD1DA84ED10B2DEE86F57EF808
+2025-07-21T20:49:21.122+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Secured GET /api/web/auth/verify
+2025-07-21T20:49:21.122+09:00  WARN 31077 --- [oauth2jwt] [nio-8080-exec-1] c.e.o.controller.WebAuthController       : 토큰 검증 실패
+2025-07-21T20:49:21.126+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Securing GET /login
+2025-07-21T20:49:21.236+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Securing GET /api/hello
+2025-07-21T20:49:21.237+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-4] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-07-21T20:49:21.237+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-4] o.s.s.w.session.SessionManagementFilter  : Request requested invalid session id B33FF8DD1DA84ED10B2DEE86F57EF808
+2025-07-21T20:49:21.238+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Secured GET /api/hello
+2025-07-21T20:49:21.239+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Securing GET /api/web/auth/verify
+2025-07-21T20:49:21.240+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-6] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-07-21T20:49:21.240+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-6] o.s.s.w.session.SessionManagementFilter  : Request requested invalid session id B33FF8DD1DA84ED10B2DEE86F57EF808
+2025-07-21T20:49:21.240+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Secured GET /api/web/auth/verify
+2025-07-21T20:49:21.240+09:00  WARN 31077 --- [oauth2jwt] [nio-8080-exec-6] c.e.o.controller.WebAuthController       : 토큰 검증 실패
+2025-07-21T20:49:21.242+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Securing GET /api/hello
+2025-07-21T20:49:21.242+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-5] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-07-21T20:49:21.242+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-5] o.s.s.w.session.SessionManagementFilter  : Request requested invalid session id B33FF8DD1DA84ED10B2DEE86F57EF808
+2025-07-21T20:49:21.242+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Secured GET /api/hello
+2025-07-21T20:49:21.247+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Securing GET /favicon.ico
+2025-07-21T20:49:21.247+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-7] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-07-21T20:49:21.247+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-7] o.s.s.w.session.SessionManagementFilter  : Request requested invalid session id B33FF8DD1DA84ED10B2DEE86F57EF808
+2025-07-21T20:49:21.248+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-7] s.w.a.DelegatingAuthenticationEntryPoint : Trying to match using And [Not [RequestHeaderRequestMatcher [expectedHeaderName=X-Requested-With, expectedHeaderValue=XMLHttpRequest]], Not [And [Or [Ant [pattern='/login'], Ant [pattern='/favicon.ico']], And [Not [RequestHeaderRequestMatcher [expectedHeaderName=X-Requested-With, expectedHeaderValue=XMLHttpRequest]], MediaTypeRequestMatcher [contentNegotiationStrategy=org.springframework.web.accept.ContentNegotiationManager@49ea4b65, matchingMediaTypes=[application/xhtml+xml, image/*, text/html, text/plain], useEquals=false, ignoredMediaTypes=[*/*]]]]], org.springframework.security.config.annotation.web.configurers.oauth2.client.OAuth2LoginConfigurer$$Lambda/0x0000007001925530@d3e0aee]
+2025-07-21T20:49:21.249+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-7] s.w.a.DelegatingAuthenticationEntryPoint : No match found. Using default entry point org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint@74611ad4
+2025-07-21T20:49:21.249+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-7] o.s.s.web.DefaultRedirectStrategy        : Redirecting to http://localhost:8080/login
+2025-07-21T20:49:21.253+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Securing GET /api/web/auth/verify
+2025-07-21T20:49:21.253+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-2] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-07-21T20:49:21.253+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-2] o.s.s.w.session.SessionManagementFilter  : Request requested invalid session id B33FF8DD1DA84ED10B2DEE86F57EF808
+2025-07-21T20:49:21.253+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Securing GET /login
+2025-07-21T20:49:21.254+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Secured GET /api/web/auth/verify
+2025-07-21T20:49:21.254+09:00  WARN 31077 --- [oauth2jwt] [nio-8080-exec-2] c.e.o.controller.WebAuthController       : 토큰 검증 실패
+2025-07-21T20:49:21.622+09:00 DEBUG 31077 --- [oauth2jwt] [io-8080-exec-10] o.s.security.web.FilterChainProxy        : Securing GET /oauth2/authorization/google
+2025-07-21T20:49:21.646+09:00 DEBUG 31077 --- [oauth2jwt] [io-8080-exec-10] o.s.s.web.DefaultRedirectStrategy        : Redirecting to https://accounts.google.com/o/oauth2/auth?response_type=code&client_id=105264979588-ohrpkkeqmerkt6b01av0sv82ohqlku04.apps.googleusercontent.com&scope=profile%20email&state=tIFk0vOrOId5mr5w53kVU0faCd3zHNvOkZ500cO0hZs%3D&redirect_uri=http://localhost:8080/login/oauth2/code/google
+2025-07-21T20:49:21.950+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Securing GET /login/oauth2/code/google?state=tIFk0vOrOId5mr5w53kVU0faCd3zHNvOkZ500cO0hZs%3D&code=4%2F0AVMBsJj0DM2QZfmvLMV6hoaR1H9SgET2tcP8rNEDwU7niLcJB_SHIu4TgpWJJlcUwznTzg&scope=email+profile+openid+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email&authuser=0&prompt=none
+2025-07-21T20:49:22.754+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-1] .s.ChangeSessionIdAuthenticationStrategy : Changed session id from 225BE7F0F2B146A79B48A4E350916281
+2025-07-21T20:49:22.755+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-1] .s.o.c.w.OAuth2LoginAuthenticationFilter : Set SecurityContextHolder to OAuth2AuthenticationToken [Principal=Name: [112518392728974260190], Granted Authorities: [[OAUTH2_USER, SCOPE_https://www.googleapis.com/auth/userinfo.email, SCOPE_https://www.googleapis.com/auth/userinfo.profile, SCOPE_openid]], User Attributes: [{id=112518392728974260190, email=happy402508@gmail.com, verified_email=true, name=김서진, given_name=서진, family_name=김, picture=https://lh3.googleusercontent.com/a/ACg8ocL6IK2ezoSa89XbBXoPMmuc6mxzs_pd1tNUvkBO6W_IfO4Dz-xo=s96-c}], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=225BE7F0F2B146A79B48A4E350916281], Granted Authorities=[OAUTH2_USER, SCOPE_https://www.googleapis.com/auth/userinfo.email, SCOPE_https://www.googleapis.com/auth/userinfo.profile, SCOPE_openid]]
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.created_date,
+        u1_0.email,
+        u1_0.modified_date,
+        u1_0.name,
+        u1_0.picture,
+        u1_0.provider,
+        u1_0.provider_id,
+        u1_0.role 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.created_date,
+        u1_0.email,
+        u1_0.modified_date,
+        u1_0.name,
+        u1_0.picture,
+        u1_0.provider,
+        u1_0.provider_id,
+        u1_0.role 
+    from
+        users u1_0 
+    where
+        u1_0.id=?
+2025-07-21T20:49:22.916+09:00  INFO 31077 --- [oauth2jwt] [nio-8080-exec-1] e.o.h.OAuth2AuthenticationSuccessHandler : Web OAuth2 login success for user: happy402508@gmail.com
+2025-07-21T20:49:22.916+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-1] o.s.s.web.DefaultRedirectStrategy        : Redirecting to http://localhost:3000/oauth2/redirect?success=true
+2025-07-21T20:49:22.980+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Securing GET /api/hello
+2025-07-21T20:49:22.980+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Securing GET /api/web/auth/verify
+2025-07-21T20:49:22.989+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Securing GET /favicon.ico
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.created_date,
+        u1_0.email,
+        u1_0.modified_date,
+        u1_0.name,
+        u1_0.picture,
+        u1_0.provider,
+        u1_0.provider_id,
+        u1_0.role 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.created_date,
+        u1_0.email,
+        u1_0.modified_date,
+        u1_0.name,
+        u1_0.picture,
+        u1_0.provider,
+        u1_0.provider_id,
+        u1_0.role 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.created_date,
+        u1_0.email,
+        u1_0.modified_date,
+        u1_0.name,
+        u1_0.picture,
+        u1_0.provider,
+        u1_0.provider_id,
+        u1_0.role 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+2025-07-21T20:49:23.002+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-6] .s.ChangeSessionIdAuthenticationStrategy : Changed session id from B5003730224AE8879F6FC613C18476A6
+2025-07-21T20:49:23.002+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Secured GET /favicon.ico
+2025-07-21T20:49:23.006+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Securing GET /error
+2025-07-21T20:49:23.006+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-6] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-07-21T20:49:23.007+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-6] s.w.a.DelegatingAuthenticationEntryPoint : Trying to match using And [Not [RequestHeaderRequestMatcher [expectedHeaderName=X-Requested-With, expectedHeaderValue=XMLHttpRequest]], Not [And [Or [Ant [pattern='/login'], Ant [pattern='/favicon.ico']], And [Not [RequestHeaderRequestMatcher [expectedHeaderName=X-Requested-With, expectedHeaderValue=XMLHttpRequest]], MediaTypeRequestMatcher [contentNegotiationStrategy=org.springframework.web.accept.ContentNegotiationManager@49ea4b65, matchingMediaTypes=[application/xhtml+xml, image/*, text/html, text/plain], useEquals=false, ignoredMediaTypes=[*/*]]]]], org.springframework.security.config.annotation.web.configurers.oauth2.client.OAuth2LoginConfigurer$$Lambda/0x0000007001925530@d3e0aee]
+2025-07-21T20:49:23.007+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-6] s.w.a.DelegatingAuthenticationEntryPoint : Match found! Executing org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint@183d4ea7
+2025-07-21T20:49:23.007+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-6] o.s.s.web.DefaultRedirectStrategy        : Redirecting to http://localhost:8080/oauth2/authorization/google
+2025-07-21T20:49:23.007+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Secured GET /api/hello
+2025-07-21T20:49:23.007+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Secured GET /api/web/auth/verify
+2025-07-21T20:49:23.008+09:00  INFO 31077 --- [oauth2jwt] [nio-8080-exec-4] c.e.o.controller.WebAuthController       : 토큰 검증 성공: happy402508@gmail.com
+2025-07-21T20:49:23.008+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Securing GET /api/hello
+2025-07-21T20:49:23.009+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Securing GET /oauth2/authorization/google
+2025-07-21T20:49:23.009+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-7] o.s.s.web.DefaultRedirectStrategy        : Redirecting to https://accounts.google.com/o/oauth2/auth?response_type=code&client_id=105264979588-ohrpkkeqmerkt6b01av0sv82ohqlku04.apps.googleusercontent.com&scope=profile%20email&state=mgNmM1uDMKgo2DWM2aESTYI0RrF7Pq8zt0iWF2EXNPQ%3D&redirect_uri=http://localhost:8080/login/oauth2/code/google
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.created_date,
+        u1_0.email,
+        u1_0.modified_date,
+        u1_0.name,
+        u1_0.picture,
+        u1_0.provider,
+        u1_0.provider_id,
+        u1_0.role 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+2025-07-21T20:49:23.013+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Securing GET /api/web/auth/verify
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.created_date,
+        u1_0.email,
+        u1_0.modified_date,
+        u1_0.name,
+        u1_0.picture,
+        u1_0.provider,
+        u1_0.provider_id,
+        u1_0.role 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+2025-07-21T20:49:23.018+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Secured GET /api/hello
+2025-07-21T20:49:23.018+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Securing GET /favicon.ico
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.created_date,
+        u1_0.email,
+        u1_0.modified_date,
+        u1_0.name,
+        u1_0.picture,
+        u1_0.provider,
+        u1_0.provider_id,
+        u1_0.role 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+2025-07-21T20:49:23.022+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Secured GET /api/web/auth/verify
+2025-07-21T20:49:23.022+09:00  INFO 31077 --- [oauth2jwt] [nio-8080-exec-8] c.e.o.controller.WebAuthController       : 토큰 검증 성공: happy402508@gmail.com
+2025-07-21T20:49:23.025+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-9] .s.ChangeSessionIdAuthenticationStrategy : Changed session id from 631B18CF2D3C0681CD471EB461EE67DD
+2025-07-21T20:49:23.026+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Securing GET /api/web/auth/verify
+2025-07-21T20:49:23.026+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Secured GET /favicon.ico
+2025-07-21T20:49:23.026+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Securing GET /error
+2025-07-21T20:49:23.027+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-9] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.created_date,
+        u1_0.email,
+        u1_0.modified_date,
+        u1_0.name,
+        u1_0.picture,
+        u1_0.provider,
+        u1_0.provider_id,
+        u1_0.role 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+2025-07-21T20:49:23.028+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-9] s.w.a.DelegatingAuthenticationEntryPoint : Trying to match using And [Not [RequestHeaderRequestMatcher [expectedHeaderName=X-Requested-With, expectedHeaderValue=XMLHttpRequest]], Not [And [Or [Ant [pattern='/login'], Ant [pattern='/favicon.ico']], And [Not [RequestHeaderRequestMatcher [expectedHeaderName=X-Requested-With, expectedHeaderValue=XMLHttpRequest]], MediaTypeRequestMatcher [contentNegotiationStrategy=org.springframework.web.accept.ContentNegotiationManager@49ea4b65, matchingMediaTypes=[application/xhtml+xml, image/*, text/html, text/plain], useEquals=false, ignoredMediaTypes=[*/*]]]]], org.springframework.security.config.annotation.web.configurers.oauth2.client.OAuth2LoginConfigurer$$Lambda/0x0000007001925530@d3e0aee]
+2025-07-21T20:49:23.028+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-9] s.w.a.DelegatingAuthenticationEntryPoint : Match found! Executing org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint@183d4ea7
+2025-07-21T20:49:23.028+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-9] o.s.s.web.DefaultRedirectStrategy        : Redirecting to http://localhost:8080/oauth2/authorization/google
+2025-07-21T20:49:23.028+09:00 DEBUG 31077 --- [oauth2jwt] [io-8080-exec-10] o.s.security.web.FilterChainProxy        : Securing GET /api/auth/me
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.created_date,
+        u1_0.email,
+        u1_0.modified_date,
+        u1_0.name,
+        u1_0.picture,
+        u1_0.provider,
+        u1_0.provider_id,
+        u1_0.role 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+2025-07-21T20:49:23.033+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Securing GET /oauth2/authorization/google
+2025-07-21T20:49:23.033+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-1] o.s.s.web.DefaultRedirectStrategy        : Redirecting to https://accounts.google.com/o/oauth2/auth?response_type=code&client_id=105264979588-ohrpkkeqmerkt6b01av0sv82ohqlku04.apps.googleusercontent.com&scope=profile%20email&state=zUYzHbcTVyDRo4G7wDyBYuMLbT4BVzWWxqIMIkl-cxc%3D&redirect_uri=http://localhost:8080/login/oauth2/code/google
+2025-07-21T20:49:23.033+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Secured GET /api/web/auth/verify
+2025-07-21T20:49:23.034+09:00  INFO 31077 --- [oauth2jwt] [nio-8080-exec-2] c.e.o.controller.WebAuthController       : 토큰 검증 성공: happy402508@gmail.com
+2025-07-21T20:49:23.035+09:00 DEBUG 31077 --- [oauth2jwt] [io-8080-exec-10] o.s.security.web.FilterChainProxy        : Secured GET /api/auth/me
+2025-07-21T20:49:23.039+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Securing GET /api/web/auth/verify
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.created_date,
+        u1_0.email,
+        u1_0.modified_date,
+        u1_0.name,
+        u1_0.picture,
+        u1_0.provider,
+        u1_0.provider_id,
+        u1_0.role 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+2025-07-21T20:49:23.046+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Secured GET /api/web/auth/verify
+2025-07-21T20:49:23.046+09:00  INFO 31077 --- [oauth2jwt] [nio-8080-exec-6] c.e.o.controller.WebAuthController       : 토큰 검증 성공: happy402508@gmail.com
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.created_date,
+        u1_0.email,
+        u1_0.modified_date,
+        u1_0.name,
+        u1_0.picture,
+        u1_0.provider,
+        u1_0.provider_id,
+        u1_0.role 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+2025-07-21T20:49:23.051+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Securing GET /api/web/auth/verify
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.created_date,
+        u1_0.email,
+        u1_0.modified_date,
+        u1_0.name,
+        u1_0.picture,
+        u1_0.provider,
+        u1_0.provider_id,
+        u1_0.role 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+2025-07-21T20:49:23.060+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Secured GET /api/web/auth/verify
+2025-07-21T20:49:23.060+09:00  INFO 31077 --- [oauth2jwt] [nio-8080-exec-3] c.e.o.controller.WebAuthController       : 토큰 검증 성공: happy402508@gmail.com
+2025-07-21T20:49:23.074+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Securing GET /api/auth/me
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.created_date,
+        u1_0.email,
+        u1_0.modified_date,
+        u1_0.name,
+        u1_0.picture,
+        u1_0.provider,
+        u1_0.provider_id,
+        u1_0.role 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+2025-07-21T20:49:23.083+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Secured GET /api/auth/me
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.created_date,
+        u1_0.email,
+        u1_0.modified_date,
+        u1_0.name,
+        u1_0.picture,
+        u1_0.provider,
+        u1_0.provider_id,
+        u1_0.role 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+2025-07-21T20:49:24.088+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Securing POST /api/web/auth/logout
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.created_date,
+        u1_0.email,
+        u1_0.modified_date,
+        u1_0.name,
+        u1_0.picture,
+        u1_0.provider,
+        u1_0.provider_id,
+        u1_0.role 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+2025-07-21T20:49:24.111+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-7] .s.ChangeSessionIdAuthenticationStrategy : Changed session id from C1C14D6A5D3C791797364058F71E7889
+2025-07-21T20:49:24.112+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Secured POST /api/web/auth/logout
+2025-07-21T20:49:24.114+09:00  INFO 31077 --- [oauth2jwt] [nio-8080-exec-7] c.e.o.controller.WebAuthController       : 로그아웃 성공 - 쿠키 삭제 완료
+2025-07-21T20:49:24.134+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Securing POST /api/web/auth/logout
+2025-07-21T20:49:24.135+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-5] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-07-21T20:49:24.136+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Secured POST /api/web/auth/logout
+2025-07-21T20:49:24.137+09:00  INFO 31077 --- [oauth2jwt] [nio-8080-exec-5] c.e.o.controller.WebAuthController       : 로그아웃 성공 - 쿠키 삭제 완료
+2025-07-21T20:49:25.232+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Securing GET /oauth2/authorization/google
+2025-07-21T20:49:25.233+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-8] o.s.s.web.DefaultRedirectStrategy        : Redirecting to https://accounts.google.com/o/oauth2/auth?response_type=code&client_id=105264979588-ohrpkkeqmerkt6b01av0sv82ohqlku04.apps.googleusercontent.com&scope=profile%20email&state=hwsFwnysEbtzw76Geq4FsrdgNIheuBYWtouxhwzH9xo%3D&redirect_uri=http://localhost:8080/login/oauth2/code/google
+2025-07-21T20:49:25.584+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Securing GET /login/oauth2/code/google?state=hwsFwnysEbtzw76Geq4FsrdgNIheuBYWtouxhwzH9xo%3D&code=4%2F0AVMBsJiVXfiw0N3imlZFnYJE3Xgcsn51GYJQKil27XOJpa-y7HBfOOaBydema3_b0pyudA&scope=email+profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+openid&authuser=0&prompt=none
+2025-07-21T20:49:25.814+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-9] .s.ChangeSessionIdAuthenticationStrategy : Changed session id from 6EC00EC550C5DCC46C9D9F9078F532D0
+2025-07-21T20:49:25.815+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-9] .s.o.c.w.OAuth2LoginAuthenticationFilter : Set SecurityContextHolder to OAuth2AuthenticationToken [Principal=Name: [112518392728974260190], Granted Authorities: [[OAUTH2_USER, SCOPE_https://www.googleapis.com/auth/userinfo.email, SCOPE_https://www.googleapis.com/auth/userinfo.profile, SCOPE_openid]], User Attributes: [{id=112518392728974260190, email=happy402508@gmail.com, verified_email=true, name=김서진, given_name=서진, family_name=김, picture=https://lh3.googleusercontent.com/a/ACg8ocL6IK2ezoSa89XbBXoPMmuc6mxzs_pd1tNUvkBO6W_IfO4Dz-xo=s96-c}], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=6EC00EC550C5DCC46C9D9F9078F532D0], Granted Authorities=[OAUTH2_USER, SCOPE_https://www.googleapis.com/auth/userinfo.email, SCOPE_https://www.googleapis.com/auth/userinfo.profile, SCOPE_openid]]
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.created_date,
+        u1_0.email,
+        u1_0.modified_date,
+        u1_0.name,
+        u1_0.picture,
+        u1_0.provider,
+        u1_0.provider_id,
+        u1_0.role 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.created_date,
+        u1_0.email,
+        u1_0.modified_date,
+        u1_0.name,
+        u1_0.picture,
+        u1_0.provider,
+        u1_0.provider_id,
+        u1_0.role 
+    from
+        users u1_0 
+    where
+        u1_0.id=?
+2025-07-21T20:49:25.856+09:00  INFO 31077 --- [oauth2jwt] [nio-8080-exec-9] e.o.h.OAuth2AuthenticationSuccessHandler : Web OAuth2 login success for user: happy402508@gmail.com
+2025-07-21T20:49:25.856+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-9] o.s.s.web.DefaultRedirectStrategy        : Redirecting to http://localhost:3000/oauth2/redirect?success=true
+2025-07-21T20:49:25.917+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Securing GET /api/hello
+2025-07-21T20:49:25.917+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Securing GET /api/web/auth/verify
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.created_date,
+        u1_0.email,
+        u1_0.modified_date,
+        u1_0.name,
+        u1_0.picture,
+        u1_0.provider,
+        u1_0.provider_id,
+        u1_0.role 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.created_date,
+        u1_0.email,
+        u1_0.modified_date,
+        u1_0.name,
+        u1_0.picture,
+        u1_0.provider,
+        u1_0.provider_id,
+        u1_0.role 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+2025-07-21T20:49:25.926+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-2] .s.ChangeSessionIdAuthenticationStrategy : Changed session id from 5EE5B8843A031093B1865D87138653AD
+2025-07-21T20:49:25.926+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Securing GET /favicon.ico
+2025-07-21T20:49:25.926+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Secured GET /api/web/auth/verify
+2025-07-21T20:49:25.927+09:00  INFO 31077 --- [oauth2jwt] [nio-8080-exec-2] c.e.o.controller.WebAuthController       : 토큰 검증 성공: happy402508@gmail.com
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.created_date,
+        u1_0.email,
+        u1_0.modified_date,
+        u1_0.name,
+        u1_0.picture,
+        u1_0.provider,
+        u1_0.provider_id,
+        u1_0.role 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+2025-07-21T20:49:25.931+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Securing GET /api/web/auth/verify
+2025-07-21T20:49:25.932+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Secured GET /api/hello
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.created_date,
+        u1_0.email,
+        u1_0.modified_date,
+        u1_0.name,
+        u1_0.picture,
+        u1_0.provider,
+        u1_0.provider_id,
+        u1_0.role 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+2025-07-21T20:49:25.937+09:00 DEBUG 31077 --- [oauth2jwt] [io-8080-exec-10] o.s.security.web.FilterChainProxy        : Securing GET /api/hello
+2025-07-21T20:49:25.937+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Secured GET /favicon.ico
+2025-07-21T20:49:25.938+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Securing GET /error
+2025-07-21T20:49:25.939+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-6] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.created_date,
+        u1_0.email,
+        u1_0.modified_date,
+        u1_0.name,
+        u1_0.picture,
+        u1_0.provider,
+        u1_0.provider_id,
+        u1_0.role 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+2025-07-21T20:49:25.939+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-6] s.w.a.DelegatingAuthenticationEntryPoint : Trying to match using And [Not [RequestHeaderRequestMatcher [expectedHeaderName=X-Requested-With, expectedHeaderValue=XMLHttpRequest]], Not [And [Or [Ant [pattern='/login'], Ant [pattern='/favicon.ico']], And [Not [RequestHeaderRequestMatcher [expectedHeaderName=X-Requested-With, expectedHeaderValue=XMLHttpRequest]], MediaTypeRequestMatcher [contentNegotiationStrategy=org.springframework.web.accept.ContentNegotiationManager@49ea4b65, matchingMediaTypes=[application/xhtml+xml, image/*, text/html, text/plain], useEquals=false, ignoredMediaTypes=[*/*]]]]], org.springframework.security.config.annotation.web.configurers.oauth2.client.OAuth2LoginConfigurer$$Lambda/0x0000007001925530@d3e0aee]
+2025-07-21T20:49:25.939+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-6] s.w.a.DelegatingAuthenticationEntryPoint : Match found! Executing org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint@183d4ea7
+2025-07-21T20:49:25.939+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-6] o.s.s.web.DefaultRedirectStrategy        : Redirecting to http://localhost:8080/oauth2/authorization/google
+2025-07-21T20:49:25.941+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Securing GET /oauth2/authorization/google
+2025-07-21T20:49:25.941+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Secured GET /api/web/auth/verify
+2025-07-21T20:49:25.941+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-4] o.s.s.web.DefaultRedirectStrategy        : Redirecting to https://accounts.google.com/o/oauth2/auth?response_type=code&client_id=105264979588-ohrpkkeqmerkt6b01av0sv82ohqlku04.apps.googleusercontent.com&scope=profile%20email&state=SLuvBsVpHn5nuFHH9sgnRC_uwp4Hf08T5sv0ivrTRPE%3D&redirect_uri=http://localhost:8080/login/oauth2/code/google
+2025-07-21T20:49:25.942+09:00  INFO 31077 --- [oauth2jwt] [nio-8080-exec-3] c.e.o.controller.WebAuthController       : 토큰 검증 성공: happy402508@gmail.com
+2025-07-21T20:49:25.942+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Securing GET /favicon.ico
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.created_date,
+        u1_0.email,
+        u1_0.modified_date,
+        u1_0.name,
+        u1_0.picture,
+        u1_0.provider,
+        u1_0.provider_id,
+        u1_0.role 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+2025-07-21T20:49:25.945+09:00 DEBUG 31077 --- [oauth2jwt] [io-8080-exec-10] o.s.security.web.FilterChainProxy        : Secured GET /api/hello
+2025-07-21T20:49:25.945+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Securing GET /api/web/auth/verify
+2025-07-21T20:49:25.946+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Securing GET /api/auth/me
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.created_date,
+        u1_0.email,
+        u1_0.modified_date,
+        u1_0.name,
+        u1_0.picture,
+        u1_0.provider,
+        u1_0.provider_id,
+        u1_0.role 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.created_date,
+        u1_0.email,
+        u1_0.modified_date,
+        u1_0.name,
+        u1_0.picture,
+        u1_0.provider,
+        u1_0.provider_id,
+        u1_0.role 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+2025-07-21T20:49:25.950+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-7] .s.ChangeSessionIdAuthenticationStrategy : Changed session id from 32533B1C835ED000F846F85EDB37AFD3
+2025-07-21T20:49:25.950+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Secured GET /favicon.ico
+2025-07-21T20:49:25.951+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Securing GET /error
+2025-07-21T20:49:25.952+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-7] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-07-21T20:49:25.952+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-7] s.w.a.DelegatingAuthenticationEntryPoint : Trying to match using And [Not [RequestHeaderRequestMatcher [expectedHeaderName=X-Requested-With, expectedHeaderValue=XMLHttpRequest]], Not [And [Or [Ant [pattern='/login'], Ant [pattern='/favicon.ico']], And [Not [RequestHeaderRequestMatcher [expectedHeaderName=X-Requested-With, expectedHeaderValue=XMLHttpRequest]], MediaTypeRequestMatcher [contentNegotiationStrategy=org.springframework.web.accept.ContentNegotiationManager@49ea4b65, matchingMediaTypes=[application/xhtml+xml, image/*, text/html, text/plain], useEquals=false, ignoredMediaTypes=[*/*]]]]], org.springframework.security.config.annotation.web.configurers.oauth2.client.OAuth2LoginConfigurer$$Lambda/0x0000007001925530@d3e0aee]
+2025-07-21T20:49:25.952+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-7] s.w.a.DelegatingAuthenticationEntryPoint : Match found! Executing org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint@183d4ea7
+2025-07-21T20:49:25.952+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-7] o.s.s.web.DefaultRedirectStrategy        : Redirecting to http://localhost:8080/oauth2/authorization/google
+2025-07-21T20:49:25.953+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Secured GET /api/web/auth/verify
+2025-07-21T20:49:25.954+09:00  INFO 31077 --- [oauth2jwt] [nio-8080-exec-5] c.e.o.controller.WebAuthController       : 토큰 검증 성공: happy402508@gmail.com
+2025-07-21T20:49:25.954+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Securing GET /oauth2/authorization/google
+2025-07-21T20:49:25.954+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-9] o.s.s.web.DefaultRedirectStrategy        : Redirecting to https://accounts.google.com/o/oauth2/auth?response_type=code&client_id=105264979588-ohrpkkeqmerkt6b01av0sv82ohqlku04.apps.googleusercontent.com&scope=profile%20email&state=PCjbyqgbGLIBiA86dUKaqX5d8Ugz4mATUrAxFmvRJUA%3D&redirect_uri=http://localhost:8080/login/oauth2/code/google
+2025-07-21T20:49:25.959+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Secured GET /api/auth/me
+2025-07-21T20:49:25.959+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Securing GET /api/web/auth/verify
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.created_date,
+        u1_0.email,
+        u1_0.modified_date,
+        u1_0.name,
+        u1_0.picture,
+        u1_0.provider,
+        u1_0.provider_id,
+        u1_0.role 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+2025-07-21T20:49:25.966+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Secured GET /api/web/auth/verify
+2025-07-21T20:49:25.967+09:00  INFO 31077 --- [oauth2jwt] [nio-8080-exec-2] c.e.o.controller.WebAuthController       : 토큰 검증 성공: happy402508@gmail.com
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.created_date,
+        u1_0.email,
+        u1_0.modified_date,
+        u1_0.name,
+        u1_0.picture,
+        u1_0.provider,
+        u1_0.provider_id,
+        u1_0.role 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+2025-07-21T20:49:25.987+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Securing GET /api/auth/me
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.created_date,
+        u1_0.email,
+        u1_0.modified_date,
+        u1_0.name,
+        u1_0.picture,
+        u1_0.provider,
+        u1_0.provider_id,
+        u1_0.role 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+2025-07-21T20:49:25.995+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Secured GET /api/auth/me
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.created_date,
+        u1_0.email,
+        u1_0.modified_date,
+        u1_0.name,
+        u1_0.picture,
+        u1_0.provider,
+        u1_0.provider_id,
+        u1_0.role 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+2025-07-21T20:49:28.402+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Securing GET /api/auth/me
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.created_date,
+        u1_0.email,
+        u1_0.modified_date,
+        u1_0.name,
+        u1_0.picture,
+        u1_0.provider,
+        u1_0.provider_id,
+        u1_0.role 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+2025-07-21T20:49:28.424+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-6] .s.ChangeSessionIdAuthenticationStrategy : Changed session id from 4F60D02EE75BD217ED0075365840B581
+2025-07-21T20:49:28.425+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Secured GET /api/auth/me
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.created_date,
+        u1_0.email,
+        u1_0.modified_date,
+        u1_0.name,
+        u1_0.picture,
+        u1_0.provider,
+        u1_0.provider_id,
+        u1_0.role 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+2025-07-21T20:49:34.070+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Securing POST /api/web/auth/logout
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.created_date,
+        u1_0.email,
+        u1_0.modified_date,
+        u1_0.name,
+        u1_0.picture,
+        u1_0.provider,
+        u1_0.provider_id,
+        u1_0.role 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+2025-07-21T20:49:34.092+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-4] .s.ChangeSessionIdAuthenticationStrategy : Changed session id from D046EB30C9AC01A446DE9EBDA0990319
+2025-07-21T20:49:34.093+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Secured POST /api/web/auth/logout
+2025-07-21T20:49:34.094+09:00  INFO 31077 --- [oauth2jwt] [nio-8080-exec-4] c.e.o.controller.WebAuthController       : 로그아웃 성공 - 쿠키 삭제 완료
+2025-07-21T20:49:34.109+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Securing POST /api/web/auth/logout
+2025-07-21T20:49:34.110+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-3] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-07-21T20:49:34.110+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Secured POST /api/web/auth/logout
+2025-07-21T20:49:34.111+09:00  INFO 31077 --- [oauth2jwt] [nio-8080-exec-3] c.e.o.controller.WebAuthController       : 로그아웃 성공 - 쿠키 삭제 완료
+2025-07-21T20:49:35.085+09:00 DEBUG 31077 --- [oauth2jwt] [io-8080-exec-10] o.s.security.web.FilterChainProxy        : Securing GET /oauth2/authorization/google
+2025-07-21T20:49:35.086+09:00 DEBUG 31077 --- [oauth2jwt] [io-8080-exec-10] o.s.s.web.DefaultRedirectStrategy        : Redirecting to https://accounts.google.com/o/oauth2/auth?response_type=code&client_id=105264979588-ohrpkkeqmerkt6b01av0sv82ohqlku04.apps.googleusercontent.com&scope=profile%20email&state=gjdDHJ1h33QjQ_lN3IRCMarZiFBj8AycrWIU2zvpv74%3D&redirect_uri=http://localhost:8080/login/oauth2/code/google
+2025-07-21T20:49:35.356+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Securing GET /login/oauth2/code/google?state=gjdDHJ1h33QjQ_lN3IRCMarZiFBj8AycrWIU2zvpv74%3D&code=4%2F0AVMBsJgOoBljvqw_LFFYwVbrkdOv2aZH4Cwv3vL8O5oEzWPTEfHicj4dzGpGPNPn-pJXRg&scope=email+profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+openid&authuser=0&prompt=none
+2025-07-21T20:49:35.919+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-7] .s.ChangeSessionIdAuthenticationStrategy : Changed session id from E459F3C264F99FACEC6D2C8BCE37E180
+2025-07-21T20:49:35.920+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-7] .s.o.c.w.OAuth2LoginAuthenticationFilter : Set SecurityContextHolder to OAuth2AuthenticationToken [Principal=Name: [112518392728974260190], Granted Authorities: [[OAUTH2_USER, SCOPE_https://www.googleapis.com/auth/userinfo.email, SCOPE_https://www.googleapis.com/auth/userinfo.profile, SCOPE_openid]], User Attributes: [{id=112518392728974260190, email=happy402508@gmail.com, verified_email=true, name=김서진, given_name=서진, family_name=김, picture=https://lh3.googleusercontent.com/a/ACg8ocL6IK2ezoSa89XbBXoPMmuc6mxzs_pd1tNUvkBO6W_IfO4Dz-xo=s96-c}], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=E459F3C264F99FACEC6D2C8BCE37E180], Granted Authorities=[OAUTH2_USER, SCOPE_https://www.googleapis.com/auth/userinfo.email, SCOPE_https://www.googleapis.com/auth/userinfo.profile, SCOPE_openid]]
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.created_date,
+        u1_0.email,
+        u1_0.modified_date,
+        u1_0.name,
+        u1_0.picture,
+        u1_0.provider,
+        u1_0.provider_id,
+        u1_0.role 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.created_date,
+        u1_0.email,
+        u1_0.modified_date,
+        u1_0.name,
+        u1_0.picture,
+        u1_0.provider,
+        u1_0.provider_id,
+        u1_0.role 
+    from
+        users u1_0 
+    where
+        u1_0.id=?
+2025-07-21T20:49:35.974+09:00  INFO 31077 --- [oauth2jwt] [nio-8080-exec-7] e.o.h.OAuth2AuthenticationSuccessHandler : Web OAuth2 login success for user: happy402508@gmail.com
+2025-07-21T20:49:35.974+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-7] o.s.s.web.DefaultRedirectStrategy        : Redirecting to http://localhost:3000/oauth2/redirect?success=true
+2025-07-21T20:49:36.046+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Securing GET /api/hello
+2025-07-21T20:49:36.046+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Securing GET /api/web/auth/verify
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.created_date,
+        u1_0.email,
+        u1_0.modified_date,
+        u1_0.name,
+        u1_0.picture,
+        u1_0.provider,
+        u1_0.provider_id,
+        u1_0.role 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.created_date,
+        u1_0.email,
+        u1_0.modified_date,
+        u1_0.name,
+        u1_0.picture,
+        u1_0.provider,
+        u1_0.provider_id,
+        u1_0.role 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+2025-07-21T20:49:36.056+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Securing GET /favicon.ico
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.created_date,
+        u1_0.email,
+        u1_0.modified_date,
+        u1_0.name,
+        u1_0.picture,
+        u1_0.provider,
+        u1_0.provider_id,
+        u1_0.role 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+2025-07-21T20:49:36.060+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-9] .s.ChangeSessionIdAuthenticationStrategy : Changed session id from 1B370AEDBA1BB49669138AC6A84616BB
+2025-07-21T20:49:36.060+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Secured GET /api/web/auth/verify
+2025-07-21T20:49:36.061+09:00  INFO 31077 --- [oauth2jwt] [nio-8080-exec-9] c.e.o.controller.WebAuthController       : 토큰 검증 성공: happy402508@gmail.com
+2025-07-21T20:49:36.062+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Secured GET /api/hello
+2025-07-21T20:49:36.065+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Securing GET /api/hello
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.created_date,
+        u1_0.email,
+        u1_0.modified_date,
+        u1_0.name,
+        u1_0.picture,
+        u1_0.provider,
+        u1_0.provider_id,
+        u1_0.role 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+2025-07-21T20:49:36.071+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Secured GET /favicon.ico
+2025-07-21T20:49:36.073+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Securing GET /api/web/auth/verify
+2025-07-21T20:49:36.074+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Securing GET /error
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.created_date,
+        u1_0.email,
+        u1_0.modified_date,
+        u1_0.name,
+        u1_0.picture,
+        u1_0.provider,
+        u1_0.provider_id,
+        u1_0.role 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+2025-07-21T20:49:36.075+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-2] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-07-21T20:49:36.075+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-2] s.w.a.DelegatingAuthenticationEntryPoint : Trying to match using And [Not [RequestHeaderRequestMatcher [expectedHeaderName=X-Requested-With, expectedHeaderValue=XMLHttpRequest]], Not [And [Or [Ant [pattern='/login'], Ant [pattern='/favicon.ico']], And [Not [RequestHeaderRequestMatcher [expectedHeaderName=X-Requested-With, expectedHeaderValue=XMLHttpRequest]], MediaTypeRequestMatcher [contentNegotiationStrategy=org.springframework.web.accept.ContentNegotiationManager@49ea4b65, matchingMediaTypes=[application/xhtml+xml, image/*, text/html, text/plain], useEquals=false, ignoredMediaTypes=[*/*]]]]], org.springframework.security.config.annotation.web.configurers.oauth2.client.OAuth2LoginConfigurer$$Lambda/0x0000007001925530@d3e0aee]
+2025-07-21T20:49:36.075+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-2] s.w.a.DelegatingAuthenticationEntryPoint : Match found! Executing org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint@183d4ea7
+2025-07-21T20:49:36.075+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Secured GET /api/hello
+2025-07-21T20:49:36.075+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-2] o.s.s.web.DefaultRedirectStrategy        : Redirecting to http://localhost:8080/oauth2/authorization/google
+2025-07-21T20:49:36.078+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Securing GET /oauth2/authorization/google
+2025-07-21T20:49:36.079+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-6] o.s.s.web.DefaultRedirectStrategy        : Redirecting to https://accounts.google.com/o/oauth2/auth?response_type=code&client_id=105264979588-ohrpkkeqmerkt6b01av0sv82ohqlku04.apps.googleusercontent.com&scope=profile%20email&state=Jg42bnD5pS8Y3hVnx1nihJuLTaDvnxFMb73R9VhvF-0%3D&redirect_uri=http://localhost:8080/login/oauth2/code/google
+2025-07-21T20:49:36.080+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Securing GET /favicon.ico
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.created_date,
+        u1_0.email,
+        u1_0.modified_date,
+        u1_0.name,
+        u1_0.picture,
+        u1_0.provider,
+        u1_0.provider_id,
+        u1_0.role 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+2025-07-21T20:49:36.082+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Secured GET /api/web/auth/verify
+2025-07-21T20:49:36.082+09:00  INFO 31077 --- [oauth2jwt] [nio-8080-exec-1] c.e.o.controller.WebAuthController       : 토큰 검증 성공: happy402508@gmail.com
+2025-07-21T20:49:36.085+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Securing GET /api/web/auth/verify
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.created_date,
+        u1_0.email,
+        u1_0.modified_date,
+        u1_0.name,
+        u1_0.picture,
+        u1_0.provider,
+        u1_0.provider_id,
+        u1_0.role 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+2025-07-21T20:49:36.087+09:00 DEBUG 31077 --- [oauth2jwt] [io-8080-exec-10] o.s.security.web.FilterChainProxy        : Securing GET /api/auth/me
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.created_date,
+        u1_0.email,
+        u1_0.modified_date,
+        u1_0.name,
+        u1_0.picture,
+        u1_0.provider,
+        u1_0.provider_id,
+        u1_0.role 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+2025-07-21T20:49:36.088+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-4] .s.ChangeSessionIdAuthenticationStrategy : Changed session id from 39BFD889EF1BFF5C7A5FA0B8E2627E65
+2025-07-21T20:49:36.088+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Secured GET /favicon.ico
+2025-07-21T20:49:36.089+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Securing GET /error
+2025-07-21T20:49:36.089+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-4] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-07-21T20:49:36.089+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-4] s.w.a.DelegatingAuthenticationEntryPoint : Trying to match using And [Not [RequestHeaderRequestMatcher [expectedHeaderName=X-Requested-With, expectedHeaderValue=XMLHttpRequest]], Not [And [Or [Ant [pattern='/login'], Ant [pattern='/favicon.ico']], And [Not [RequestHeaderRequestMatcher [expectedHeaderName=X-Requested-With, expectedHeaderValue=XMLHttpRequest]], MediaTypeRequestMatcher [contentNegotiationStrategy=org.springframework.web.accept.ContentNegotiationManager@49ea4b65, matchingMediaTypes=[application/xhtml+xml, image/*, text/html, text/plain], useEquals=false, ignoredMediaTypes=[*/*]]]]], org.springframework.security.config.annotation.web.configurers.oauth2.client.OAuth2LoginConfigurer$$Lambda/0x0000007001925530@d3e0aee]
+2025-07-21T20:49:36.089+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-4] s.w.a.DelegatingAuthenticationEntryPoint : Match found! Executing org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint@183d4ea7
+2025-07-21T20:49:36.089+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-4] o.s.s.web.DefaultRedirectStrategy        : Redirecting to http://localhost:8080/oauth2/authorization/google
+2025-07-21T20:49:36.091+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Secured GET /api/web/auth/verify
+2025-07-21T20:49:36.091+09:00  INFO 31077 --- [oauth2jwt] [nio-8080-exec-3] c.e.o.controller.WebAuthController       : 토큰 검증 성공: happy402508@gmail.com
+2025-07-21T20:49:36.091+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Securing GET /oauth2/authorization/google
+2025-07-21T20:49:36.092+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-7] o.s.s.web.DefaultRedirectStrategy        : Redirecting to https://accounts.google.com/o/oauth2/auth?response_type=code&client_id=105264979588-ohrpkkeqmerkt6b01av0sv82ohqlku04.apps.googleusercontent.com&scope=profile%20email&state=od6lmJ175inIeTuQljx40IgMWv5clOQzJOZRMSpxOVE%3D&redirect_uri=http://localhost:8080/login/oauth2/code/google
+2025-07-21T20:49:36.094+09:00 DEBUG 31077 --- [oauth2jwt] [io-8080-exec-10] o.s.security.web.FilterChainProxy        : Secured GET /api/auth/me
+2025-07-21T20:49:36.095+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Securing GET /api/web/auth/verify
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.created_date,
+        u1_0.email,
+        u1_0.modified_date,
+        u1_0.name,
+        u1_0.picture,
+        u1_0.provider,
+        u1_0.provider_id,
+        u1_0.role 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+2025-07-21T20:49:36.103+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Secured GET /api/web/auth/verify
+2025-07-21T20:49:36.103+09:00  INFO 31077 --- [oauth2jwt] [nio-8080-exec-9] c.e.o.controller.WebAuthController       : 토큰 검증 성공: happy402508@gmail.com
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.created_date,
+        u1_0.email,
+        u1_0.modified_date,
+        u1_0.name,
+        u1_0.picture,
+        u1_0.provider,
+        u1_0.provider_id,
+        u1_0.role 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+2025-07-21T20:49:36.107+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Securing GET /api/web/auth/verify
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.created_date,
+        u1_0.email,
+        u1_0.modified_date,
+        u1_0.name,
+        u1_0.picture,
+        u1_0.provider,
+        u1_0.provider_id,
+        u1_0.role 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+2025-07-21T20:49:36.113+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Secured GET /api/web/auth/verify
+2025-07-21T20:49:36.113+09:00  INFO 31077 --- [oauth2jwt] [nio-8080-exec-5] c.e.o.controller.WebAuthController       : 토큰 검증 성공: happy402508@gmail.com
+2025-07-21T20:49:36.128+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Securing GET /api/auth/me
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.created_date,
+        u1_0.email,
+        u1_0.modified_date,
+        u1_0.name,
+        u1_0.picture,
+        u1_0.provider,
+        u1_0.provider_id,
+        u1_0.role 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+2025-07-21T20:49:36.144+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Secured GET /api/auth/me
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.created_date,
+        u1_0.email,
+        u1_0.modified_date,
+        u1_0.name,
+        u1_0.picture,
+        u1_0.provider,
+        u1_0.provider_id,
+        u1_0.role 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+2025-07-21T20:49:37.240+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Securing GET /api/auth/me
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.created_date,
+        u1_0.email,
+        u1_0.modified_date,
+        u1_0.name,
+        u1_0.picture,
+        u1_0.provider,
+        u1_0.provider_id,
+        u1_0.role 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+2025-07-21T20:49:37.268+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-8] .s.ChangeSessionIdAuthenticationStrategy : Changed session id from AD3BDCB84852F6448E7659BD4DE8D116
+2025-07-21T20:49:37.269+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Secured GET /api/auth/me
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.created_date,
+        u1_0.email,
+        u1_0.modified_date,
+        u1_0.name,
+        u1_0.picture,
+        u1_0.provider,
+        u1_0.provider_id,
+        u1_0.role 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+2025-07-21T20:50:07.570+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Securing GET /oauth2/authorization/google
+2025-07-21T20:50:07.570+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-6] o.s.s.web.DefaultRedirectStrategy        : Redirecting to https://accounts.google.com/o/oauth2/auth?response_type=code&client_id=105264979588-ohrpkkeqmerkt6b01av0sv82ohqlku04.apps.googleusercontent.com&scope=profile%20email&state=wp3orzj177pG072dzLGAocYqoV6xc9xUSIK8chEJKMc%3D&redirect_uri=http://localhost:8080/login/oauth2/code/google
+2025-07-21T20:50:07.579+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Securing GET /api/auth/me
+2025-07-21T20:50:07.579+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-4] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-07-21T20:50:07.579+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-4] s.w.a.DelegatingAuthenticationEntryPoint : Trying to match using And [Not [RequestHeaderRequestMatcher [expectedHeaderName=X-Requested-With, expectedHeaderValue=XMLHttpRequest]], Not [And [Or [Ant [pattern='/login'], Ant [pattern='/favicon.ico']], And [Not [RequestHeaderRequestMatcher [expectedHeaderName=X-Requested-With, expectedHeaderValue=XMLHttpRequest]], MediaTypeRequestMatcher [contentNegotiationStrategy=org.springframework.web.accept.ContentNegotiationManager@49ea4b65, matchingMediaTypes=[application/xhtml+xml, image/*, text/html, text/plain], useEquals=false, ignoredMediaTypes=[*/*]]]]], org.springframework.security.config.annotation.web.configurers.oauth2.client.OAuth2LoginConfigurer$$Lambda/0x0000007001925530@d3e0aee]
+2025-07-21T20:50:07.579+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-4] s.w.a.DelegatingAuthenticationEntryPoint : Match found! Executing org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint@183d4ea7
+2025-07-21T20:50:07.579+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-4] o.s.s.web.DefaultRedirectStrategy        : Redirecting to http://localhost:8080/oauth2/authorization/google
+2025-07-21T20:50:28.586+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Securing GET /api/web/auth/debug/token
+2025-07-21T20:50:28.587+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-7] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-07-21T20:50:28.587+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Secured GET /api/web/auth/debug/token
+2025-07-21T20:50:43.783+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Securing GET /api/auth/me
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.created_date,
+        u1_0.email,
+        u1_0.modified_date,
+        u1_0.name,
+        u1_0.picture,
+        u1_0.provider,
+        u1_0.provider_id,
+        u1_0.role 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+2025-07-21T20:50:43.800+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-2] .s.ChangeSessionIdAuthenticationStrategy : Changed session id from C980E1A24121693D12EAFB24F6FD47A1
+2025-07-21T20:50:43.800+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Secured GET /api/auth/me
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.created_date,
+        u1_0.email,
+        u1_0.modified_date,
+        u1_0.name,
+        u1_0.picture,
+        u1_0.provider,
+        u1_0.provider_id,
+        u1_0.role 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+2025-07-21T20:51:08.812+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Securing GET /api/auth/me
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.created_date,
+        u1_0.email,
+        u1_0.modified_date,
+        u1_0.name,
+        u1_0.picture,
+        u1_0.provider,
+        u1_0.provider_id,
+        u1_0.role 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+2025-07-21T20:51:08.828+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-8] .s.ChangeSessionIdAuthenticationStrategy : Changed session id from 00B06977BE599608AC32A5E5DB48A04D
+2025-07-21T20:51:08.828+09:00 DEBUG 31077 --- [oauth2jwt] [nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Secured GET /api/auth/me
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.created_date,
+        u1_0.email,
+        u1_0.modified_date,
+        u1_0.name,
+        u1_0.picture,
+        u1_0.provider,
+        u1_0.provider_id,
+        u1_0.role 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+
+> Task :bootRun FAILED
+
+[Incubating] Problems report is available at: file:///Users/kimseojin/Desktop/oAuth2JwtMobile/build/reports/problems/problems-report.html
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':bootRun'.
+> Process 'command '/Users/kimseojin/Library/Java/JavaVirtualMachines/corretto-21.0.7/Contents/Home/bin/java'' finished with non-zero exit value 137
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+> Get more help at https://help.gradle.org.
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/8.13/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+BUILD FAILED in 5m 28s
+4 actionable tasks: 1 executed, 3 up-to-date
