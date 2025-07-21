@@ -74,12 +74,14 @@ public class SecurityConfig {
                         // 이 경로들은 JWT 필터를 거쳐도 인가 검사에서 통과시킴
                         // "/" - 홈페이지, "/h2-console/**" - H2 데이터베이스 콘솔
                         // "/api/hello" - 테스트용 API, "/oauth2/**" - OAuth2 로그인 경로
-                        // "/login/**" - 로그인 관련 경로, "/api/auth/verify" - 토큰 검증 API
-                        // "/api/auth/logout" - 로그아웃 API, "/api/auth/debug/token" - 토큰 디버깅 API
-                        .requestMatchers("/", "/h2-console/**", "/api/hello", "/oauth2/**", "/login/**", "/api/auth/verify", "/api/auth/logout", "/api/auth/debug/token").permitAll()
+                        // "/login/**" - 로그인 관련 경로
+                        // "/api/web/auth/**" - 웹 전용 인증 API (쿠키 기반)
+                        // "/api/mobile/auth/**" - 모바일 전용 인증 API (헤더 기반)
+                        .requestMatchers("/", "/h2-console/**", "/api/hello", "/oauth2/**", "/login/**", "/api/web/auth/**", "/api/mobile/auth/**").permitAll()
                         
                         // 🔒 위에서 정의한 경로 외의 모든 요청은 인증 필요
                         // JWT 필터에서 인증이 성공한 경우에만 접근 허용
+                        // 범용 인증 API("/api/auth/**")는 인증이 필요함
                         .anyRequest().authenticated()
                 )
                 

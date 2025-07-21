@@ -14,8 +14,10 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 @Slf4j
 @Component
@@ -26,22 +28,22 @@ public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationS
     private final UserRepository userRepository;
 
     /**
-     * OAuth2 로그인 성공 후 처리하는 핵심 메서드
+     * OAuth2 로그인 성공 후 처리하는 핵심 메서드 (웹/모바일 분기처리)
      * 
      * 프로세스 흐름:
      * 이전: Google OAuth2 서버에서 인증 완료 후 Spring Security가 Authentication 객체 생성 (인증)
-     [ 자세히 : 구글에서 Authorization Code와 함께 브라우저를 우리 서버로 리다이렉트 →
-                   Spring Security가 자동으로 (Code→Access Token 교환, 사용자 정보 조회, OAuth2User 객체 생성) 처리 후 호출]
-
-     * 현재: OAuth2 사용자 정보 추출 -> 사용자 저장/업데이트 -> JWT 토큰 발급 -> 쿠키 설정 -> 프론트엔드로 리다이렉트 (인증)
-     * 이후: 프론트엔드에서 쿠키의 JWT 토큰을 사용하여 API 요청 시 인증 (인가)
+     * 현재: 클라이언트 타입 감지 -> OAuth2 사용자 정보 추출 -> 사용자 저장/업데이트 -> JWT 토큰 발급 -> 웹/모바일별 처리 (인증)
+     * 이후: 웹/모바일에서 각각의 방식으로 토큰을 사용하여 API 요청 시 인증 (인가)
      */
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, 
                                       HttpServletResponse response,
                                       Authentication authentication) throws IOException, ServletException {
         
-        // 프로세스 1: OAuth2 사용자 정보 추출 (인증)
+        // 프로세스 1: 클라이언트 타입 감지 (인증)
+        boolean isMobileClient = detectMobileClient(request);
+        
+        // 프로세스 2: OAuth2 사용자 정보 추출 (인증)
         OAuth2User oAuth2User = (OAuth2User) authentication.getPrincipal();
         
         String email = extractEmail(oAuth2User);
@@ -50,15 +52,29 @@ public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationS
         String provider = "google"; // Google OAuth2만 우선 지원
         String providerId = extractProviderId(oAuth2User);
         
-        // 프로세스 2: 사용자 정보 저장/업데이트 (인증)
+        // 프로세스 3: 사용자 정보 저장/업데이트 (인증)
         User user = saveOrUpdateUser(email, name, picture, provider, providerId);
         
-        // 프로세스 3: JWT 토큰 발급 (인증)
+        // 프로세스 4: JWT 토큰 발급 (인증)
         String token = jwtTokenProvider.generateToken(email);
         String refreshToken = jwtTokenProvider.generateRefreshToken(email);
         
-        // 프로세스 4: HTTP-Only 쿠키로 토큰 설정 (인증)
-        // XSS 공격 방지를 위해 JavaScript에서 접근 불가능한 HttpOnly 쿠키 사용
+        // 프로세스 5: 클라이언트 타입별 처리 분기 (인증)
+        if (isMobileClient) {
+            handleMobileSuccess(request, response, email, token, refreshToken);
+        } else {
+            handleWebSuccess(request, response, email, token, refreshToken);
+        }
+    }
+
+    /**
+     * 웹 클라이언트 OAuth2 로그인 성공 처리
+     * 
+     * 프로세스: HTTP-Only 쿠키 설정 -> 브라우저 리다이렉트 (인증)
+     */
+    private void handleWebSuccess(HttpServletRequest request, HttpServletResponse response, 
+                                String email, String token, String refreshToken) throws IOException {
+        // HTTP-Only 쿠키로 토큰 설정 (XSS 공격 방지)
         Cookie accessCookie = new Cookie("accessToken", token);
         accessCookie.setHttpOnly(true);
         accessCookie.setSecure(false); // HTTPS 환경에서는 true로 설정
@@ -74,12 +90,63 @@ public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationS
         response.addCookie(accessCookie);
         response.addCookie(refreshCookie);
         
-        // 프로세스 5: 프론트엔드로 리다이렉트 (인증)
-        // 토큰은 쿠키에 저장되므로 URL에 노출하지 않아 보안상 안전
+        // 프론트엔드로 리다이렉트
         String targetUrl = "http://localhost:3000/oauth2/redirect?success=true";
         
-        log.info("OAuth2 login success for user: {}", email);
+        log.info("Web OAuth2 login success for user: {}", email);
         getRedirectStrategy().sendRedirect(request, response, targetUrl);
+    }
+
+    /**
+     * 모바일 클라이언트 OAuth2 로그인 성공 처리
+     * 
+     * 프로세스: JSON 토큰 응답 -> 딥링크 리다이렉트 (인증)
+     */
+    private void handleMobileSuccess(HttpServletRequest request, HttpServletResponse response, 
+                                   String email, String token, String refreshToken) throws IOException {
+        // JSON 응답으로 토큰 전달
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        
+        String jsonResponse = String.format(
+            "{\"success\": true, \"message\": \"로그인 성공\", \"accessToken\": \"%s\", \"refreshToken\": \"%s\", \"email\": \"%s\"}",
+            token, refreshToken, email
+        );
+        
+        PrintWriter writer = response.getWriter();
+        writer.write(jsonResponse);
+        writer.flush();
+        
+        log.info("Mobile OAuth2 login success for user: {}", email);
+        
+        // TODO: 향후 딥링크 리다이렉트 추가 (yourapp://oauth/callback?token=...)
+        // 현재는 JSON 응답으로만 처리
+    }
+
+    /**
+     * 모바일 클라이언트 감지
+     * 
+     * 프로세스: User-Agent 헤더 또는 요청 파라미터를 통해 모바일 클라이언트 여부 판단 (인증)
+     */
+    private boolean detectMobileClient(HttpServletRequest request) {
+        // 방법 1: 요청 파라미터로 클라이언트 타입 구분
+        String clientType = request.getParameter("client_type");
+        if ("mobile".equals(clientType)) {
+            return true;
+        }
+        
+        // 방법 2: User-Agent 헤더로 모바일 감지
+        String userAgent = request.getHeader("User-Agent");
+        if (StringUtils.hasText(userAgent)) {
+            userAgent = userAgent.toLowerCase();
+            return userAgent.contains("mobile") || 
+                   userAgent.contains("android") || 
+                   userAgent.contains("iphone") || 
+                   userAgent.contains("ipad");
+        }
+        
+        // 기본값: 웹 클라이언트로 간주
+        return false;
     }
 
     /**

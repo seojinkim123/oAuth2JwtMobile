@@ -67,24 +67,24 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     }
 
     /**
-     * HTTP 요청에서 JWT 토큰 추출 (쿠키 우선, 헤더 보조)
+     * HTTP 요청에서 JWT 토큰 추출 (헤더 우선, 쿠키 보조)
      * 
      * 프로세스 흐름:
      * 이전: doFilterInternal에서 호출 (인가)
-     * 현재: HTTP-Only 쿠키에서 토큰 추출 시도 -> 실패시 Authorization 헤더에서 추출 시도 (인가)
+     * 현재: Authorization 헤더에서 토큰 추출 시도 -> 실패시 HTTP-Only 쿠키에서 추출 시도 (인가)
      * 이후: 추출된 토큰의 유효성 검증 진행 (인가)
      */
     private String getJwtFromRequest(HttpServletRequest request) {
-        // 1순위: HTTP-Only 쿠키에서 토큰 추출 (주요 방식)
-        String jwtFromCookie = getJwtFromCookie(request);
-        if (StringUtils.hasText(jwtFromCookie)) {
-            return jwtFromCookie;
-        }
-        
-        // 2순위: Authorization 헤더에서 토큰 추출 (기존 방식 호환성 유지)
+        // 1순위: Authorization 헤더에서 토큰 추출 (모바일 친화적 방식)
         String bearerToken = request.getHeader("Authorization");
         if (StringUtils.hasText(bearerToken) && bearerToken.startsWith("Bearer ")) {
             return bearerToken.substring(7);
+        }
+        
+        // 2순위: HTTP-Only 쿠키에서 토큰 추출 (웹 브라우저 호환성 유지)
+        String jwtFromCookie = getJwtFromCookie(request);
+        if (StringUtils.hasText(jwtFromCookie)) {
+            return jwtFromCookie;
         }
         
         return null;

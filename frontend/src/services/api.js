@@ -52,15 +52,32 @@ export const ApiService = {
   hello: () => api.get('/hello'),
 
   // 인증이 필요한 API
-  getCurrentUser: () => api.get('/me'),
+  getCurrentUser: () => api.get('/auth/me'),
   getUser: (id) => api.get(`/user/${id}`),
 
-  // 토큰 관련 API
+  // 토큰 관련 API (범용)
   refreshToken: (refreshToken) => 
     axios.post('http://localhost:8080/api/auth/refresh', { refreshToken }),
   
   validateToken: (token) => 
     axios.post('http://localhost:8080/api/auth/validate', { token }),
+
+  // 웹용 인증 API (쿠키 기반)
+  webVerifyToken: () => api.get('/web/auth/verify'),
+  webLogout: () => api.post('/web/auth/logout'),
+  webDebugToken: () => api.get('/web/auth/debug/token'),
+
+  // 모바일용 인증 API (헤더 기반) - 참고용
+  // 실제로는 Authorization 헤더와 함께 사용
+  mobileVerifyToken: (token) => 
+    axios.get('http://localhost:8080/api/mobile/auth/verify', {
+      headers: { 'Authorization': `Bearer ${token}` }
+    }),
+  
+  mobileLogout: (token) => 
+    axios.post('http://localhost:8080/api/mobile/auth/logout', {}, {
+      headers: { 'Authorization': `Bearer ${token}` }
+    }),
 };
 
 export default api;
