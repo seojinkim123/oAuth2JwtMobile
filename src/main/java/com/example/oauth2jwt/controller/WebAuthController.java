@@ -23,26 +23,22 @@ public class WebAuthController {
     /**
      * JWT 토큰 유효성 검증 API 엔드포인트
      * 
-     * 프로세스 흐름:
+     * 프로세스 흐름 (개선됨):
      * 이전: 프론트엔드에서 인증 상태 확인을 위한 API 호출 (인가)
-     * 현재: 쿠키에서 토큰 추출 -> 토큰 유효성 검증 -> 사용자 이메일 추출 -> 결과 반환 (인가)
+     * 현재: JwtAuthenticationFilter에서 이미 토큰 검증 완료 -> SecurityContext에서 인증 정보 추출 -> 결과 반환 (인가)
      * 이후: 프론트엔드에서 인증 상태에 따른 UI 처리 (인가)
      */
     @GetMapping("/verify")
-    public ResponseEntity<?> verifyToken(HttpServletRequest request, Authentication authentication) {
+    public ResponseEntity<?> verifyToken(Authentication authentication) {
         try {
-            // 프로세스 1: 쿠키에서 accessToken 추출 (인가)
-            String token = getJwtFromCookie(request);
-            
-            if (token != null && jwtTokenProvider.validateToken(token)) {
-                // 프로세스 2: 토큰에서 사용자 이메일 추출 (인가)
-                String email = jwtTokenProvider.getEmailFromToken(token);
+            // JwtAuthenticationFilter에서 이미 토큰 검증이 완료되어 SecurityContext에 인증 정보가 설정됨
+            if (authentication != null && authentication.isAuthenticated()) {
+                String email = authentication.getName(); // 이미 필터에서 검증된 사용자 이메일
                 log.info("토큰 검증 성공: {}", email);
                 
-                // 프로세스 3: 인증 성공 응답 반환 (인가)
                 return ResponseEntity.ok().body(new VerifyResponse(true, email, "토큰이 유효합니다."));
             } else {
-                log.warn("토큰 검증 실패");
+                log.warn("토큰 검증 실패 - 인증 정보 없음");
                 return ResponseEntity.status(401).body(new VerifyResponse(false, null, "토큰이 유효하지 않습니다."));
             }
         } catch (Exception e) {
@@ -50,6 +46,30 @@ public class WebAuthController {
             return ResponseEntity.status(500).body(new VerifyResponse(false, null, "토큰 검증 중 오류가 발생했습니다."));
         }
     }
+
+    // 기존 중복 코드 (JwtAuthenticationFilter와 동일한 로직이 중복되어 제거됨)
+    // @GetMapping("/verify")
+    // public ResponseEntity<?> verifyToken(HttpServletRequest request, Authentication authentication) {
+    //     try {
+    //         // 프로세스 1: 쿠키에서 accessToken 추출 (인가) - JwtAuthenticationFilter에서 이미 처리됨
+    //         String token = getJwtFromCookie(request);
+    //         
+    //         if (token != null && jwtTokenProvider.validateToken(token)) { // 중복된 토큰 검증
+    //             // 프로세스 2: 토큰에서 사용자 이메일 추출 (인가) - 중복된 이메일 추출
+    //             String email = jwtTokenProvider.getEmailFromToken(token);
+    //             log.info("토큰 검증 성공: {}", email);
+    //             
+    //             // 프로세스 3: 인증 성공 응답 반환 (인가)
+    //             return ResponseEntity.ok().body(new VerifyResponse(true, email, "토큰이 유효합니다."));
+    //         } else {
+    //             log.warn("토큰 검증 실패");
+    //             return ResponseEntity.status(401).body(new VerifyResponse(false, null, "토큰이 유효하지 않습니다."));
+    //         }
+    //     } catch (Exception e) {
+    //         log.error("토큰 검증 중 오류 발생", e);
+    //         return ResponseEntity.status(500).body(new VerifyResponse(false, null, "토큰 검증 중 오류가 발생했습니다."));
+    //     }
+    // }
 
     /**
      * 로그아웃 API - HTTP-Only 쿠키 삭제

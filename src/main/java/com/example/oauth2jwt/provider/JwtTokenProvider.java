@@ -48,7 +48,7 @@ public class JwtTokenProvider {
 
     /**
      * 이메일로부터 Access Token 생성 (오버로드 메서드)
-     * 
+     *
      * 프로세스 흐름:
      * 이전: OAuth2AuthenticationSuccessHandler에서 사용자 정보 저장 완료 (인증)
      * 현재: 이메일을 subject로 설정 -> JWT 클레임 설정 -> 디지털 서명 -> Access Token 생성 (인증)
@@ -67,7 +67,7 @@ public class JwtTokenProvider {
 
     /**
      * 이메일로부터 Refresh Token 생성
-     * 
+     *
      * 프로세스 흐름:
      * 이전: Access Token 생성 완료 (인증)
      * 현재: 이메일을 subject로 설정 -> 긴 만료시간(7일) 설정 -> 디지털 서명 -> Refresh Token 생성 (인증)
@@ -106,7 +106,7 @@ public class JwtTokenProvider {
      * JWT 토큰 유효성 검증
      * 
      * 프로세스 흐름:
-     * 이전: JwtAuthenticationFilter에서 쿠키 또는 Authorization 헤더에서 토큰 추출 완료 (인가)
+     * 이전: JwtAuthenticationFilter에서 쿠키( web ) 또는 Authorization 헤더에서 토큰 (moblie)추출 완료 (인가)
      * 현재: JWT 파싱 -> 디지털 서명 검증 -> 만료 시간 확인 -> 토큰 유효성 반환 (인가)
      * 이후: 유효한 경우 사용자 이메일 추출 및 인증 객체 생성 (인가)
      */
