@@ -212,3 +212,53 @@ public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationS
         return oAuth2User.getAttribute("sub");
     }
 }
+
+/*
+*  🔄 OAuth2 로그인 플로우
+
+  Step 1: 사용자가 로그인 버튼 클릭
+
+  const handleGoogleLogin = () => {
+      window.location.href =
+  'http://localhost:8080/oauth2/authorization/google';
+  };
+
+  Step 2: Spring Security가 Google로 리다이렉트
+
+  브라우저 이동:
+  http://localhost:8080/oauth2/authorization/google
+  ↓
+  https://accounts.google.com/o/oauth2/auth?
+    client_id=105264979588-ohrpkkeqmerkt6b01av0sv82ohqlk
+  u04.apps.googleusercontent.com
+    &redirect_uri=http://localhost:8080/login/oauth2/cod
+  e/google
+    &response_type=code
+    &scope=profile email
+
+  Step 3: 사용자가 Google에서 로그인/동의
+
+  Google 로그인 페이지에서:
+  - 이메일/비밀번호 입력
+  - "앱에 권한 허용하시겠습니까?" 동의
+
+  Step 4: Google이 인가 코드와 함께 백엔드로 리다이렉트
+
+  http://localhost:8080/login/oauth2/code/google?code=4/
+  0AanQ...&state=xyz
+
+  Step 5: Spring Security가 토큰 교환
+
+  // Spring Security가 자동으로 처리:
+  // 1. 인가 코드를 Google 토큰 서버로 전송
+  // 2. Access Token 받음
+  // 3. Google API로 사용자 정보 조회
+  // 4. OAuth2AuthenticationSuccessHandler 실행
+
+  Step 6: JWT 토큰 생성 후 프론트엔드로 리다이렉트
+
+  // OAuth2AuthenticationSuccessHandler에서
+  response.sendRedirect("http://localhost:3000/oauth2/ca
+  llback?token=" + jwt);
+
+* */
