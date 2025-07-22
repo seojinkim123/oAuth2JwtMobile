@@ -89,21 +89,13 @@ public class AuthService {
         return Optional.empty();
     }
 
-    /**
-     * JWT 토큰 유효성 검사 래퍼 메서드
-     * 
-     * 프로세스: JwtTokenProvider의 validateToken 메서드를 호출하여 토큰 유효성 검사 (인가)
-     */
-    public boolean isTokenValid(String token) {
-        return jwtTokenProvider.validateToken(token);
-    }
-
-    /**
-     * JWT 토큰에서 이메일 추출 래퍼 메서드
-     * 
-     * 프로세스: JwtTokenProvider의 getEmailFromToken 메서드를 호출하여 토큰에서 이메일 추출 (인가)
-     */
-    public String getEmailFromToken(String token) {
-        return jwtTokenProvider.getEmailFromToken(token);
-    }
+    // 불필요한 래퍼 메서드들 제거됨 - 직접 JwtTokenProvider 사용 권장
+    // 기존 코드 (단순 위임만 하는 불필요한 래퍼 메서드들)
+    // public boolean isTokenValid(String token) {
+    //     return jwtTokenProvider.validateToken(token); // 단순 위임만
+    // }
+    // 
+    // public String getEmailFromToken(String token) {
+    //     return jwtTokenProvider.getEmailFromToken(token); // 단순 위임만
+    // }
 }

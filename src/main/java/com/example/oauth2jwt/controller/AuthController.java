@@ -2,6 +2,7 @@ package com.example.oauth2jwt.controller;
 
 import com.example.oauth2jwt.dto.UserDto;
 import com.example.oauth2jwt.service.AuthService;
+import com.example.oauth2jwt.provider.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +17,7 @@ import java.util.Map;
 public class AuthController {
 
     private final AuthService authService;
+    private final JwtTokenProvider jwtTokenProvider;
 
     /**
      * Refresh Token을 사용하여 새로운 Access Token과 Refresh Token 발급 (범용 API)
@@ -58,7 +60,7 @@ public class AuthController {
             return ResponseEntity.badRequest().body(Map.of("error", "토큰이 필요합니다."));
         }
         
-        boolean isValid = authService.isTokenValid(token);
+        boolean isValid = jwtTokenProvider.validateToken(token);
         Map<String, Object> result = Map.of(
                 "valid", isValid,
                 "message", isValid ? "유효한 토큰입니다." : "유효하지 않은 토큰입니다."

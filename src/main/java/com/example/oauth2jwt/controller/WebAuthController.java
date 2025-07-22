@@ -47,30 +47,6 @@ public class WebAuthController {
         }
     }
 
-    // 기존 중복 코드 (JwtAuthenticationFilter와 동일한 로직이 중복되어 제거됨)
-    // @GetMapping("/verify")
-    // public ResponseEntity<?> verifyToken(HttpServletRequest request, Authentication authentication) {
-    //     try {
-    //         // 프로세스 1: 쿠키에서 accessToken 추출 (인가) - JwtAuthenticationFilter에서 이미 처리됨
-    //         String token = getJwtFromCookie(request);
-    //         
-    //         if (token != null && jwtTokenProvider.validateToken(token)) { // 중복된 토큰 검증
-    //             // 프로세스 2: 토큰에서 사용자 이메일 추출 (인가) - 중복된 이메일 추출
-    //             String email = jwtTokenProvider.getEmailFromToken(token);
-    //             log.info("토큰 검증 성공: {}", email);
-    //             
-    //             // 프로세스 3: 인증 성공 응답 반환 (인가)
-    //             return ResponseEntity.ok().body(new VerifyResponse(true, email, "토큰이 유효합니다."));
-    //         } else {
-    //             log.warn("토큰 검증 실패");
-    //             return ResponseEntity.status(401).body(new VerifyResponse(false, null, "토큰이 유효하지 않습니다."));
-    //         }
-    //     } catch (Exception e) {
-    //         log.error("토큰 검증 중 오류 발생", e);
-    //         return ResponseEntity.status(500).body(new VerifyResponse(false, null, "토큰 검증 중 오류가 발생했습니다."));
-    //     }
-    // }
-
     /**
      * 로그아웃 API - HTTP-Only 쿠키 삭제
      * 

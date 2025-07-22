@@ -68,16 +68,22 @@ public class SecurityConfig {
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 
                 // HTTP 요청에 대한 인가 규칙 설정 (⚠️ 이것은 '설정'이지 '실행 순서'가 아님!)
-                // 실제로는 JWT 필터가 먼저 실행된 후, 이 인가 규칙이 적용됨
+                // >>>>>실제로는 JWT 필터가 먼저 실행된 후, 이 인가 규칙이 적용됨<<<<<<<<
                 .authorizeHttpRequests(authz -> authz
                         // 🔓 인증 없이 접근 가능한 경로들 (permitAll)
                         // 이 경로들은 JWT 필터를 거쳐도 인가 검사에서 통과시킴
                         // "/" - 홈페이지, "/h2-console/**" - H2 데이터베이스 콘솔
                         // "/api/hello" - 테스트용 API, "/oauth2/**" - OAuth2 로그인 경로
                         // "/login/**" - 로그인 관련 경로
-                        // "/api/web/auth/**" - 웹 전용 인증 API (쿠키 기반)
-                        // "/api/mobile/auth/**" - 모바일 전용 인증 API (헤더 기반)
-                        .requestMatchers("/", "/h2-console/**", "/api/hello", "/oauth2/**", "/login/**", "/api/web/auth/**", "/api/mobile/auth/**").permitAll()
+                        // "/api/web/auth/logout", "/api/mobile/auth/logout" - 로그아웃은 인증 없이 허용
+                        // "/api/web/auth/debug/**" - 개발환경 디버깅 API
+                        .requestMatchers("/", "/h2-console/**", "/api/hello", "/oauth2/**", "/login/**", 
+                                       "/api/web/auth/logout", "/api/mobile/auth/logout", "/api/web/auth/debug/**").permitAll()
+                        
+                        // 🔒 인증이 필요한 엔드포인트들 (보안 강화)
+                        // "/api/web/auth/verify", "/api/mobile/auth/verify" - 토큰 검증은 인증된 사용자만
+                        // "/api/auth/**" - 범용 인증 API (토큰 갱신, 사용자 정보 조회 등)
+                        .requestMatchers("/api/web/auth/verify", "/api/mobile/auth/verify", "/api/auth/**").authenticated()
                         
                         // 🔒 위에서 정의한 경로 외의 모든 요청은 인증 필요
                         // JWT 필터에서 인증이 성공한 경우에만 접근 허용
@@ -98,7 +104,7 @@ public class SecurityConfig {
                 // 📋 실제 HTTP 요청 처리 순서:
                 // 1️⃣ HTTP 요청 수신
                 // 2️⃣ JWT 필터 실행 (토큰 검증 → 인증 객체 생성 → SecurityContext 설정)
-                // 3️⃣ UsernamePasswordAuthenticationFilter (⚠️ 필터 체인에는 있지만 실제로는 사용 안 함!)
+                // 3️⃣ UsernamePasswordAuthenticationFilter  (⚠️ 필터 체인에는 있지만 실제로는 사용 안 함!)
                 //    이유 1: 우리는 OAuth2 로그인만 사용 (username/password 로그인 안 함)
                 //    이유 2: JWT 필터에서 이미 인증 완료되었으므로 스킵됨
                 //    이유 3: 로그인 폼이 없으므로 처리할 요청이 없음

@@ -1,6 +1,5 @@
 package com.example.oauth2jwt.controller;
 
-import com.example.oauth2jwt.provider.JwtTokenProvider;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -8,7 +7,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Map;
 
 @Slf4j
 @RestController
@@ -16,7 +14,6 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class MobileAuthController {
 
-    private final JwtTokenProvider jwtTokenProvider;
 
     /**
      * 모바일용 JWT 토큰 유효성 검증 API 엔드포인트
@@ -45,29 +42,6 @@ public class MobileAuthController {
         }
     }
 
-    // 기존 중복 코드 (JwtAuthenticationFilter와 동일한 로직이 중복되어 제거됨)
-    // @GetMapping("/verify")
-    // public ResponseEntity<?> verifyToken(HttpServletRequest request) {
-    //     try {
-    //         // 프로세스 1: Authorization 헤더에서 토큰 추출 (인가) - JwtAuthenticationFilter에서 이미 처리됨
-    //         String token = getJwtFromHeader(request);
-    //         
-    //         if (token != null && jwtTokenProvider.validateToken(token)) { // 중복된 토큰 검증
-    //             // 프로세스 2: 토큰에서 사용자 이메일 추출 (인가) - 중복된 이메일 추출
-    //             String email = jwtTokenProvider.getEmailFromToken(token);
-    //             log.info("모바일 토큰 검증 성공: {}", email);
-    //             
-    //             // 프로세스 3: 인증 성공 응답 반환 (인가)
-    //             return ResponseEntity.ok().body(new VerifyResponse(true, email, "토큰이 유효합니다."));
-    //         } else {
-    //             log.warn("모바일 토큰 검증 실패");
-    //             return ResponseEntity.status(401).body(new VerifyResponse(false, null, "토큰이 유효하지 않습니다."));
-    //         }
-    //     } catch (Exception e) {
-    //         log.error("모바일 토큰 검증 중 오류 발생", e);
-    //         return ResponseEntity.status(500).body(new VerifyResponse(false, null, "토큰 검증 중 오류가 발생했습니다."));
-    //     }
-    // }
 
     /**
      * 모바일용 로그아웃 API - 토큰 무효화 처리
@@ -133,3 +107,42 @@ public class MobileAuthController {
         }
     }
 }
+
+/*
+*
+* 🚀 실제 동작 흐름
+
+  인증된 요청의 경우:
+
+  1. HTTP 요청 도착
+  2. JwtAuthenticationFilter 실행
+     - JWT 토큰 검증 ✓
+     - UserDetails 생성 ✓
+     - Authentication 객체 생성 ✓
+     - SecurityContext.setAuthentication(auth) ✓
+
+  3. Controller 메서드 호출
+     - Spring MVC: "Authentication 파라미터 있네?"
+     - Spring MVC: "SecurityContext에서 가져다 줄게!"
+     - verifyToken(authentication) 호출
+
+  4. authentication != null &&
+  authentication.isAuthenticated() = true ✓
+
+  비인증 요청의 경우:
+
+  1. HTTP 요청 도착
+  2. JwtAuthenticationFilter 실행
+     - 토큰 없음 or 잘못된 토큰
+     - SecurityContext에 아무것도 설정 안 함
+
+  3. Controller 메서드 호출
+     - Spring MVC: "SecurityContext가 비어있네?"
+     - verifyToken(null) 호출
+
+  4. authentication == null = true → 401 응답
+
+  🎯 다른 방법들과 비교
+
+*
+* */

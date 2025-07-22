@@ -115,7 +115,7 @@ public class JwtTokenProvider {
             Jwts.parser()
                     .verifyWith(key)
                     .build()
-                    .parseSignedClaims(authToken);
+                    .parseSignedClaims(authToken); //서명 검증, 만료검증, 형식검증
             return true;
         } catch (MalformedJwtException ex) {
             log.error("Invalid JWT token");
@@ -129,28 +129,5 @@ public class JwtTokenProvider {
         return false;
     }
 
-    /**
-     * JWT 토큰에서 만료 날짜 추출
-     * 
-     * 프로세스: 토큰 만료 시간 확인을 위한 보조 메서드 (인가)
-     */
-    public Date getExpirationDateFromToken(String token) {
-        Claims claims = Jwts.parser()
-                .verifyWith(key)
-                .build()
-                .parseSignedClaims(token)
-                .getPayload();
 
-        return claims.getExpiration();
-    }
-
-    /**
-     * JWT 토큰 만료 여부 확인
-     * 
-     * 프로세스: 토큰 만료 여부 확인을 위한 보조 메서드 (인가)
-     */
-    public boolean isTokenExpired(String token) {
-        Date expiration = getExpirationDateFromToken(token);
-        return expiration.before(new Date());
-    }
 }
