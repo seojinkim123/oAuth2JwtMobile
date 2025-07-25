@@ -52,22 +52,22 @@ public class AuthController {
      * 현재: 토큰 유효성 검증 -> 검증 결과 JSON 응답 (인가)
      * 이후: 클라이언트에서 토큰 상태에 따른 처리 (인가)
      */
-    @PostMapping("/validate")
-    public ResponseEntity<Map<String, Object>> validateToken(@RequestBody Map<String, String> request) {
-        String token = request.get("token");
-        
-        if (token == null || token.isEmpty()) {
-            return ResponseEntity.badRequest().body(Map.of("error", "토큰이 필요합니다."));
-        }
-        
-        boolean isValid = jwtTokenProvider.validateToken(token);
-        Map<String, Object> result = Map.of(
-                "valid", isValid,
-                "message", isValid ? "유효한 토큰입니다." : "유효하지 않은 토큰입니다."
-        );
-        
-        return ResponseEntity.ok(result);
-    }
+//    @PostMapping("/validate")
+//    public ResponseEntity<Map<String, Object>> validateToken(@RequestBody Map<String, String> request) {
+//        String token = request.get("token");
+//
+//        if (token == null || token.isEmpty()) {
+//            return ResponseEntity.badRequest().body(Map.of("error", "토큰이 필요합니다."));
+//        }
+//
+//        boolean isValid = jwtTokenProvider.validateToken(token);
+//        Map<String, Object> result = Map.of(
+//                "valid", isValid,
+//                "message", isValid ? "유효한 토큰입니다." : "유효하지 않은 토큰입니다."
+//        );
+//
+//        return ResponseEntity.ok(result);
+//    }
 
     /**
      * 현재 로그인한 사용자 정보 조회 (범용 API)

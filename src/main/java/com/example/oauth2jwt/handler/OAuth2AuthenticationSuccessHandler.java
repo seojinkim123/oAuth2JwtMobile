@@ -243,12 +243,19 @@ public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationS
   - "앱에 권한 허용하시겠습니까?" 동의
 
   Step 4: Google이 인가 코드와 함께 백엔드로 리다이렉트
-
+  302
   http://localhost:8080/login/oauth2/code/google?code=4/
   0AanQ...&state=xyz
+  구글 서버가 사용자에게 302 (리다렉트) 요청을 보냄
+  * 사용자의 웹 브라우저는 HTTP 명세에 따라 302 Found 응답을 받으면 아무것도 묻지 않고
+  * Location 헤더에 명시된 URL로 즉시 새로운 GET 요청을 보냅니다.
+    *이전 요청: 브라우저 <- 구글 서버   302 요청
+    *새로운 요청: 브라우저 -> 우리 서버   get 요청
 
   Step 5: Spring Security가 토큰 교환
 
+*
+* //spring  securiy의 OAuth2LoginAuthenticationFilter가 리다이렉트 요청을 가로채서 처리한다.
   // Spring Security가 자동으로 처리:
   // 1. 인가 코드를 Google 토큰 서버로 전송
   // 2. Access Token 받음
