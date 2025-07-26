@@ -32,6 +32,11 @@ public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationS
      * 
      * 프로세스 흐름:
      * 이전: Google OAuth2 서버에서 인증 완료 후 Spring Security가 Authentication 객체 생성 (인증)
+     *     (구글 oAuth2 창에서 로그인을 통해 구글인증을 받고 이 인증을 기반으로
+     *     302 로 브라우저에게 시스템서버로 리다이렉트 시킴->
+     *     시스템서버는 code를 기반으로  /token 에 요청을 해서  api access token 을 발급받은후 ->
+     *     구글 리소스서버(api) 에 접근하여 사용자 정보를 받아온다.  -> security에서 이를 기반으로 Authentication 객체 생성)
+     *     : 이 일련의 과정을 spring security 가 대신수행
      * 현재: 클라이언트 타입 감지 -> OAuth2 사용자 정보 추출 -> 사용자 저장/업데이트 -> JWT 토큰 발급 -> 웹/모바일별 처리 (인증)
      * 이후: 웹/모바일에서 각각의 방식으로 토큰을 사용하여 API 요청 시 인증 (인가)
      */

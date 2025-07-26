@@ -1,0 +1,3366 @@
+This file is a merged representation of the entire codebase, combined into a single document by Repomix.
+
+<file_summary>
+This section contains a summary of this file.
+
+<purpose>
+This file contains a packed representation of the entire repository's contents.
+It is designed to be easily consumable by AI systems for analysis, code review,
+or other automated processes.
+</purpose>
+
+<file_format>
+The content is organized as follows:
+1. This summary section
+2. Repository information
+3. Directory structure
+4. Repository files (if enabled)
+5. Multiple file entries, each consisting of:
+  - File path as an attribute
+  - Full contents of the file
+</file_format>
+
+<usage_guidelines>
+- This file should be treated as read-only. Any changes should be made to the
+  original repository files, not this packed version.
+- When processing this file, use the file path to distinguish
+  between different files in the repository.
+- Be aware that this file may contain sensitive information. Handle it with
+  the same level of security as you would the original repository.
+</usage_guidelines>
+
+<notes>
+- Some files may have been excluded based on .gitignore rules and Repomix's configuration
+- Binary files are not included in this packed representation. Please refer to the Repository Structure section for a complete list of file paths, including binary files
+- Files matching patterns in .gitignore are excluded
+- Files matching default ignore patterns are excluded
+- Files are sorted by Git change count (files with more changes are at the bottom)
+</notes>
+
+</file_summary>
+
+<directory_structure>
+.claude/
+  settings.local.json
+frontend/
+  public/
+    index.html
+  src/
+    components/
+      LoginButton.js
+      OAuth2Redirect.js
+      UserProfile.js
+    services/
+      api.js
+    utils/
+      tokenStorage.js
+    App.js
+    index.css
+    index.js
+  package.json
+gradle/
+  wrapper/
+    gradle-wrapper.properties
+src/
+  main/
+    java/
+      com/
+        example/
+          oauth2jwt/
+            config/
+              CorsConfig.java
+              JpaConfig.java
+              SecurityConfig.java
+            controller/
+              ApiController.java
+              AuthController.java
+              MobileAuthController.java
+              WebAuthController.java
+            dto/
+              UserDto.java
+            entity/
+              Role.java
+              User.java
+            filter/
+              JwtAuthenticationFilter.java
+            handler/
+              OAuth2AuthenticationSuccessHandler.java
+            provider/
+              JwtTokenProvider.java
+            repository/
+              UserRepository.java
+            service/
+              AuthService.java
+              UserService.java
+            OAuth2JwtApplication.java
+    resources/
+      application-mobile.properties
+      application.properties
+  test/
+    java/
+      com/
+        example/
+          oauth2jwt/
+            controller/
+              ApiControllerTest.java
+              AuthControllerTest.java
+              MobileAuthControllerTest.java
+              WebAuthControllerTest.java
+            OAuth2JwtApplicationTests.java
+build.gradle
+CLAUDE.md
+gradlew
+gradlew.bat
+prd.md
+</directory_structure>
+
+<files>
+This section contains the contents of the repository's files.
+
+<file path=".claude/settings.local.json">
+{
+  "permissions": {
+    "allow": [
+      "Bash(mkdir:*)",
+      "Bash(./gradlew:*)",
+      "Bash(mv:*)",
+      "Bash(curl:*)"
+    ],
+    "deny": []
+  }
+}
+</file>
+
+<file path="frontend/public/index.html">
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="description" content="OAuth2 JWT Demo Application" />
+    <title>OAuth2 JWT Demo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+  </body>
+</html>
+</file>
+
+<file path="frontend/src/components/LoginButton.js">
+import React from 'react';
+
+const LoginButton = () => {
+  const handleGoogleLogin = () => {
+    // Spring Boot OAuth2 엔드포인트로 리다이렉트
+    window.location.href = 'http://localhost:8080/oauth2/authorization/google';
+  };
+
+  return (
+    <button
+      onClick={handleGoogleLogin}
+      className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-lg shadow-lg transition duration-200 flex items-center space-x-2"
+    >
+      <svg className="w-5 h-5" viewBox="0 0 24 24">
+        <path
+          fill="currentColor"
+          d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
+        />
+        <path
+          fill="currentColor"
+          d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
+        />
+        <path
+          fill="currentColor"
+          d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"
+        />
+        <path
+          fill="currentColor"
+          d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
+        />
+      </svg>
+      <span>Google로 로그인</span>
+    </button>
+  );
+};
+
+export default LoginButton;
+</file>
+
+<file path="frontend/src/components/OAuth2Redirect.js">
+import React, { useEffect } from 'react';
+
+const OAuth2Redirect = ({ onLoginSuccess }) => {
+  useEffect(() => {
+    // URL 파라미터에서 성공 여부 확인
+    const urlParams = new URLSearchParams(window.location.search);
+    const success = urlParams.get('success');
+
+    if (success === 'true') {
+      // OAuth2 서버에서 이미 HTTP-Only 쿠키에 JWT 토큰 설정 완료
+      console.log('OAuth2 로그인 성공, 쿠키 기반 인증 설정 완료');
+      
+      // 부모 컴포넌트에 로그인 성공 알림
+      onLoginSuccess();
+      
+      // URL 정리
+      window.history.replaceState({}, document.title, window.location.pathname);
+    } else {
+      console.error('OAuth2 로그인 실패: success 파라미터가 없습니다.');
+    }
+  }, [onLoginSuccess]);
+
+  return (
+    <div className="flex justify-center items-center min-h-screen">
+      <div className="text-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500 mx-auto"></div>
+        <p className="mt-4 text-gray-600">로그인 처리 중...</p>
+      </div>
+    </div>
+  );
+};
+
+export default OAuth2Redirect;
+</file>
+
+<file path="frontend/src/components/UserProfile.js">
+import React, { useState, useEffect } from 'react';
+import { ApiService } from '../services/api';
+import { TokenStorage } from '../utils/tokenStorage';
+
+const UserProfile = ({ onLogout }) => {
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    fetchCurrentUser();
+  }, []);
+
+  const fetchCurrentUser = async () => {
+    try {
+      setLoading(true);
+      const response = await ApiService.getCurrentUser();
+      console.log('사용자 정보 응답:', response.data); // 디버깅용 로그 추가
+      console.log('프로필 이미지 URL:', response.data?.picture); // 프로필 이미지 URL 확인
+      setUser(response.data);
+    } catch (error) {
+      console.error('사용자 정보 조회 실패:', error);
+      setError('사용자 정보를 불러올 수 없습니다.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleLogout = async () => {
+    try {
+      // 🔒 서버 API를 통해 쿠키 삭제
+      const success = await TokenStorage.clearTokens();
+      if (success) {
+        setUser(null);
+        onLogout();
+      }
+    } catch (error) {
+      console.error('로그아웃 중 오류:', error);
+      // 오류가 발생해도 클라이언트 상태는 업데이트
+      setUser(null);
+      onLogout();
+    }
+  };
+
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center p-8">
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"></div>
+        <span className="ml-2">로딩 중...</span>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">
+        {error}
+      </div>
+    );
+  }
+
+  if (!user) {
+    return null;
+  }
+
+  return (
+    <div className="bg-white rounded-lg shadow-lg p-6 max-w-md mx-auto">
+      <div className="flex items-center space-x-4">
+        {user.picture ? (
+          <img
+            src={user.picture}
+            alt="프로필"
+            className="w-16 h-16 rounded-full"
+            onError={(e) => {
+              console.error('프로필 이미지 로딩 실패:', user.picture);
+              e.target.style.display = 'none';
+            }}
+            onLoad={() => {
+              console.log('프로필 이미지 로딩 성공:', user.picture);
+            }}
+          />
+        ) : (
+          <div className="w-16 h-16 rounded-full bg-gray-300 flex items-center justify-center">
+            <span className="text-gray-600 text-xl font-semibold">
+              {user.name ? user.name.charAt(0).toUpperCase() : '?'}
+            </span>
+          </div>
+        )}
+        <div className="flex-1">
+          <h2 className="text-xl font-bold text-gray-800">{user.name}</h2>
+          <p className="text-gray-600">{user.email}</p>
+          <span className="inline-block bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full mt-1">
+            {user.role}
+          </span>
+        </div>
+      </div>
+      
+      <div className="mt-6 space-y-2">
+        <div className="text-sm text-gray-500">
+          <strong>가입일:</strong> {new Date(user.createdDate).toLocaleDateString('ko-KR')}
+        </div>
+        <div className="text-sm text-gray-500">
+          <strong>마지막 수정:</strong> {new Date(user.modifiedDate).toLocaleDateString('ko-KR')}
+        </div>
+      </div>
+
+      <div className="mt-6 flex space-x-3">
+        <button
+          onClick={fetchCurrentUser}
+          className="flex-1 bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded transition duration-200"
+        >
+          새로고침
+        </button>
+        <button
+          onClick={handleLogout}
+          className="flex-1 bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded transition duration-200"
+        >
+          로그아웃
+        </button>
+      </div>
+    </div>
+  );
+};
+
+export default UserProfile;
+</file>
+
+<file path="frontend/src/services/api.js">
+import axios from 'axios';
+import { TokenStorage } from '../utils/tokenStorage';
+
+// 🔒 Axios 인스턴스 생성 (쿠키 기반)
+const api = axios.create({
+  baseURL: 'http://localhost:8080/api',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  withCredentials: true, // 🔒 쿠키 포함하여 요청
+});
+
+// 🔒 요청 인터셉터 - HTTP-Only 쿠키 기반이므로 토큰 헤더 설정 불필요
+api.interceptors.request.use(
+  (config) => {
+    // HTTP-Only 쿠키는 브라우저가 자동으로 포함하므로 별도 처리 불필요
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
+
+// 🔒 응답 인터셉터 - 401 오류 시 로그인 페이지로 리다이렉트
+api.interceptors.response.use(
+  (response) => {
+    return response;
+  },
+  async (error) => {
+    // 401 Unauthorized 오류 시 자동 로그아웃 처리
+    if (error.response?.status === 401) {
+      console.log('인증이 만료되었습니다. 로그인 페이지로 이동합니다.');
+      
+      // 쿠키 기반이므로 서버에서 토큰 삭제 시도
+      try {
+        await TokenStorage.clearTokens();
+      } catch (logoutError) {
+        console.error('로그아웃 처리 중 오류:', logoutError);
+      }
+      
+      // 메인 페이지로 리다이렉트 (로그인 상태 초기화)
+      window.location.href = '/';
+    }
+
+    return Promise.reject(error);
+  }
+);
+
+// API 함수들
+export const ApiService = {
+  // 공개 API
+  hello: () => api.get('/hello'),
+
+  // 인증이 필요한 API
+  getCurrentUser: () => api.get('/auth/me'),
+  getUser: (id) => api.get(`/user/${id}`),
+
+  // 토큰 관련 API (범용)
+  refreshToken: (refreshToken) => 
+    axios.post('http://localhost:8080/api/auth/refresh', { refreshToken }),
+  
+  validateToken: (token) => 
+    axios.post('http://localhost:8080/api/auth/validate', { token }),
+
+  // 웹용 인증 API (쿠키 기반)
+  webVerifyToken: () => api.get('/web/auth/verify'),
+  webLogout: () => api.post('/web/auth/logout'),
+  webDebugToken: () => api.get('/web/auth/debug/token'),
+
+  // 모바일용 인증 API (헤더 기반) - 참고용
+  // 실제로는 Authorization 헤더와 함께 사용
+  mobileVerifyToken: (token) => 
+    axios.get('http://localhost:8080/api/mobile/auth/verify', {
+      headers: { 'Authorization': `Bearer ${token}` }
+    }),
+  
+  mobileLogout: (token) => 
+    axios.post('http://localhost:8080/api/mobile/auth/logout', {}, {
+      headers: { 'Authorization': `Bearer ${token}` }
+    }),
+};
+
+export default api;
+</file>
+
+<file path="frontend/src/utils/tokenStorage.js">
+// 🔒 JWT 토큰 관리 유틸리티 (HTTP-Only Cookie 기반)
+export const TokenStorage = {
+  // 🔒 HTTP-Only 쿠키는 JavaScript로 직접 설정할 수 없음
+  // 서버에서 설정되므로 이 메서드들은 더 이상 사용되지 않음
+  setAccessToken: (token) => {
+    console.warn('HTTP-Only 쿠키는 서버에서만 설정할 수 있습니다.');
+  },
+
+  setRefreshToken: (token) => {
+    console.warn('HTTP-Only 쿠키는 서버에서만 설정할 수 있습니다.');
+  },
+
+  // 🔒 HTTP-Only 쿠키는 JavaScript로 직접 읽을 수 없음
+  // API 호출을 통해 토큰 유효성을 확인해야 함
+  getAccessToken: () => {
+    console.warn('HTTP-Only 쿠키는 JavaScript로 직접 읽을 수 없습니다. API 호출로 검증하세요.');
+    return null;
+  },
+
+  getRefreshToken: () => {
+    console.warn('HTTP-Only 쿠키는 JavaScript로 읽을 수 없습니다.');
+    return null;
+  },
+
+  // 🔒 로그아웃 시 서버 API를 통해 쿠키 삭제
+  clearTokens: async () => {
+    try {
+      const response = await fetch('/api/web/auth/logout', {
+        method: 'POST',
+        credentials: 'include' // 쿠키 포함
+      });
+      
+      if (response.ok) {
+        console.log('로그아웃 성공 - 쿠키가 서버에서 삭제되었습니다.');
+        return true;
+      } else {
+        console.error('로그아웃 실패');
+        return false;
+      }
+    } catch (error) {
+      console.error('로그아웃 중 오류:', error);
+      return false;
+    }
+  },
+
+  // 🔒 API 호출을 통해 토큰 유효성 확인
+  hasTokens: async () => {
+    try {
+      const response = await fetch('/api/web/auth/verify', {
+        method: 'GET',
+        credentials: 'include' // 쿠키 포함
+      });
+      return response.ok;
+    } catch (error) {
+      console.error('토큰 검증 중 오류:', error);
+      return false;
+    }
+  },
+
+  // JWT 토큰 파싱 (payload 추출)
+  parseJWT: (token) => {
+    try {
+      const base64Url = token.split('.')[1];
+      const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+      const jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+      }).join(''));
+      return JSON.parse(jsonPayload);
+    } catch (error) {
+      console.error('JWT 파싱 오류:', error);
+      return null;
+    }
+  },
+
+  // 토큰 만료 확인
+  isTokenExpired: (token) => {
+    if (!token) return true;
+    
+    const decoded = TokenStorage.parseJWT(token);
+    if (!decoded || !decoded.exp) return true;
+    
+    const currentTime = Date.now() / 1000;
+    return decoded.exp < currentTime;
+  }
+};
+</file>
+
+<file path="frontend/src/App.js">
+import React, { useState, useEffect } from 'react';
+import LoginButton from './components/LoginButton';
+import UserProfile from './components/UserProfile';
+import OAuth2Redirect from './components/OAuth2Redirect';
+import { TokenStorage } from './utils/tokenStorage';
+import { ApiService } from './services/api';
+
+function App() {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [helloMessage, setHelloMessage] = useState('');
+
+  useEffect(() => {
+    checkAuthentication();
+    fetchHelloMessage();
+  }, []);
+
+  const checkAuthentication = async () => {
+    try {
+      // 🔒 쿠키 기반 토큰 검증 API 호출
+      const hasValidToken = await TokenStorage.hasTokens();
+      setIsAuthenticated(hasValidToken);
+    } catch (error) {
+      console.error('인증 확인 중 오류:', error);
+      setIsAuthenticated(false);
+    }
+    setLoading(false);
+  };
+
+  const fetchHelloMessage = async () => {
+    try {
+      const response = await ApiService.hello();
+      setHelloMessage(response.data);
+    } catch (error) {
+      console.error('Hello API 호출 실패:', error);
+      setHelloMessage('API 연결에 실패했습니다.');
+    }
+  };
+
+  const handleLoginSuccess = () => {
+    setIsAuthenticated(true);
+  };
+
+  const handleLogout = async () => {
+    try {
+      // 🔒 서버 API를 통해 쿠키 삭제
+      const success = await TokenStorage.clearTokens();
+      if (success) {
+        setIsAuthenticated(false);
+      }
+    } catch (error) {
+      console.error('로그아웃 중 오류:', error);
+      setIsAuthenticated(false); // 오류가 발생해도 클라이언트 상태는 업데이트
+    }
+  };
+
+  // 🔒 OAuth2 리다이렉트 처리 (쿠키 기반)
+  const urlParams = new URLSearchParams(window.location.search);
+  if (urlParams.get('success') === 'true') {
+    return <OAuth2Redirect onLoginSuccess={handleLoginSuccess} />;
+  }
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gray-100 flex justify-center items-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500 mx-auto"></div>
+          <p className="mt-4 text-gray-600">로딩 중...</p>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="min-h-screen bg-gray-100">
+      {/* 헤더 */}
+      <header className="bg-white shadow-sm">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center py-6">
+            <div className="flex items-center">
+              <h1 className="text-2xl font-bold text-gray-900">OAuth2 + JWT Demo</h1>
+            </div>
+            <div className="flex items-center space-x-4">
+              {isAuthenticated ? (
+                <span className="text-green-600 font-medium">✅ 인증됨</span>
+              ) : (
+                <span className="text-red-600 font-medium">❌ 미인증</span>
+              )}
+            </div>
+          </div>
+        </div>
+      </header>
+
+      {/* 메인 컨텐츠 */}
+      <main className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+        <div className="px-4 py-6 sm:px-0">
+          {/* API 연결 상태 */}
+          <div className="bg-white overflow-hidden shadow rounded-lg mb-6">
+            <div className="px-4 py-5 sm:p-6">
+              <h3 className="text-lg leading-6 font-medium text-gray-900 mb-2">
+                API 연결 상태
+              </h3>
+              <div className="text-sm text-gray-600">
+                <strong>Hello API 응답:</strong> {helloMessage}
+              </div>
+              <button
+                onClick={fetchHelloMessage}
+                className="mt-3 bg-gray-500 hover:bg-gray-600 text-white py-2 px-4 rounded transition duration-200"
+              >
+                다시 테스트
+              </button>
+            </div>
+          </div>
+
+          {/* 인증 상태에 따른 컨텐츠 */}
+          <div className="bg-white overflow-hidden shadow rounded-lg">
+            <div className="px-4 py-5 sm:p-6">
+              {isAuthenticated ? (
+                <div>
+                  <h3 className="text-lg leading-6 font-medium text-gray-900 mb-4">
+                    사용자 프로필
+                  </h3>
+                  <UserProfile onLogout={handleLogout} />
+                </div>
+              ) : (
+                <div className="text-center">
+                  <h3 className="text-lg leading-6 font-medium text-gray-900 mb-4">
+                    로그인이 필요합니다
+                  </h3>
+                  <p className="text-gray-600 mb-6">
+                    Google 계정으로 로그인하여 JWT 토큰 기반 인증을 체험해보세요.
+                  </p>
+                  <LoginButton />
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* 🔒 쿠키 기반 인증 정보 (개발용) */}
+          {isAuthenticated && (
+            <div className="bg-white overflow-hidden shadow rounded-lg mt-6">
+              <div className="px-4 py-5 sm:p-6">
+                <h3 className="text-lg leading-6 font-medium text-gray-900 mb-4">
+                  인증 정보 (개발용)
+                </h3>
+                <div className="space-y-2 text-sm">
+                  <div className="bg-green-50 border border-green-200 rounded p-3">
+                    <strong className="text-green-800">🔒 보안 강화:</strong>
+                    <p className="text-green-700 mt-1">
+                      JWT 토큰이 HTTP-Only 쿠키에 안전하게 저장되어 JavaScript로 접근할 수 없습니다.
+                    </p>
+                  </div>
+                  <div className="bg-blue-50 border border-blue-200 rounded p-3">
+                    <strong className="text-blue-800">✅ XSS 공격 방지:</strong>
+                    <p className="text-blue-700 mt-1">
+                      토큰이 더 이상 localStorage나 URL에 노출되지 않습니다.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+      </main>
+    </div>
+  );
+}
+
+export default App;
+</file>
+
+<file path="frontend/src/index.css">
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+</file>
+
+<file path="frontend/src/index.js">
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import './index.css';
+import App from './App';
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
+</file>
+
+<file path="frontend/package.json">
+{
+  "name": "oauth2-jwt-frontend",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@testing-library/jest-dom": "^5.16.4",
+    "@testing-library/react": "^13.3.0",
+    "@testing-library/user-event": "^13.5.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-scripts": "5.0.1",
+    "axios": "^1.4.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "proxy": "http://localhost:8080"
+}
+</file>
+
+<file path="gradle/wrapper/gradle-wrapper.properties">
+distributionBase=GRADLE_USER_HOME
+distributionPath=wrapper/dists
+distributionUrl=https\://services.gradle.org/distributions/gradle-8.13-bin.zip
+networkTimeout=10000
+validateDistributionUrl=true
+zipStoreBase=GRADLE_USER_HOME
+zipStorePath=wrapper/dists
+</file>
+
+<file path="src/main/java/com/example/oauth2jwt/config/CorsConfig.java">
+package com.example.oauth2jwt.config;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+
+import java.util.Arrays;
+
+@Configuration
+public class CorsConfig {
+
+    @Bean
+    public CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration configuration = new CorsConfiguration();
+        
+        // 허용할 오리진 설정
+        configuration.setAllowedOrigins(Arrays.asList("http://localhost:3000"));
+        
+        // 허용할 HTTP 메서드 설정
+        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+        
+        // 허용할 헤더 설정
+        configuration.setAllowedHeaders(Arrays.asList("*"));
+        
+        // 인증 정보 허용
+        configuration.setAllowCredentials(true);
+        
+        // 프리플라이트 요청 캐시 시간 설정
+        configuration.setMaxAge(3600L);
+        
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", configuration);
+        
+        return source;
+    }
+}
+</file>
+
+<file path="src/main/java/com/example/oauth2jwt/config/JpaConfig.java">
+package com.example.oauth2jwt.config;
+
+import org.springframework.context.annotation.Configuration;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
+
+@Configuration
+@EnableJpaAuditing
+public class JpaConfig {
+}
+</file>
+
+<file path="src/main/java/com/example/oauth2jwt/config/SecurityConfig.java">
+package com.example.oauth2jwt.config;
+
+import com.example.oauth2jwt.filter.JwtAuthenticationFilter;
+import com.example.oauth2jwt.handler.OAuth2AuthenticationSuccessHandler;
+import com.example.oauth2jwt.provider.JwtTokenProvider;
+import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsConfigurationSource;
+import com.example.oauth2jwt.repository.UserRepository;
+
+/**
+ * Spring Security 설정 클래스
+ * OAuth2와 JWT 기반 인증/인가 시스템의 핵심 보안 설정
+ */
+@Configuration // Spring Bean 설정 클래스임을 명시
+@EnableWebSecurity // Spring Security 활성화
+@RequiredArgsConstructor // final 필드에 대한 생성자 자동 생성
+public class SecurityConfig {
+
+    // OAuth2 로그인 성공 후 JWT 토큰 발급 및 쿠키 설정을 담당하는 핸들러
+    private final OAuth2AuthenticationSuccessHandler oAuth2AuthenticationSuccessHandler;
+    // 사용자 정보 데이터베이스 조회를 위한 리포지토리
+    private final UserRepository userRepository;
+    // JWT 토큰 생성, 검증, 파싱을 담당하는 프로바이더
+    private final JwtTokenProvider jwtTokenProvider;
+    // CORS(Cross-Origin Resource Sharing) 설정 소스
+    private final CorsConfigurationSource corsConfigurationSource;
+
+    /**
+     * JWT 인증 필터 빈 생성
+     * 모든 HTTP 요청에서 JWT 토큰을 검증하고 인증 객체를 생성하는 필터
+     */
+    @Bean // Spring 컨테이너에서 관리하는 빈으로 등록
+    public JwtAuthenticationFilter jwtAuthenticationFilter() {
+        // JWT 토큰 프로바이더와 사용자 상세 정보 서비스를 주입하여 필터 생성
+        return new JwtAuthenticationFilter(jwtTokenProvider, userDetailsService());
+    }
+
+    /**
+     * Spring Security 필터 체인 설정
+     * 
+     * 동작 시점:
+     * - 모든 HTTP 요청이 들어올 때마다 실행
+     * - 클라이언트 요청 → Spring Security 필터 체인 → 컨트롤러 순서로 처리
+     * - 각 필터는 순서대로 실행되며, 인증/인가 검사를 수행
+     */
+    @Bean // Spring 컨테이너에서 관리하는 빈으로 등록
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        http
+                // CSRF(Cross-Site Request Forgery) 보호 비활성화
+                // JWT 토큰 기반 인증에서는 CSRF 토큰이 불필요 (Stateless하므로)
+                .csrf(csrf -> csrf.disable())
+                
+                // CORS(Cross-Origin Resource Sharing) 설정 활성화
+                // 프론트엔드(React)와 백엔드(Spring) 간 다른 도메인 통신 허용
+                .cors(cors -> cors.configurationSource(corsConfigurationSource))
+                
+                // 세션 관리 정책을 STATELESS로 설정
+                // 서버에서 세션을 생성하지 않음 (JWT 토큰으로 상태 관리)
+                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                
+                // HTTP 요청에 대한 인가 규칙 설정 (⚠️ 이것은 '설정'이지 '실행 순서'가 아님!)
+                // >>>>>실제로는 JWT 필터가 먼저 실행된 후, 이 인가 규칙이 적용됨<<<<<<<<
+                .authorizeHttpRequests(authz -> authz
+                        // 🔓 인증 없이 접근 가능한 경로들 (permitAll)
+                        // 이 경로들은 JWT 필터를 거쳐도 인가 검사에서 통과시킴
+                        // "/" - 홈페이지, "/h2-console/**" - H2 데이터베이스 콘솔
+                        // "/api/hello" - 테스트용 API, "/oauth2/**" - OAuth2 로그인 경로
+                        // "/login/**" - 로그인 관련 경로
+                        // "/api/web/auth/logout", "/api/mobile/auth/logout" - 로그아웃은 인증 없이 허용
+                        // "/api/web/auth/debug/**" - 개발환경 디버깅 API
+                        .requestMatchers("/", "/h2-console/**", "/api/hello", "/oauth2/**", "/login/**", 
+                                       "/api/web/auth/logout", "/api/mobile/auth/logout", "/api/web/auth/debug/**").permitAll()
+                        
+                        // 🔒 인증이 필요한 엔드포인트들 (보안 강화)
+                        // "/api/web/auth/verify", "/api/mobile/auth/verify" - 토큰 검증은 인증된 사용자만
+                        // "/api/auth/**" - 범용 인증 API (토큰 갱신, 사용자 정보 조회 등)
+                        .requestMatchers("/api/web/auth/verify", "/api/mobile/auth/verify", "/api/auth/**").authenticated()
+                        
+                        // 🔒 위에서 정의한 경로 외의 모든 요청은 인증 필요
+                        // JWT 필터에서 인증이 성공한 경우에만 접근 허용
+                        // 범용 인증 API("/api/auth/**")는 인증이 필요함
+                        .anyRequest().authenticated()
+                )
+                
+                // OAuth2 로그인 설정
+                .oauth2Login(oauth2 -> oauth2
+                        // OAuth2 로그인 성공 시 실행할 핸들러 지정
+                        // Google 로그인 완료 후 JWT 토큰 발급 및 쿠키 설정 처리
+                        .successHandler(oAuth2AuthenticationSuccessHandler)
+                )
+                
+                // 🔥 실제 필터 실행 순서 설정 (이것이 진짜 순서를 결정!)
+                // JWT 인증 필터를 UsernamePasswordAuthenticationFilter 앞에 추가
+                // 
+                // 📋 실제 HTTP 요청 처리 순서:
+                // 1️⃣ HTTP 요청 수신
+                // 2️⃣ JWT 필터 실행 (토큰 검증 → 인증 객체 생성 → SecurityContext 설정)
+                // 3️⃣ UsernamePasswordAuthenticationFilter  (⚠️ 필터 체인에는 있지만 실제로는 사용 안 함!)
+                //    이유 1: 우리는 OAuth2 로그인만 사용 (username/password 로그인 안 함)
+                //    이유 2: JWT 필터에서 이미 인증 완료되었으므로 스킵됨
+                //    이유 3: 로그인 폼이 없으므로 처리할 요청이 없음
+                // 4️⃣ Spring Security 인가 검사 (위에서 설정한 authorizeHttpRequests 규칙 적용)
+                // 5️⃣ 인가 통과 시 컨트롤러로 요청 전달
+                .addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)
+                
+                // HTTP 헤더 설정 - X-Frame-Options 비활성화
+                // H2 콘솔 사용을 위해 프레임 옵션 해제 (개발 환경용)
+                .headers(headers -> headers.frameOptions().disable());
+
+        // 설정이 완료된 SecurityFilterChain 객체 반환
+        return http.build();
+    }
+
+    /**
+     * 사용자 상세 정보 서비스 빈 생성
+     * 
+     * 🔥 정확한 동작 시점:
+     * 
+     * 1️⃣ **JwtAuthenticationFilter에서 호출됨**
+     *    - JWT 토큰에서 이메일 추출 후
+     *    - 이 이메일로 userDetailsService.loadUserByUsername(email) 호출
+     *    - 데이터베이스에서 사용자 정보 로드 → UserDetails 생성
+     *    - Spring Security Authentication 객체 생성에 사용
+     * 
+     * 2️⃣ **사용되지 않는 경우**
+     *    - OAuth2 로그인 중: OAuth2User 객체를 사용하므로 호출 안 됨
+     *    - permitAll() 경로: 인증이 필요 없으므로 호출 안 됨
+     *    - 잘못된 토큰: 토큰 검증 실패시 호출 안 됨
+     * 
+     * 3️⃣ **호출 경로**
+     *    JwtAuthenticationFilter.doFilterInternal()
+     *    → jwtTokenProvider.validateToken() (성공)
+     *    → jwtTokenProvider.getEmailFromToken()
+     *    → userDetailsService.loadUserByUsername(email) ← 여기서 호출!
+     *    → UsernamePasswordAuthenticationToken 생성
+     *    → SecurityContext에 인증 정보 설정
+     */
+    @Bean // Spring 컨테이너에서 관리하는 빈으로 등록
+    public UserDetailsService userDetailsService() {
+        // 🔑 람다 표현식으로 UserDetailsService 인터페이스 구현
+        // ⚠️ 주의: 이 메서드는 JwtAuthenticationFilter에서만 호출됨!
+        return email -> userRepository.findByEmail(email) // 이메일로 사용자 조회 (데이터베이스 호출)
+                .map(user -> org.springframework.security.core.userdetails.User.builder() // 조회된 사용자로 UserDetails 객체 생성
+                        .username(user.getEmail()) // 사용자명으로 이메일 설정
+                        .password("") // 🚫 JWT 기반 인증이므로 비밀번호는 빈 문자열 (사용 안 함)
+                        .authorities(user.getRoleKey()) // 🎆 사용자 권한 설정 (ROLE_USER, ROLE_ADMIN 등)
+                        .build()) // UserDetails 객체 빌드 완료
+                .orElseThrow(() -> new UsernameNotFoundException("User not found: " + email)); // 사용자 없을 시 예외 발생
+    }
+}
+</file>
+
+<file path="src/main/java/com/example/oauth2jwt/controller/ApiController.java">
+package com.example.oauth2jwt.controller;
+
+import com.example.oauth2jwt.dto.UserDto;
+import com.example.oauth2jwt.service.UserService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
+
+@RestController
+@RequestMapping("/api")
+@RequiredArgsConstructor
+public class ApiController {
+
+    private final UserService userService;
+
+    @GetMapping("/hello")
+    public ResponseEntity<String> hello() {
+        return ResponseEntity.ok("Hello OAuth2 JWT World!");
+    }
+
+    @GetMapping("/user/{id}")
+    public ResponseEntity<UserDto> getUser(@PathVariable Long id) {
+        return userService.findById(id)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
+
+
+}
+</file>
+
+<file path="src/main/java/com/example/oauth2jwt/controller/AuthController.java">
+package com.example.oauth2jwt.controller;
+
+import com.example.oauth2jwt.dto.UserDto;
+import com.example.oauth2jwt.service.AuthService;
+import com.example.oauth2jwt.provider.JwtTokenProvider;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
+
+@Slf4j
+@RestController
+@RequestMapping("/api/auth")
+@RequiredArgsConstructor
+public class AuthController {
+
+    private final AuthService authService;
+    private final JwtTokenProvider jwtTokenProvider;
+
+    /**
+     * Refresh Token을 사용하여 새로운 Access Token과 Refresh Token 발급 (범용 API)
+     * 
+     * 프로세스 흐름:
+     * 이전: Access Token 만료 또는 만료 예정시 웹/모바일에서 JSON으로 호출 (인증)
+     * 현재: Refresh Token 유효성 검증 -> 새 토큰들 발급 -> JSON 응답 (인증)
+     * 이후: 클라이언트에서 새 토큰을 저장하여 계속 사용 (인증)
+     */
+    @PostMapping("/refresh")
+    public ResponseEntity<Map<String, String>> refreshToken(@RequestBody Map<String, String> request) {
+        String refreshToken = request.get("refreshToken");
+        
+        if (refreshToken == null || refreshToken.isEmpty()) {
+            return ResponseEntity.badRequest().body(Map.of("error", "리프레시 토큰이 필요합니다."));
+        }
+        
+        Map<String, String> result = authService.refreshToken(refreshToken);
+        
+        if (result.containsKey("error")) {
+            return ResponseEntity.badRequest().body(result);
+        }
+        
+        return ResponseEntity.ok(result);
+    }
+
+    /**
+     * JWT 토큰 유효성 검증 (범용 API)
+     * 
+     * 프로세스 흐름:
+     * 이전: 웹/모바일에서 토큰 상태 확인을 위해 JSON으로 호출 (인가)
+     * 현재: 토큰 유효성 검증 -> 검증 결과 JSON 응답 (인가)
+     * 이후: 클라이언트에서 토큰 상태에 따른 처리 (인가)
+     */
+//    @PostMapping("/validate")
+//    public ResponseEntity<Map<String, Object>> validateToken(@RequestBody Map<String, String> request) {
+//        String token = request.get("token");
+//
+//        if (token == null || token.isEmpty()) {
+//            return ResponseEntity.badRequest().body(Map.of("error", "토큰이 필요합니다."));
+//        }
+//
+//        boolean isValid = jwtTokenProvider.validateToken(token);
+//        Map<String, Object> result = Map.of(
+//                "valid", isValid,
+//                "message", isValid ? "유효한 토큰입니다." : "유효하지 않은 토큰입니다."
+//        );
+//
+//        return ResponseEntity.ok(result);
+//    }
+
+    /**
+     * 현재 로그인한 사용자 정보 조회 (범용 API)
+     * 
+     * 프로세스 흐름:
+     * 이전: JWT 필터에서 SecurityContext에 인증 정보 설정 완료 (인가)
+     * 현재: SecurityContext에서 사용자 정보 추출 -> 사용자 데이터 조회 -> JSON 응답 (인가)
+     * 이후: 클라이언트에서 사용자 정보를 활용한 UI 처리 (인가)
+     */
+    @GetMapping("/me")
+    public ResponseEntity<UserDto> getCurrentUser() {
+        return authService.getCurrentUser()
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
+}
+</file>
+
+<file path="src/main/java/com/example/oauth2jwt/controller/MobileAuthController.java">
+package com.example.oauth2jwt.controller;
+
+import jakarta.servlet.http.HttpServletRequest;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.web.bind.annotation.*;
+
+
+@Slf4j
+@RestController
+@RequestMapping("/api/mobile/auth")
+@RequiredArgsConstructor
+public class MobileAuthController {
+
+
+    /**
+     * 모바일용 JWT 토큰 유효성 검증 API 엔드포인트
+     * 
+     * 프로세스 흐름 (개선됨):
+     * 이전: 모바일 앱에서 Authorization 헤더로 토큰을 포함하여 API 호출 (인가)
+     * 현재: JwtAuthenticationFilter에서 이미 토큰 검증 완료 -> SecurityContext에서 인증 정보 추출 -> 결과 반환 (인가)
+     * 이후: 모바일 앱에서 인증 상태에 따른 UI 처리 (인가)
+     */
+    @GetMapping("/verify")
+    public ResponseEntity<?> verifyToken(Authentication authentication) {
+        try {
+            // JwtAuthenticationFilter에서 이미 토큰 검증이 완료되어 SecurityContext에 인증 정보가 설정됨
+            if (authentication != null && authentication.isAuthenticated()) {
+                String email = authentication.getName(); // 이미 필터에서 검증된 사용자 이메일
+                log.info("모바일 토큰 검증 성공: {}", email);
+                
+                return ResponseEntity.ok().body(new VerifyResponse(true, email, "토큰이 유효합니다."));
+            } else {
+                log.warn("모바일 토큰 검증 실패 - 인증 정보 없음");
+                return ResponseEntity.status(401).body(new VerifyResponse(false, null, "토큰이 유효하지 않습니다."));
+            }
+        } catch (Exception e) {
+            log.error("모바일 토큰 검증 중 오류 발생", e);
+            return ResponseEntity.status(500).body(new VerifyResponse(false, null, "토큰 검증 중 오류가 발생했습니다."));
+        }
+    }
+
+
+    /**
+     * 모바일용 로그아웃 API - 토큰 무효화 처리
+     * 
+     * 프로세스 흐름:
+     * 이전: 모바일 앱에서 로그아웃 버튼 클릭 또는 자동 로그아웃 로직 실행 (인증/인가)
+     * 현재: 토큰 무효화 처리 (향후 블랙리스트 구현 가능) -> 로그아웃 성공 응답 (인증/인가)
+     * 이후: 모바일 앱에서 로컬 저장소 토큰 삭제 및 로그인 화면으로 이동 (인증/인가)
+     */
+    @PostMapping("/logout")
+    public ResponseEntity<?> logout(HttpServletRequest request) {
+        try {
+            // 프로세스 1: Authorization 헤더에서 토큰 추출 (인증/인가)
+            String token = getJwtFromHeader(request);
+            
+            if (token != null) {
+                // TODO: 향후 토큰 블랙리스트 기능 구현 시 여기에 추가
+                // 현재는 클라이언트 측에서 토큰 삭제로 처리
+                log.info("모바일 로그아웃 요청 처리 완료");
+            }
+            
+            return ResponseEntity.ok().body(new LogoutResponse(true, "로그아웃이 완료되었습니다."));
+            
+        } catch (Exception e) {
+            log.error("모바일 로그아웃 중 오류 발생", e);
+            return ResponseEntity.status(500).body(new LogoutResponse(false, "로그아웃 중 오류가 발생했습니다."));
+        }
+    }
+
+    /**
+     * Authorization 헤더에서 JWT 토큰 추출
+     * 
+     * 프로세스: Authorization 헤더에서 "Bearer " 접두사를 제거하고 토큰 추출 (인가)
+     */
+    private String getJwtFromHeader(HttpServletRequest request) {
+        String bearerToken = request.getHeader("Authorization");
+        if (bearerToken != null && bearerToken.startsWith("Bearer ")) {
+            return bearerToken.substring(7);
+        }
+        return null;
+    }
+
+    // 응답 DTO 클래스들
+    public static class VerifyResponse {
+        public boolean valid;
+        public String email;
+        public String message;
+
+        public VerifyResponse(boolean valid, String email, String message) {
+            this.valid = valid;
+            this.email = email;
+            this.message = message;
+        }
+    }
+
+    public static class LogoutResponse {
+        public boolean success;
+        public String message;
+
+        public LogoutResponse(boolean success, String message) {
+            this.success = success;
+            this.message = message;
+        }
+    }
+}
+
+/*
+*
+* 🚀 실제 동작 흐름
+
+  인증된 요청의 경우:
+
+  1. HTTP 요청 도착
+  2. JwtAuthenticationFilter 실행
+     - JWT 토큰 검증 ✓
+     - UserDetails 생성 ✓
+     - Authentication 객체 생성 ✓
+     - SecurityContext.setAuthentication(auth) ✓
+
+  3. Controller 메서드 호출
+     - Spring MVC: "Authentication 파라미터 있네?"
+     - Spring MVC: "SecurityContext에서 가져다 줄게!"
+     - verifyToken(authentication) 호출
+
+  4. authentication != null &&
+  authentication.isAuthenticated() = true ✓
+
+  비인증 요청의 경우:
+
+  1. HTTP 요청 도착
+  2. JwtAuthenticationFilter 실행
+     - 토큰 없음 or 잘못된 토큰
+     - SecurityContext에 아무것도 설정 안 함
+
+  3. Controller 메서드 호출
+     - Spring MVC: "SecurityContext가 비어있네?"
+     - verifyToken(null) 호출
+
+  4. authentication == null = true → 401 응답
+
+  🎯 다른 방법들과 비교
+
+*
+* */
+</file>
+
+<file path="src/main/java/com/example/oauth2jwt/controller/WebAuthController.java">
+package com.example.oauth2jwt.controller;
+
+import com.example.oauth2jwt.provider.JwtTokenProvider;
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
+
+@Slf4j
+@RestController
+@RequestMapping("/api/web/auth")
+@RequiredArgsConstructor
+public class WebAuthController {
+
+    private final JwtTokenProvider jwtTokenProvider;
+
+    /**
+     * JWT 토큰 유효성 검증 API 엔드포인트
+     * 
+     * 프로세스 흐름 (개선됨):
+     * 이전: 프론트엔드에서 인증 상태 확인을 위한 API 호출 (인가)
+     * 현재: JwtAuthenticationFilter에서 이미 토큰 검증 완료 -> SecurityContext에서 인증 정보 추출 -> 결과 반환 (인가)
+     * 이후: 프론트엔드에서 인증 상태에 따른 UI 처리 (인가)
+     */
+    @GetMapping("/verify")
+    public ResponseEntity<?> verifyToken(Authentication authentication) {
+        try {
+            // JwtAuthenticationFilter에서 이미 토큰 검증이 완료되어 SecurityContext에 인증 정보가 설정됨
+            if (authentication != null && authentication.isAuthenticated()) {
+                String email = authentication.getName(); // 이미 필터에서 검증된 사용자 이메일
+                log.info("토큰 검증 성공: {}", email);
+                
+                return ResponseEntity.ok().body(new VerifyResponse(true, email, "토큰이 유효합니다."));
+            } else {
+                log.warn("토큰 검증 실패 - 인증 정보 없음");
+                return ResponseEntity.status(401).body(new VerifyResponse(false, null, "토큰이 유효하지 않습니다."));
+            }
+        } catch (Exception e) {
+            log.error("토큰 검증 중 오류 발생", e);
+            return ResponseEntity.status(500).body(new VerifyResponse(false, null, "토큰 검증 중 오류가 발생했습니다."));
+        }
+    }
+
+    /**
+     * 로그아웃 API - HTTP-Only 쿠키 삭제
+     * 
+     * 프로세스 흐름:
+     * 이전: 프론트엔드에서 로그아웃 버튼 클릭 또는 자동 로그아웃 로직 실행 (인증/인가)
+     * 현재: accessToken 쿠키 만료 설정 -> refreshToken 쿠키 만료 설정 -> 로그아웃 성공 응답 (인증/인가)
+     * 이후: 프론트엔드에서 로그인 페이지로 리다이렉트 (인증/인가)
+     */
+    @PostMapping("/logout")
+    public ResponseEntity<?> logout(HttpServletResponse response) {
+        try {
+            // 프로세스 1: accessToken 쿠키 만료 설정으로 삭제 (인증/인가)
+            Cookie accessCookie = new Cookie("accessToken", null);
+            accessCookie.setHttpOnly(true);
+            accessCookie.setSecure(false); // HTTPS 환경에서는 true로 설정
+            accessCookie.setPath("/");
+            accessCookie.setMaxAge(0); // 즉시 만료
+            
+            // 프로세스 2: refreshToken 쿠키 만료 설정으로 삭제 (인증/인가)
+            Cookie refreshCookie = new Cookie("refreshToken", null);
+            refreshCookie.setHttpOnly(true);
+            refreshCookie.setSecure(false); // HTTPS 환경에서는 true로 설정
+            refreshCookie.setPath("/");
+            refreshCookie.setMaxAge(0); // 즉시 만료
+            
+            response.addCookie(accessCookie);
+            response.addCookie(refreshCookie);
+            
+            log.info("로그아웃 성공 - 쿠키 삭제 완료");
+            return ResponseEntity.ok().body(new LogoutResponse(true, "로그아웃이 완료되었습니다."));
+            
+        } catch (Exception e) {
+            log.error("로그아웃 중 오류 발생", e);
+            return ResponseEntity.status(500).body(new LogoutResponse(false, "로그아웃 중 오류가 발생했습니다."));
+        }
+    }
+
+    /**
+     * 디버깅용 토큰 정보 조회 API (개발환경 전용)
+     * 
+     * 프로세스: 개발 중 토큰 상태 확인을 위한 디버깅 도구 (인가)
+     * 운영환경에서는 보안상 비활성화
+     */
+    @GetMapping("/debug/token")
+    @org.springframework.context.annotation.Profile("dev")
+    public ResponseEntity<?> debugToken(HttpServletRequest request) {
+        try {
+            String accessToken = getJwtFromCookie(request, "accessToken");
+            String refreshToken = getJwtFromCookie(request, "refreshToken");
+            
+            if (accessToken != null) {
+                String email = jwtTokenProvider.getEmailFromToken(accessToken);
+                boolean isValid = jwtTokenProvider.validateToken(accessToken);
+                
+                return ResponseEntity.ok().body(Map.of(
+                    "accessToken", accessToken,
+                    "refreshToken", refreshToken != null ? refreshToken : "없음",
+                    "email", email,
+                    "valid", isValid,
+                    "message", "토큰 정보 조회 성공"
+                ));
+            } else {
+                return ResponseEntity.ok().body(Map.of("message", "토큰이 없습니다."));
+            }
+        } catch (Exception e) {
+            log.error("토큰 디버깅 중 오류 발생", e);
+            return ResponseEntity.status(500).body(Map.of("error", "토큰 디버깅 중 오류가 발생했습니다."));
+        }
+    }
+
+    /**
+     * 쿠키에서 JWT 토큰 추출 (기본: accessToken)
+     * 
+     * 프로세스: HTTP-Only 쿠키에서 accessToken 추출하는 보조 메서드 (인가)
+     */
+    private String getJwtFromCookie(HttpServletRequest request) {
+        return getJwtFromCookie(request, "accessToken");
+    }
+    
+    /**
+     * 쿠키에서 특정 이름의 JWT 토큰 추출
+     * 
+     * 프로세스: 지정된 이름의 쿠키에서 토큰 값 추출하는 보조 메서드 (인가)
+     * accessToken 또는 refreshToken 추출 가능
+     */
+    private String getJwtFromCookie(HttpServletRequest request, String cookieName) {
+        if (request.getCookies() != null) {
+            for (Cookie cookie : request.getCookies()) {
+                if (cookieName.equals(cookie.getName())) {
+                    return cookie.getValue();
+                }
+            }
+        }
+        return null;
+    }
+
+    // 응답 DTO 클래스들
+    public static class VerifyResponse {
+        public boolean valid;
+        public String email;
+        public String message;
+
+        public VerifyResponse(boolean valid, String email, String message) {
+            this.valid = valid;
+            this.email = email;
+            this.message = message;
+        }
+    }
+
+    public static class LogoutResponse {
+        public boolean success;
+        public String message;
+
+        public LogoutResponse(boolean success, String message) {
+            this.success = success;
+            this.message = message;
+        }
+    }
+}
+</file>
+
+<file path="src/main/java/com/example/oauth2jwt/dto/UserDto.java">
+package com.example.oauth2jwt.dto;
+
+
+import com.example.oauth2jwt.entity.Role;
+import com.example.oauth2jwt.entity.User;
+import lombok.Builder;
+import lombok.Data;
+
+import java.time.LocalDateTime;
+
+@Data
+@Builder
+public class UserDto {
+    private Long id;
+    private String email;
+    private String name;
+    private String picture;
+    private Role role;
+    private LocalDateTime createdDate;
+    private LocalDateTime modifiedDate;
+
+    public static UserDto from(User user) {
+        return UserDto.builder()
+                .id(user.getId())
+                .email(user.getEmail())
+                .name(user.getName())
+                .picture(user.getPicture())
+                .role(user.getRole())
+                .createdDate(user.getCreatedDate())
+                .modifiedDate(user.getModifiedDate())
+                .build();
+    }
+}
+</file>
+
+<file path="src/main/java/com/example/oauth2jwt/entity/Role.java">
+package com.example.oauth2jwt.entity;
+
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+
+@Getter
+@RequiredArgsConstructor
+public enum Role {
+
+    GUEST("ROLE_GUEST", "손님"),
+    USER("ROLE_USER", "일반 사용자");
+
+    private final String key;
+    private final String title;
+}
+</file>
+
+<file path="src/main/java/com/example/oauth2jwt/entity/User.java">
+package com.example.oauth2jwt.entity;
+
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
+import java.time.LocalDateTime;
+
+@Entity
+@Table(name = "users")
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@EntityListeners(AuditingEntityListener.class)
+public class User {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(unique = true, nullable = false)
+    private String email;
+
+    @Column(nullable = false)
+    private String name;
+
+    private String picture;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private Role role;
+
+    @Column(name = "provider")
+    private String provider;
+
+    @Column(name = "provider_id")
+    private String providerId;
+
+    @CreatedDate
+    @Column(name = "created_date")
+    private LocalDateTime createdDate;
+
+    @LastModifiedDate
+    @Column(name = "modified_date")
+    private LocalDateTime modifiedDate;
+
+    public String getRoleKey() {
+        return role.getKey();
+    }
+
+    public User update(String name, String picture) {
+        this.name = name;
+        this.picture = picture;
+        return this;
+    }
+}
+</file>
+
+<file path="src/main/java/com/example/oauth2jwt/filter/JwtAuthenticationFilter.java">
+package com.example.oauth2jwt.filter;
+
+import com.example.oauth2jwt.service.UserService;
+import com.example.oauth2jwt.provider.JwtTokenProvider;
+import jakarta.servlet.FilterChain;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
+import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
+import org.springframework.web.filter.OncePerRequestFilter;
+
+import java.io.IOException;
+
+@Slf4j
+@RequiredArgsConstructor
+public class JwtAuthenticationFilter extends OncePerRequestFilter {
+
+    private final JwtTokenProvider jwtTokenProvider;
+    private final UserDetailsService userDetailsService;
+
+    /**
+     * 모든 HTTP 요청에 대해 JWT 토큰 검증 및 인증 처리를 수행하는 필터
+     * 
+     * 프로세스 흐름:
+     * 이전: 클라이언트에서 JWT 토큰이 포함된 API 요청 또는 쿠키와 함께 요청 (인가)
+     * 현재: 쿠키/헤더에서 토큰 추출 -> 토큰 유효성 검증 -> 사용자 정보 로드 -> 인증 객체 생성 -> SecurityContext에 설정 (인가)
+     * 이후: Spring Security에서 인증된 사용자로 인식하여 리소스 접근 여부 결정 (인가)
+     */
+    @Override
+    protected void doFilterInternal(HttpServletRequest request, 
+                                  HttpServletResponse response, 
+                                  FilterChain filterChain) throws ServletException, IOException {
+        
+        try {
+            // 프로세스 1: 요청에서 JWT 토큰 추출 (인가)
+            String jwt = getJwtFromRequest(request);
+
+            if (StringUtils.hasText(jwt) && jwtTokenProvider.validateToken(jwt)) { //유효성 검증
+                // 프로세스 2: 토큰에서 사용자 이메일 추출 (인가)
+                String email = jwtTokenProvider.getEmailFromToken(jwt);
+                
+                // 프로세스 3: 사용자 상세 정보 로드 (인가)
+                UserDetails userDetails = userDetailsService.loadUserByUsername(email);
+                
+                // 프로세스 4: Spring Security 인증 객체 생성 (인가)
+                UsernamePasswordAuthenticationToken authentication = 
+                    new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+                authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+                
+                // 프로세스 5: SecurityContext에 인증 정보 설정 (인가)
+                SecurityContextHolder.getContext().setAuthentication(authentication);
+            }
+        } catch (Exception ex) {
+            log.error("Could not set user authentication in security context", ex);
+        }
+        
+        filterChain.doFilter(request, response);
+    }
+
+    /**
+     * HTTP 요청에서 JWT 토큰 추출 (헤더 우선, 쿠키 보조)
+     * 
+     * 프로세스 흐름:
+     * 이전: doFilterInternal에서 호출 (인가)
+     * 현재: Authorization 헤더에서 토큰 추출 시도 -> 실패시 HTTP-Only 쿠키에서 추출 시도 (인가)
+     * 이후: 추출된 토큰의 유효성 검증 진행 (인가)
+     */
+    private String getJwtFromRequest(HttpServletRequest request) {
+        // 1순위: Authorization 헤더에서 토큰 추출 (모바일 친화적 방식)
+        String bearerToken = request.getHeader("Authorization");
+        if (StringUtils.hasText(bearerToken) && bearerToken.startsWith("Bearer ")) {
+            return bearerToken.substring(7);
+        }
+        
+        // 2순위: HTTP-Only 쿠키에서 토큰 추출 (웹 브라우저 호환성 유지)
+        String jwtFromCookie = getJwtFromCookie(request);
+        if (StringUtils.hasText(jwtFromCookie)) {
+            return jwtFromCookie;
+        }
+        
+        return null;
+    }
+    
+    /**
+     * HTTP-Only 쿠키에서 JWT 토큰 추출
+     * 
+     * 프로세스: 보안상 안전한 HTTP-Only 쿠키에서 accessToken 추출 (인가)
+     * XSS 공격에 대한 방어 효과 - JavaScript로 접근 불가
+     */
+    private String getJwtFromCookie(HttpServletRequest request) {
+        if (request.getCookies() != null) {
+            for (Cookie cookie : request.getCookies()) {
+                if ("accessToken".equals(cookie.getName())) {
+                    return cookie.getValue();
+                }
+            }
+        }
+        return null;
+    }
+}
+</file>
+
+<file path="src/main/java/com/example/oauth2jwt/handler/OAuth2AuthenticationSuccessHandler.java">
+package com.example.oauth2jwt.handler;
+
+import com.example.oauth2jwt.entity.Role;
+import com.example.oauth2jwt.entity.User;
+import com.example.oauth2jwt.repository.UserRepository;
+import com.example.oauth2jwt.provider.JwtTokenProvider;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.oauth2.core.user.OAuth2User;
+import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
+import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+@Slf4j
+@Component
+@RequiredArgsConstructor
+public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
+
+    private final JwtTokenProvider jwtTokenProvider;
+    private final UserRepository userRepository;
+
+    /**
+     * OAuth2 로그인 성공 후 처리하는 핵심 메서드 (웹/모바일 분기처리)
+     * 
+     * 프로세스 흐름:
+     * 이전: Google OAuth2 서버에서 인증 완료 후 Spring Security가 Authentication 객체 생성 (인증)
+     * 현재: 클라이언트 타입 감지 -> OAuth2 사용자 정보 추출 -> 사용자 저장/업데이트 -> JWT 토큰 발급 -> 웹/모바일별 처리 (인증)
+     * 이후: 웹/모바일에서 각각의 방식으로 토큰을 사용하여 API 요청 시 인증 (인가)
+     */
+    @Override
+    public void onAuthenticationSuccess(HttpServletRequest request, 
+                                      HttpServletResponse response,
+                                      Authentication authentication) throws IOException, ServletException {
+        
+        // 프로세스 1: 클라이언트 타입 감지 (인증)
+        boolean isMobileClient = detectMobileClient(request);
+        
+        // 프로세스 2: OAuth2 사용자 정보 추출 (인증)
+        OAuth2User oAuth2User = (OAuth2User) authentication.getPrincipal();
+        
+        String email = extractEmail(oAuth2User);
+        String name = extractName(oAuth2User);
+        String picture = extractPicture(oAuth2User);
+        String provider = "google"; // Google OAuth2만 우선 지원
+        String providerId = extractProviderId(oAuth2User);
+        
+        // 디버깅용 로그 추가
+        log.debug("OAuth2 사용자 정보 - 이메일: {}, 이름: {}, 프로필사진: {}", email, name, picture);
+        
+        // 프로세스 3: 사용자 정보 저장/업데이트 (인증)
+        User user = saveOrUpdateUser(email, name, picture, provider, providerId);
+        
+        // 프로세스 4: JWT 토큰 발급 (인증)
+        String token = jwtTokenProvider.generateToken(email);
+        String refreshToken = jwtTokenProvider.generateRefreshToken(email);
+        
+        // 프로세스 5: 클라이언트 타입별 처리 분기 (인증)
+        if (isMobileClient) {
+            handleMobileSuccess(request, response, email, token, refreshToken);
+        } else {
+            handleWebSuccess(request, response, email, token, refreshToken);
+        }
+    }
+
+    /**
+     * 웹 클라이언트 OAuth2 로그인 성공 처리
+     * 
+     * 프로세스: HTTP-Only 쿠키 설정 -> 브라우저 리다이렉트 (인증)
+     */
+    private void handleWebSuccess(HttpServletRequest request, HttpServletResponse response, 
+                                String email, String token, String refreshToken) throws IOException {
+        // HTTP-Only 쿠키로 토큰 설정 (XSS 공격 방지)
+        Cookie accessCookie = new Cookie("accessToken", token);
+        accessCookie.setHttpOnly(true);
+        accessCookie.setSecure(false); // HTTPS 환경에서는 true로 설정
+        accessCookie.setPath("/");
+        accessCookie.setMaxAge(3600); // 1시간
+        
+        Cookie refreshCookie = new Cookie("refreshToken", refreshToken);
+        refreshCookie.setHttpOnly(true);
+        refreshCookie.setSecure(false); // HTTPS 환경에서는 true로 설정
+        refreshCookie.setPath("/");
+        refreshCookie.setMaxAge(604800); // 7일
+        
+        response.addCookie(accessCookie);
+        response.addCookie(refreshCookie);
+        
+        // 프론트엔드로 리다이렉트
+        String targetUrl = "http://localhost:3000/oauth2/redirect?success=true";
+        
+        log.info("Web OAuth2 login success for user: {}", email);
+        getRedirectStrategy().sendRedirect(request, response, targetUrl);
+    }
+
+    /**
+     * 모바일 클라이언트 OAuth2 로그인 성공 처리
+     * 
+     * 프로세스: JSON 토큰 응답 -> 딥링크 리다이렉트 (인증)
+     */
+    private void handleMobileSuccess(HttpServletRequest request, HttpServletResponse response, 
+                                   String email, String token, String refreshToken) throws IOException {
+        // JSON 응답으로 토큰 전달
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        
+        String jsonResponse = String.format(
+            "{\"success\": true, \"message\": \"로그인 성공\", \"accessToken\": \"%s\", \"refreshToken\": \"%s\", \"email\": \"%s\"}",
+            token, refreshToken, email
+        );
+        
+        PrintWriter writer = response.getWriter();
+        writer.write(jsonResponse);
+        writer.flush();
+        
+        log.info("Mobile OAuth2 login success for user: {}", email);
+        
+        // TODO: 향후 딥링크 리다이렉트 추가 (yourapp://oauth/callback?token=...)
+        // 현재는 JSON 응답으로만 처리
+    }
+
+    /**
+     * 모바일 클라이언트 감지
+     * 
+     * 프로세스: User-Agent 헤더 또는 요청 파라미터를 통해 모바일 클라이언트 여부 판단 (인증)
+     */
+    private boolean detectMobileClient(HttpServletRequest request) {
+        // 방법 1: 요청 파라미터로 클라이언트 타입 구분
+        String clientType = request.getParameter("client_type");
+        if ("mobile".equals(clientType)) {
+            return true;
+        }
+        
+        // 방법 2: User-Agent 헤더로 모바일 감지
+        String userAgent = request.getHeader("User-Agent");
+        if (StringUtils.hasText(userAgent)) {
+            userAgent = userAgent.toLowerCase();
+            return userAgent.contains("mobile") || 
+                   userAgent.contains("android") || 
+                   userAgent.contains("iphone") || 
+                   userAgent.contains("ipad");
+        }
+        
+        // 기본값: 웹 클라이언트로 간주
+        return false;
+    }
+
+    /**
+     * OAuth2 로그인 사용자 정보를 데이터베이스에 저장하거나 업데이트
+     * 
+     * 프로세스 흐름:
+     * 이전: onAuthenticationSuccess에서 OAuth2 사용자 정보 추출 완료 (인증)
+     * 현재: 이메일로 기존 사용자 조회 -> 존재시 정보 업데이트, 미존재시 신규 사용자 생성 -> DB 저장 (인증)
+     * 이후: JWT 토큰 생성 프로세스 진행 (인증)
+     */
+    private User saveOrUpdateUser(String email, String name, String picture, String provider, String providerId) {
+        User user = userRepository.findByEmail(email)
+                .map(existingUser -> existingUser.update(name, picture))
+                .orElse(User.builder()
+                        .email(email)
+                        .name(name)
+                        .picture(picture)
+                        .role(Role.USER)
+                        .provider(provider)
+                        .providerId(providerId)
+                        .build());
+        
+        return userRepository.save(user);
+    }
+
+    /**
+     * OAuth2 사용자 정보에서 이메일 추출
+     * 
+     * 프로세스: OAuth2 인증 완료 후 사용자 정보 추출 과정의 일부 (인증)
+     */
+    private String extractEmail(OAuth2User oAuth2User) {
+        return oAuth2User.getAttribute("email");
+    }
+
+    /**
+     * OAuth2 사용자 정보에서 이름 추출
+     * 
+     * 프로세스: OAuth2 인증 완료 후 사용자 정보 추출 과정의 일부 (인증)
+     */
+    private String extractName(OAuth2User oAuth2User) {
+        return oAuth2User.getAttribute("name");
+    }
+
+    /**
+     * OAuth2 사용자 정보에서 프로필 사진 URL 추출
+     * 
+     * 프로세스: OAuth2 인증 완료 후 사용자 정보 추출 과정의 일부 (인증)
+     */
+    private String extractPicture(OAuth2User oAuth2User) {
+        return oAuth2User.getAttribute("picture");
+    }
+
+    /**
+     * OAuth2 사용자 정보에서 제공자 고유 ID 추출
+     * 
+     * 프로세스: OAuth2 인증 완료 후 사용자 정보 추출 과정의 일부 (인증)
+     * Google의 경우 'sub' 필드가 사용자의 고유 식별자
+     */
+    private String extractProviderId(OAuth2User oAuth2User) {
+        return oAuth2User.getAttribute("sub");
+    }
+}
+
+/*
+*  🔄 OAuth2 로그인 플로우
+
+  Step 1: 사용자가 로그인 버튼 클릭
+
+  const handleGoogleLogin = () => {
+      window.location.href =
+  'http://localhost:8080/oauth2/authorization/google';
+  };
+
+  Step 2: Spring Security가 Google로 리다이렉트
+
+  브라우저 이동:
+  http://localhost:8080/oauth2/authorization/google
+  ↓
+  https://accounts.google.com/o/oauth2/auth?
+    client_id=105264979588-ohrpkkeqmerkt6b01av0sv82ohqlk
+  u04.apps.googleusercontent.com
+    &redirect_uri=http://localhost:8080/login/oauth2/cod
+  e/google
+    &response_type=code
+    &scope=profile email
+
+  Step 3: 사용자가 Google에서 로그인/동의
+
+  Google 로그인 페이지에서:
+  - 이메일/비밀번호 입력
+  - "앱에 권한 허용하시겠습니까?" 동의
+
+  Step 4: Google이 인가 코드와 함께 백엔드로 리다이렉트
+  302
+  http://localhost:8080/login/oauth2/code/google?code=4/
+  0AanQ...&state=xyz
+  구글 서버가 사용자에게 302 (리다렉트) 요청을 보냄
+  * 사용자의 웹 브라우저는 HTTP 명세에 따라 302 Found 응답을 받으면 아무것도 묻지 않고
+  * Location 헤더에 명시된 URL로 즉시 새로운 GET 요청을 보냅니다.
+    *이전 요청: 브라우저 <- 구글 서버   302 요청
+    *새로운 요청: 브라우저 -> 우리 서버   get 요청
+
+  Step 5: Spring Security가 토큰 교환
+
+*
+* //spring  securiy의 OAuth2LoginAuthenticationFilter가 리다이렉트 요청을 가로채서 처리한다.
+  // Spring Security가 자동으로 처리:
+  // 1. 인가 코드를 Google 토큰 서버로 전송
+  // 2. Access Token 받음
+  // 3. Google API로 사용자 정보 조회
+  // 4. OAuth2AuthenticationSuccessHandler 실행
+
+  Step 6: JWT 토큰 생성 후 프론트엔드로 리다이렉트
+
+  // OAuth2AuthenticationSuccessHandler에서
+  response.sendRedirect("http://localhost:3000/oauth2/ca
+  llback?token=" + jwt);
+
+* */
+</file>
+
+<file path="src/main/java/com/example/oauth2jwt/provider/JwtTokenProvider.java">
+package com.example.oauth2jwt.provider;
+
+import io.jsonwebtoken.*;
+import io.jsonwebtoken.security.Keys;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.Authentication;
+import org.springframework.stereotype.Component;
+
+import javax.crypto.SecretKey;
+import java.util.Date;
+
+@Slf4j
+@Component
+public class JwtTokenProvider {
+
+    private final SecretKey key;
+    private final int jwtExpirationInMs;
+    private final int refreshExpirationInMs;
+
+    public JwtTokenProvider(@Value("${jwt.secret}") String jwtSecret,
+                   @Value("${jwt.expiration}") int jwtExpirationInMs,
+                   @Value("${jwt.refresh-expiration}") int refreshExpirationInMs) {
+        this.key = Keys.hmacShaKeyFor(jwtSecret.getBytes());
+        this.jwtExpirationInMs = jwtExpirationInMs;
+        this.refreshExpirationInMs = refreshExpirationInMs;
+    }
+
+    /**
+     * Authentication 객체로부터 Access Token 생성
+     * 
+     * 프로세스 흐름:
+     * 이전: Spring Security에서 Authentication 객체 생성 완료 (인증)
+     * 현재: 사용자 이메일 추출 -> JWT 클레임 설정 -> 디지털 서명 -> 토큰 생성 (인증)
+     * 이후: 생성된 토큰을 HTTP-Only 쿠키로 설정하여 클라이언트에 전달 (인증)
+     */
+    public String generateToken(Authentication authentication) {
+        String email = authentication.getName();
+        Date expiryDate = new Date(System.currentTimeMillis() + jwtExpirationInMs);
+
+        return Jwts.builder()
+                .subject(email)
+                .issuedAt(new Date())
+                .expiration(expiryDate)
+                .signWith(key)
+                .compact();
+    }
+
+    /**
+     * 이메일로부터 Access Token 생성 (오버로드 메서드)
+     *
+     * 프로세스 흐름:
+     * 이전: OAuth2AuthenticationSuccessHandler에서 사용자 정보 저장 완료 (인증)
+     * 현재: 이메일을 subject로 설정 -> JWT 클레임 설정 -> 디지털 서명 -> Access Token 생성 (인증)
+     * 이후: Refresh Token 생성 프로세스 진행 (인증)
+     */
+    public String generateToken(String email) {
+        Date expiryDate = new Date(System.currentTimeMillis() + jwtExpirationInMs);
+
+        return Jwts.builder()
+                .subject(email)
+                .issuedAt(new Date())
+                .expiration(expiryDate)
+                .signWith(key)
+                .compact();
+    }
+
+    /**
+     * 이메일로부터 Refresh Token 생성
+     *
+     * 프로세스 흐름:
+     * 이전: Access Token 생성 완료 (인증)
+     * 현재: 이메일을 subject로 설정 -> 긴 만료시간(7일) 설정 -> 디지털 서명 -> Refresh Token 생성 (인증)
+     * 이후: 두 토큰을 HTTP-Only 쿠키로 설정하여 클라이언트에 전달 (인증)
+     */
+    public String generateRefreshToken(String email) {
+        Date expiryDate = new Date(System.currentTimeMillis() + refreshExpirationInMs);
+
+        return Jwts.builder()
+                .subject(email)
+                .issuedAt(new Date())
+                .expiration(expiryDate)
+                .signWith(key)
+                .compact();
+    }
+
+    /**
+     * JWT 토큰에서 이메일 추출
+     * 
+     * 프로세스 흐름:
+     * 이전: JwtAuthenticationFilter에서 토큰 유효성 검증 완료 (인가)
+     * 현재: JWT 토큰 파싱 -> 디지털 서명 검증 -> 클레임에서 subject(이메일) 추출 (인가)
+     * 이후: 추출된 이메일로 UserDetailsService에서 사용자 정보 로드 (인가)
+     */
+    public String getEmailFromToken(String token) {
+        Claims claims = Jwts.parser()
+                .verifyWith(key)
+                .build()
+                .parseSignedClaims(token)
+                .getPayload();
+
+        return claims.getSubject();
+    }
+
+    /**
+     * JWT 토큰 유효성 검증
+     * 
+     * 프로세스 흐름:
+     * 이전: JwtAuthenticationFilter에서 쿠키( web ) 또는 Authorization 헤더에서 토큰 (moblie)추출 완료 (인가)
+     * 현재: JWT 파싱 -> 디지털 서명 검증 -> 만료 시간 확인 -> 토큰 유효성 반환 (인가)
+     * 이후: 유효한 경우 사용자 이메일 추출 및 인증 객체 생성 (인가)
+     */
+    public boolean validateToken(String authToken) {
+        try {
+            Jwts.parser()
+                    .verifyWith(key)
+                    .build()
+                    .parseSignedClaims(authToken); //서명 검증, 만료검증, 형식검증
+            return true;
+        } catch (MalformedJwtException ex) {
+            log.error("Invalid JWT token");
+        } catch (ExpiredJwtException ex) {
+            log.error("Expired JWT token");
+        } catch (UnsupportedJwtException ex) {
+            log.error("Unsupported JWT token");
+        } catch (IllegalArgumentException ex) {
+            log.error("JWT claims string is empty");
+        }
+        return false;
+    }
+
+
+}
+</file>
+
+<file path="src/main/java/com/example/oauth2jwt/repository/UserRepository.java">
+package com.example.oauth2jwt.repository;
+
+import com.example.oauth2jwt.entity.User;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import java.util.Optional;
+
+@Repository
+public interface UserRepository extends JpaRepository<User, Long> {
+
+    Optional<User> findByEmail(String email);
+
+    Optional<User> findByProviderAndProviderId(String provider, String providerId);
+}
+</file>
+
+<file path="src/main/java/com/example/oauth2jwt/service/AuthService.java">
+package com.example.oauth2jwt.service;
+
+import com.example.oauth2jwt.dto.UserDto;
+import com.example.oauth2jwt.entity.User;
+import com.example.oauth2jwt.repository.UserRepository;
+import com.example.oauth2jwt.provider.JwtTokenProvider;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
+
+@Slf4j
+@Service
+@RequiredArgsConstructor
+@Transactional(readOnly = true)
+public class AuthService {
+
+    private final JwtTokenProvider jwtTokenProvider;
+    private final UserRepository userRepository;
+
+    /**
+     * Refresh Token을 사용하여 새로운 Access Token과 Refresh Token 발급
+     * 
+     * 프로세스 흐름:
+     * 이전: Access Token 만료 또는 만료 예정시 프론트엔드에서 호출 (인증)
+     * 현재: Refresh Token 유효성 검증 -> 사용자 이메일 추출 -> 사용자 존재 확인 -> 새 토큰들 발급 (인증)
+     * 이후: 새로 발급된 토큰들을 쿠키로 설정하여 클라이언트에 전달 (인증)
+     */
+    public Map<String, String> refreshToken(String refreshToken) {
+        Map<String, String> result = new HashMap<>();
+        
+        try {
+            // 프로세스 1: Refresh Token 유효성 검증 (인증)
+            if (jwtTokenProvider.validateToken(refreshToken)) {
+                // 프로세스 2: 토큰에서 사용자 이메일 추출 (인증)
+                String email = jwtTokenProvider.getEmailFromToken(refreshToken);
+                
+                // 프로세스 3: 데이터베이스에서 사용자 존재 확인 (인증)
+                Optional<User> userOptional = userRepository.findByEmail(email);
+                if (userOptional.isPresent()) {
+                    // 프로세스 4: 새로운 Access Token과 Refresh Token 발급 (인증)
+                    String newAccessToken = jwtTokenProvider.generateToken(email);
+                    String newRefreshToken = jwtTokenProvider.generateRefreshToken(email);
+                    
+                    result.put("accessToken", newAccessToken);
+                    result.put("refreshToken", newRefreshToken);
+                    result.put("message", "토큰이 성공적으로 갱신되었습니다.");
+                } else {
+                    result.put("error", "사용자를 찾을 수 없습니다.");
+                }
+            } else {
+                result.put("error", "유효하지 않은 리프레시 토큰입니다.");
+            }
+        } catch (Exception e) {
+            log.error("토큰 갱신 중 오류 발생", e);
+            result.put("error", "토큰 갱신 중 오류가 발생했습니다.");
+        }
+        
+        return result;
+    }
+
+    /**
+     * 현재 로그인한 사용자 정보 조회
+     * 
+     * 프로세스 흐름:
+     * 이전: JwtAuthenticationFilter에서 SecurityContext에 인증 정보 설정 완료 (인가)
+     * 현재: SecurityContext에서 Authentication 객체 추출 -> 인증 상태 확인 -> 사용자 이메일 추출 -> 데이터베이스에서 사용자 정보 조회 (인가)
+     * 이후: 조회된 사용자 정보를 API 응답으로 반환 (인가)
+     */
+    public Optional<UserDto> getCurrentUser() {
+        // 프로세스 1: SecurityContext에서 인증 객체 추출 (인가)
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        
+        // 프로세스 2: 인증 상태 및 사용자 확인 (인가)
+        if (authentication != null && authentication.isAuthenticated() && 
+            !authentication.getName().equals("anonymousUser")) {
+            
+            // 프로세스 3: 사용자 이메일 추출 및 데이터베이스 조회 (인가)
+            String email = authentication.getName();
+            return userRepository.findByEmail(email).map(UserDto::from);
+        }
+        
+        return Optional.empty();
+    }
+
+    // 불필요한 래퍼 메서드들 제거됨 - 직접 JwtTokenProvider 사용 권장
+    // 기존 코드 (단순 위임만 하는 불필요한 래퍼 메서드들)
+    // public boolean isTokenValid(String token) {
+    //     return jwtTokenProvider.validateToken(token); // 단순 위임만
+    // }
+    // 
+    // public String getEmailFromToken(String token) {
+    //     return jwtTokenProvider.getEmailFromToken(token); // 단순 위임만
+    // }
+}
+</file>
+
+<file path="src/main/java/com/example/oauth2jwt/service/UserService.java">
+package com.example.oauth2jwt.service;
+
+import com.example.oauth2jwt.dto.UserDto;
+import com.example.oauth2jwt.entity.User;
+import com.example.oauth2jwt.repository.UserRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Optional;
+
+@Service
+@RequiredArgsConstructor
+@Transactional(readOnly = true)
+public class UserService {
+
+    private final UserRepository userRepository;
+
+    /**
+     * 이메일로 사용자 정보 조회
+     * 
+     * 프로세스 흐름:
+     * 이전: AuthService의 getCurrentUser 또는 JwtAuthenticationFilter에서 사용자 인증 후 호출 (인가)
+     * 현재: 데이터베이스에서 이메일로 사용자 조회 -> UserDto로 변환 (인가)
+     * 이후: 조회된 사용자 정보로 UserDetails 생성 또는 API 응답 반환 (인가)
+     */
+    public Optional<UserDto> findByEmail(String email) {
+        return userRepository.findByEmail(email)
+                .map(UserDto::from);
+    }
+
+    /**
+     * ID로 사용자 정보 조회
+     * 
+     * 프로세스: 데이터베이스에서 사용자 ID로 조회 -> UserDto로 변환 (인가)
+     */
+    public Optional<UserDto> findById(Long id) {
+        return userRepository.findById(id)
+                .map(UserDto::from);
+    }
+
+    /**
+     * 사용자 정보 저장
+     * 
+     * 프로세스 흐름:
+     * 이전: OAuth2AuthenticationSuccessHandler에서 새로운 사용자 생성 또는 기존 사용자 업데이트 후 호출 (인증)
+     * 현재: 데이터베이스에 사용자 정보 저장 -> UserDto로 변환 후 반환 (인증)
+     * 이후: JWT 토큰 생성 및 쿠키 설정 프로세스 진행 (인증)
+     */
+    @Transactional
+    public UserDto saveUser(User user) {
+        User savedUser = userRepository.save(user);
+        return UserDto.from(savedUser);
+    }
+}
+</file>
+
+<file path="src/main/java/com/example/oauth2jwt/OAuth2JwtApplication.java">
+package com.example.oauth2jwt;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class OAuth2JwtApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(OAuth2JwtApplication.class, args);
+    }
+
+}
+</file>
+
+<file path="src/main/resources/application-mobile.properties">
+# Mobile-specific OAuth2/JWT Configuration
+
+spring.application.name=oauth2jwt-mobile
+
+# Inherit all settings from base application.properties
+spring.config.import=application.properties
+
+# Mobile-specific OAuth2 Configuration
+# Deep link redirect URI for mobile app
+spring.security.oauth2.client.registration.google.redirect-uri-mobile=yourapp://oauth/callback
+
+# Mobile-specific CORS Configuration
+# CORS settings for mobile app API calls
+cors.mobile.allowed-origins=yourapp://,http://localhost:3000
+cors.mobile.allowed-methods=GET,POST,PUT,DELETE,OPTIONS
+cors.mobile.allowed-headers=*
+cors.mobile.allow-credentials=false
+
+# Mobile JWT Configuration
+# Header-based token is recommended over cookies in mobile environment
+jwt.mobile.header-based=true
+jwt.mobile.cookie-fallback=true
+
+# Mobile Logging Configuration
+# Additional logging for mobile debugging
+logging.level.com.example.oauth2jwt.controller.MobileAuthController=DEBUG
+logging.level.com.example.oauth2jwt.handler.OAuth2AuthenticationSuccessHandler=DEBUG
+
+# Mobile Environment Profile
+spring.profiles.active=mobile
+
+# Mobile-specific Features
+# Enable mobile client detection
+auth.mobile.detection.enabled=true
+auth.mobile.detection.user-agent=true
+auth.mobile.detection.client-param=true
+
+# Mobile OAuth2 Success Redirect
+# Enable JSON response on mobile login success
+oauth2.mobile.json-response=true
+oauth2.mobile.deeplink-redirect=yourapp://oauth/callback
+
+# Mobile Security Settings
+# Security settings for mobile environment
+security.mobile.token.header-only=false
+security.mobile.cors.strict=false
+</file>
+
+<file path="src/main/resources/application.properties">
+spring.application.name=oauth2jwt
+
+# Server Configuration
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+
+# MySQL connect info
+#spring.datasource.url=jdbc:mysql://localhost:3306/oauth2?serverTimezone=UTC
+spring.datasource.url=jdbc:mysql://220.116.184.95:3306/oauth2?serverTimezone=UTC
+# Database connection
+
+# MySQL username and password
+spring.datasource.username=root
+spring.datasource.password=10041004
+
+
+
+# JPA settings
+spring.jpa.properties.hibernate.show_sql=true
+
+
+spring.jpa.properties.hibernate.format_sql=true
+
+
+logging.level.org.hibernate.type.descriptor.sql=trace
+
+
+spring.jpa.hibernate.ddl-auto=update
+
+
+spring.jpa.database-platform=org.hibernate.dialect.MySQL8Dialect
+
+springdoc.api-docs.path=/v3/api-docs
+springdoc.swagger-ui.path=/swagger-ui.html
+
+# OAuth2 Configuration
+spring.security.oauth2.client.registration.google.client-id=105264979588-ohrpkkeqmerkt6b01av0sv82ohqlku04.apps.googleusercontent.com
+spring.security.oauth2.client.registration.google.client-secret=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
+spring.security.oauth2.client.registration.google.scope=profile,email
+spring.security.oauth2.client.registration.google.redirect-uri=http://localhost:8080/login/oauth2/code/google
+spring.security.oauth2.client.registration.google.client-name=Google
+
+# Google OAuth2 Provider
+#spring.security.oauth2.client.provider.google.authorization-uri=https://accounts.google.com/o/oauth2/auth
+#spring.security.oauth2.client.provider.google.token-uri=https://oauth2.googleapis.com/token
+#spring.security.oauth2.client.provider.google.user-info-uri=https://www.googleapis.com/oauth2/v2/userinfo
+#spring.security.oauth2.client.provider.google.user-name-attribute=id
+
+# JWT Configuration
+jwt.secret=mySecretKeyForOAuth2JwtApplication123456789012345678901234567890abcdef
+jwt.expiration=86400000
+jwt.refresh-expiration=604800000
+
+# Logging Configuration
+logging.level.com.example.oauth2jwt=DEBUG
+logging.level.org.springframework.security=DEBUG
+
+# Environment profile (dev: development, prod: production)
+# 1. ?? ???? ??
+#
+#  spring.profiles.active=dev
+#  - application.properties + application-dev.properties ??
+#
+#  spring.profiles.active=mobile
+#  - application.properties + application-mobile.properties ??
+#
+#  2. ?? ???? ?? ??
+#
+#  spring.profiles.active=dev,mobile
+#  - application.properties + application-dev.properties +
+#  application-mobile.properties ?? ??
+
+spring.profiles.active=mobile
+
+# Debug API enabled (set to false in production)
+debug.api.enabled=true
+</file>
+
+<file path="src/test/java/com/example/oauth2jwt/controller/ApiControllerTest.java">
+package com.example.oauth2jwt.controller;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.web.servlet.MockMvc;
+
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+
+@SpringBootTest
+@AutoConfigureMockMvc
+class ApiControllerTest {
+
+    @Autowired
+    private MockMvc mockMvc;
+
+    @Test
+    void hello_ShouldReturnGreeting() throws Exception {
+        mockMvc.perform(get("/api/hello"))
+                .andExpect(status().isOk())
+                .andExpect(content().string("Hello OAuth2 JWT World!"));
+    }
+}
+</file>
+
+<file path="src/test/java/com/example/oauth2jwt/controller/AuthControllerTest.java">
+package com.example.oauth2jwt.controller;
+
+import com.example.oauth2jwt.service.AuthService;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.MediaType;
+import org.springframework.test.web.servlet.MockMvc;
+
+import java.util.Map;
+
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+
+@WebMvcTest(AuthController.class)
+class AuthControllerTest {
+
+    @Autowired
+    private MockMvc mockMvc;
+
+    @MockBean
+    private AuthService authService;
+
+    @Autowired
+    private ObjectMapper objectMapper;
+
+    @Test
+    void refreshToken_ShouldReturnNewTokens() throws Exception {
+        // Given
+        String refreshToken = "valid-refresh-token";
+        Map<String, String> request = Map.of("refreshToken", refreshToken);
+        Map<String, String> response = Map.of(
+            "accessToken", "new-access-token",
+            "refreshToken", "new-refresh-token",
+            "message", "토큰이 성공적으로 갱신되었습니다."
+        );
+
+        when(authService.refreshToken(refreshToken)).thenReturn(response);
+
+        // When & Then
+        mockMvc.perform(post("/api/auth/refresh")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(request)))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.accessToken").value("new-access-token"))
+                .andExpect(jsonPath("$.refreshToken").value("new-refresh-token"));
+    }
+
+    @Test
+    void validateToken_ShouldReturnValidStatus() throws Exception {
+        // Given
+        String token = "valid-token";
+        Map<String, String> request = Map.of("token", token);
+
+        when(authService.isTokenValid(token)).thenReturn(true);
+
+        // When & Then
+        mockMvc.perform(post("/api/auth/validate")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(request)))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.valid").value(true))
+                .andExpect(jsonPath("$.message").value("유효한 토큰입니다."));
+    }
+
+    @Test
+    void refreshToken_WithInvalidToken_ShouldReturnBadRequest() throws Exception {
+        // Given
+        String refreshToken = "invalid-refresh-token";
+        Map<String, String> request = Map.of("refreshToken", refreshToken);
+        Map<String, String> response = Map.of("error", "유효하지 않은 리프레시 토큰입니다.");
+
+        when(authService.refreshToken(refreshToken)).thenReturn(response);
+
+        // When & Then
+        mockMvc.perform(post("/api/auth/refresh")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(request)))
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.error").value("유효하지 않은 리프레시 토큰입니다."));
+    }
+}
+</file>
+
+<file path="src/test/java/com/example/oauth2jwt/controller/MobileAuthControllerTest.java">
+package com.example.oauth2jwt.controller;
+
+import com.example.oauth2jwt.provider.JwtTokenProvider;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.web.servlet.MockMvc;
+
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+
+@WebMvcTest(MobileAuthController.class)
+class MobileAuthControllerTest {
+
+    @Autowired
+    private MockMvc mockMvc;
+
+    @MockBean
+    private JwtTokenProvider jwtTokenProvider;
+
+    @Test
+    void verifyToken_WithValidHeader_ShouldReturnSuccess() throws Exception {
+        // Given
+        String validToken = "valid-jwt-token";
+        String email = "test@example.com";
+
+        when(jwtTokenProvider.validateToken(validToken)).thenReturn(true);
+        when(jwtTokenProvider.getEmailFromToken(validToken)).thenReturn(email);
+
+        // When & Then
+        mockMvc.perform(get("/api/mobile/auth/verify")
+                .header("Authorization", "Bearer " + validToken))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.valid").value(true))
+                .andExpect(jsonPath("$.email").value(email))
+                .andExpect(jsonPath("$.message").value("토큰이 유효합니다."));
+    }
+
+    @Test
+    void verifyToken_WithInvalidHeader_ShouldReturnUnauthorized() throws Exception {
+        // Given
+        String invalidToken = "invalid-jwt-token";
+
+        when(jwtTokenProvider.validateToken(invalidToken)).thenReturn(false);
+
+        // When & Then
+        mockMvc.perform(get("/api/mobile/auth/verify")
+                .header("Authorization", "Bearer " + invalidToken))
+                .andExpect(status().isUnauthorized())
+                .andExpect(jsonPath("$.valid").value(false))
+                .andExpect(jsonPath("$.message").value("토큰이 유효하지 않습니다."));
+    }
+
+    @Test
+    void verifyToken_WithoutAuthHeader_ShouldReturnUnauthorized() throws Exception {
+        // When & Then
+        mockMvc.perform(get("/api/mobile/auth/verify"))
+                .andExpect(status().isUnauthorized())
+                .andExpect(jsonPath("$.valid").value(false))
+                .andExpect(jsonPath("$.message").value("토큰이 유효하지 않습니다."));
+    }
+
+    @Test
+    void logout_ShouldReturnSuccess() throws Exception {
+        // Given
+        String validToken = "valid-jwt-token";
+
+        // When & Then
+        mockMvc.perform(post("/api/mobile/auth/logout")
+                .header("Authorization", "Bearer " + validToken))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.success").value(true))
+                .andExpect(jsonPath("$.message").value("로그아웃이 완료되었습니다."));
+    }
+
+    @Test
+    void logout_WithoutToken_ShouldStillReturnSuccess() throws Exception {
+        // When & Then
+        mockMvc.perform(post("/api/mobile/auth/logout"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.success").value(true))
+                .andExpect(jsonPath("$.message").value("로그아웃이 완료되었습니다."));
+    }
+}
+</file>
+
+<file path="src/test/java/com/example/oauth2jwt/controller/WebAuthControllerTest.java">
+package com.example.oauth2jwt.controller;
+
+import com.example.oauth2jwt.provider.JwtTokenProvider;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.web.servlet.MockMvc;
+
+import jakarta.servlet.http.Cookie;
+
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+
+@WebMvcTest(WebAuthController.class)
+class WebAuthControllerTest {
+
+    @Autowired
+    private MockMvc mockMvc;
+
+    @MockBean
+    private JwtTokenProvider jwtTokenProvider;
+
+    @Test
+    void verifyToken_WithValidCookie_ShouldReturnSuccess() throws Exception {
+        // Given
+        String validToken = "valid-jwt-token";
+        String email = "test@example.com";
+        Cookie tokenCookie = new Cookie("accessToken", validToken);
+
+        when(jwtTokenProvider.validateToken(validToken)).thenReturn(true);
+        when(jwtTokenProvider.getEmailFromToken(validToken)).thenReturn(email);
+
+        // When & Then
+        mockMvc.perform(get("/api/web/auth/verify")
+                .cookie(tokenCookie))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.valid").value(true))
+                .andExpect(jsonPath("$.email").value(email))
+                .andExpect(jsonPath("$.message").value("토큰이 유효합니다."));
+    }
+
+    @Test
+    void verifyToken_WithInvalidCookie_ShouldReturnUnauthorized() throws Exception {
+        // Given
+        String invalidToken = "invalid-jwt-token";
+        Cookie tokenCookie = new Cookie("accessToken", invalidToken);
+
+        when(jwtTokenProvider.validateToken(invalidToken)).thenReturn(false);
+
+        // When & Then
+        mockMvc.perform(get("/api/web/auth/verify")
+                .cookie(tokenCookie))
+                .andExpect(status().isUnauthorized())
+                .andExpect(jsonPath("$.valid").value(false))
+                .andExpect(jsonPath("$.message").value("토큰이 유효하지 않습니다."));
+    }
+
+    @Test
+    void logout_ShouldClearCookies() throws Exception {
+        // When & Then
+        mockMvc.perform(post("/api/web/auth/logout"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.success").value(true))
+                .andExpect(jsonPath("$.message").value("로그아웃이 완료되었습니다."))
+                .andExpect(cookie().maxAge("accessToken", 0))
+                .andExpect(cookie().maxAge("refreshToken", 0));
+    }
+}
+</file>
+
+<file path="src/test/java/com/example/oauth2jwt/OAuth2JwtApplicationTests.java">
+package com.example.oauth2jwt;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+
+@SpringBootTest
+class OAuth2JwtApplicationTests {
+
+    @Test
+    void contextLoads() {
+    }
+
+}
+</file>
+
+<file path="build.gradle">
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.2.0'
+    id 'io.spring.dependency-management' version '1.1.4'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+
+java {
+    sourceCompatibility = '17'
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation 'io.jsonwebtoken:jjwt-api:0.12.3'
+    implementation 'io.jsonwebtoken:jjwt-impl:0.12.3'
+    implementation 'io.jsonwebtoken:jjwt-jackson:0.12.3'
+    
+    compileOnly 'org.projectlombok:lombok'
+    runtimeOnly 'com.h2database:h2'
+    runtimeOnly 'com.mysql:mysql-connector-j'
+    
+    annotationProcessor 'org.projectlombok:lombok'
+    
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.security:spring-security-test'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
+</file>
+
+<file path="CLAUDE.md">
+# Claude Spring Boot 개발 가이드라인
+
+## 기본 원칙
+• 항상 한글로 답변해줘
+• 모든 답변은 나를 '서진님' 호칭을 하고 상냥한 조선시대 처지의 존대말을 사용
+• 사용자가 오류를 첨부시 연쇄적 사고로 먼저 핵심 문제를 찾고 단계별로 해결 방안을 계획하세요
+• 전체 파일을 다시 작성하는 것보다 차이점만 수정(diff 기반 수정)을 우선으로 해
+
+## Spring Boot 개발 규칙
+• Spring Boot 3.x 버전 기준으로 개발
+• JPA/Hibernate를 사용한 데이터베이스 연동
+• RESTful API 설계 원칙 준수
+• Controller, Service, Dto, Repository,Entity 등 패키지를 만들어서 구현
+• Spring Security를 활용한 인증/인가 구현
+• 프론트엔드는 react 사용
+
+
+## 테스트 및 개발 방식
+• 완결된 하나의 작업이 끝나면 커밋할지 물어봐
+• JUnit 5와 Spring Boot Test를 사용한 테스트 작성
+• 개발 또는 수정을 요청받았을 때 테스트를 먼저 만드는 TDD(Test Driven Development) 방식으로 개발할지 물어봐 줘
+• 개발 또는 수정이 완료되면 `./gradlew test` 또는 `mvn test` 명령을 통해 테스트를 할지 물어 봐
+• @SpringBootTest, @WebMvcTest, @DataJpaTest 등 적절한 테스트 슬라이스 활용
+• 테스트 데이터는 @Sql 어노테이션이나 테스트용 데이터 설정 사용
+
+## 프로젝트 구조
+• 계층형 아키텍처 (Controller → Service → Repository)
+• DTO 패턴을 활용한 데이터 전송
+• 적절한 예외 처리 및 에러 핸들링
+• 설정 파일은 application.properties우선 사용
+• 패키지 구조는 기능별로 구성
+
+## 데이터베이스 및 JPA
+• Entity 설계 시 적절한 연관관계 설정
+-spring data jpa
+• JPQL, Criteria API, Native Query 적절히 활용
+• N+1 문제 등 성능 이슈 고려
+• 트랜잭션 관리 (@Transactional) 적절히 활용
+
+## 웹 개발
+• http://localhost:8080 으로 접속해서 서버 확인
+• 로그는 logback 설정을 통해 확인
+• 네이버 스타일의 기본 디자인 적용
+• tailwind 활용
+
+## 커밋 및 배포
+• 커밋할 땐 항상 빌드가 잘 되는 상태여야 하고 테스트가 통과하는 상태여야 해
+• Git 커밋 메시지는 Conventional Commits 형식 사용
+• 배포 전 반드시 전체 테스트 실행 및 통과 확인
+
+## 보안 및 성능
+• Spring Security 설정을 통한 보안 강화
+• SQL Injection, XSS 등 보안 취약점 방지
+• 캐싱 전략 적절히 활용
+• 데이터베이스 인덱스 및 쿼리 최적화 고려
+</file>
+
+<file path="gradlew">
+#!/bin/sh
+
+#
+# Copyright © 2015-2021 the original authors.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      https://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+# SPDX-License-Identifier: Apache-2.0
+#
+
+##############################################################################
+#
+#   Gradle start up script for POSIX generated by Gradle.
+#
+#   Important for running:
+#
+#   (1) You need a POSIX-compliant shell to run this script. If your /bin/sh is
+#       noncompliant, but you have some other compliant shell such as ksh or
+#       bash, then to run this script, type that shell name before the whole
+#       command line, like:
+#
+#           ksh Gradle
+#
+#       Busybox and similar reduced shells will NOT work, because this script
+#       requires all of these POSIX shell features:
+#         * functions;
+#         * expansions «$var», «${var}», «${var:-default}», «${var+SET}»,
+#           «${var#prefix}», «${var%suffix}», and «$( cmd )»;
+#         * compound commands having a testable exit status, especially «case»;
+#         * various built-in commands including «command», «set», and «ulimit».
+#
+#   Important for patching:
+#
+#   (2) This script targets any POSIX shell, so it avoids extensions provided
+#       by Bash, Ksh, etc; in particular arrays are avoided.
+#
+#       The "traditional" practice of packing multiple parameters into a
+#       space-separated string is a well documented source of bugs and security
+#       problems, so this is (mostly) avoided, by progressively accumulating
+#       options in "$@", and eventually passing that to Java.
+#
+#       Where the inherited environment variables (DEFAULT_JVM_OPTS, JAVA_OPTS,
+#       and GRADLE_OPTS) rely on word-splitting, this is performed explicitly;
+#       see the in-line comments for details.
+#
+#       There are tweaks for specific operating systems such as AIX, CygWin,
+#       Darwin, MinGW, and NonStop.
+#
+#   (3) This script is generated from the Groovy template
+#       https://github.com/gradle/gradle/blob/HEAD/platforms/jvm/plugins-application/src/main/resources/org/gradle/api/internal/plugins/unixStartScript.txt
+#       within the Gradle project.
+#
+#       You can find Gradle at https://github.com/gradle/gradle/.
+#
+##############################################################################
+
+# Attempt to set APP_HOME
+
+# Resolve links: $0 may be a link
+app_path=$0
+
+# Need this for daisy-chained symlinks.
+while
+    APP_HOME=${app_path%"${app_path##*/}"}  # leaves a trailing /; empty if no leading path
+    [ -h "$app_path" ]
+do
+    ls=$( ls -ld "$app_path" )
+    link=${ls#*' -> '}
+    case $link in             #(
+      /*)   app_path=$link ;; #(
+      *)    app_path=$APP_HOME$link ;;
+    esac
+done
+
+# This is normally unused
+# shellcheck disable=SC2034
+APP_BASE_NAME=${0##*/}
+# Discard cd standard output in case $CDPATH is set (https://github.com/gradle/gradle/issues/25036)
+APP_HOME=$( cd -P "${APP_HOME:-./}" > /dev/null && printf '%s\n' "$PWD" ) || exit
+
+# Use the maximum available, or set MAX_FD != -1 to use that value.
+MAX_FD=maximum
+
+warn () {
+    echo "$*"
+} >&2
+
+die () {
+    echo
+    echo "$*"
+    echo
+    exit 1
+} >&2
+
+# OS specific support (must be 'true' or 'false').
+cygwin=false
+msys=false
+darwin=false
+nonstop=false
+case "$( uname )" in                #(
+  CYGWIN* )         cygwin=true  ;; #(
+  Darwin* )         darwin=true  ;; #(
+  MSYS* | MINGW* )  msys=true    ;; #(
+  NONSTOP* )        nonstop=true ;;
+esac
+
+CLASSPATH=$APP_HOME/gradle/wrapper/gradle-wrapper.jar
+
+
+# Determine the Java command to use to start the JVM.
+if [ -n "$JAVA_HOME" ] ; then
+    if [ -x "$JAVA_HOME/jre/sh/java" ] ; then
+        # IBM's JDK on AIX uses strange locations for the executables
+        JAVACMD=$JAVA_HOME/jre/sh/java
+    else
+        JAVACMD=$JAVA_HOME/bin/java
+    fi
+    if [ ! -x "$JAVACMD" ] ; then
+        die "ERROR: JAVA_HOME is set to an invalid directory: $JAVA_HOME
+
+Please set the JAVA_HOME variable in your environment to match the
+location of your Java installation."
+    fi
+else
+    JAVACMD=java
+    if ! command -v java >/dev/null 2>&1
+    then
+        die "ERROR: JAVA_HOME is not set and no 'java' command could be found in your PATH.
+
+Please set the JAVA_HOME variable in your environment to match the
+location of your Java installation."
+    fi
+fi
+
+# Increase the maximum file descriptors if we can.
+if ! "$cygwin" && ! "$darwin" && ! "$nonstop" ; then
+    case $MAX_FD in #(
+      max*)
+        # In POSIX sh, ulimit -H is undefined. That's why the result is checked to see if it worked.
+        # shellcheck disable=SC2039,SC3045
+        MAX_FD=$( ulimit -H -n ) ||
+            warn "Could not query maximum file descriptor limit"
+    esac
+    case $MAX_FD in  #(
+      '' | soft) :;; #(
+      *)
+        # In POSIX sh, ulimit -n is undefined. That's why the result is checked to see if it worked.
+        # shellcheck disable=SC2039,SC3045
+        ulimit -n "$MAX_FD" ||
+            warn "Could not set maximum file descriptor limit to $MAX_FD"
+    esac
+fi
+
+# Collect all arguments for the java command, stacking in reverse order:
+#   * args from the command line
+#   * the main class name
+#   * -classpath
+#   * -D...appname settings
+#   * --module-path (only if needed)
+#   * DEFAULT_JVM_OPTS, JAVA_OPTS, and GRADLE_OPTS environment variables.
+
+# For Cygwin or MSYS, switch paths to Windows format before running java
+if "$cygwin" || "$msys" ; then
+    APP_HOME=$( cygpath --path --mixed "$APP_HOME" )
+    CLASSPATH=$( cygpath --path --mixed "$CLASSPATH" )
+
+    JAVACMD=$( cygpath --unix "$JAVACMD" )
+
+    # Now convert the arguments - kludge to limit ourselves to /bin/sh
+    for arg do
+        if
+            case $arg in                                #(
+              -*)   false ;;                            # don't mess with options #(
+              /?*)  t=${arg#/} t=/${t%%/*}              # looks like a POSIX filepath
+                    [ -e "$t" ] ;;                      #(
+              *)    false ;;
+            esac
+        then
+            arg=$( cygpath --path --ignore --mixed "$arg" )
+        fi
+        # Roll the args list around exactly as many times as the number of
+        # args, so each arg winds up back in the position where it started, but
+        # possibly modified.
+        #
+        # NB: a `for` loop captures its iteration list before it begins, so
+        # changing the positional parameters here affects neither the number of
+        # iterations, nor the values presented in `arg`.
+        shift                   # remove old arg
+        set -- "$@" "$arg"      # push replacement arg
+    done
+fi
+
+
+# Add default JVM options here. You can also use JAVA_OPTS and GRADLE_OPTS to pass JVM options to this script.
+DEFAULT_JVM_OPTS='"-Xmx64m" "-Xms64m"'
+
+# Collect all arguments for the java command:
+#   * DEFAULT_JVM_OPTS, JAVA_OPTS, and optsEnvironmentVar are not allowed to contain shell fragments,
+#     and any embedded shellness will be escaped.
+#   * For example: A user cannot expect ${Hostname} to be expanded, as it is an environment variable and will be
+#     treated as '${Hostname}' itself on the command line.
+
+set -- \
+        "-Dorg.gradle.appname=$APP_BASE_NAME" \
+        -classpath "$CLASSPATH" \
+        org.gradle.wrapper.GradleWrapperMain \
+        "$@"
+
+# Stop when "xargs" is not available.
+if ! command -v xargs >/dev/null 2>&1
+then
+    die "xargs is not available"
+fi
+
+# Use "xargs" to parse quoted args.
+#
+# With -n1 it outputs one arg per line, with the quotes and backslashes removed.
+#
+# In Bash we could simply go:
+#
+#   readarray ARGS < <( xargs -n1 <<<"$var" ) &&
+#   set -- "${ARGS[@]}" "$@"
+#
+# but POSIX shell has neither arrays nor command substitution, so instead we
+# post-process each arg (as a line of input to sed) to backslash-escape any
+# character that might be a shell metacharacter, then use eval to reverse
+# that process (while maintaining the separation between arguments), and wrap
+# the whole thing up as a single "set" statement.
+#
+# This will of course break if any of these variables contains a newline or
+# an unmatched quote.
+#
+
+eval "set -- $(
+        printf '%s\n' "$DEFAULT_JVM_OPTS $JAVA_OPTS $GRADLE_OPTS" |
+        xargs -n1 |
+        sed ' s~[^-[:alnum:]+,./:=@_]~\\&~g; ' |
+        tr '\n' ' '
+    )" '"$@"'
+
+exec "$JAVACMD" "$@"
+</file>
+
+<file path="gradlew.bat">
+@rem
+@rem Copyright 2015 the original author or authors.
+@rem
+@rem Licensed under the Apache License, Version 2.0 (the "License");
+@rem you may not use this file except in compliance with the License.
+@rem You may obtain a copy of the License at
+@rem
+@rem      https://www.apache.org/licenses/LICENSE-2.0
+@rem
+@rem Unless required by applicable law or agreed to in writing, software
+@rem distributed under the License is distributed on an "AS IS" BASIS,
+@rem WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+@rem See the License for the specific language governing permissions and
+@rem limitations under the License.
+@rem
+@rem SPDX-License-Identifier: Apache-2.0
+@rem
+
+@if "%DEBUG%"=="" @echo off
+@rem ##########################################################################
+@rem
+@rem  Gradle startup script for Windows
+@rem
+@rem ##########################################################################
+
+@rem Set local scope for the variables with windows NT shell
+if "%OS%"=="Windows_NT" setlocal
+
+set DIRNAME=%~dp0
+if "%DIRNAME%"=="" set DIRNAME=.
+@rem This is normally unused
+set APP_BASE_NAME=%~n0
+set APP_HOME=%DIRNAME%
+
+@rem Resolve any "." and ".." in APP_HOME to make it shorter.
+for %%i in ("%APP_HOME%") do set APP_HOME=%%~fi
+
+@rem Add default JVM options here. You can also use JAVA_OPTS and GRADLE_OPTS to pass JVM options to this script.
+set DEFAULT_JVM_OPTS="-Xmx64m" "-Xms64m"
+
+@rem Find java.exe
+if defined JAVA_HOME goto findJavaFromJavaHome
+
+set JAVA_EXE=java.exe
+%JAVA_EXE% -version >NUL 2>&1
+if %ERRORLEVEL% equ 0 goto execute
+
+echo. 1>&2
+echo ERROR: JAVA_HOME is not set and no 'java' command could be found in your PATH. 1>&2
+echo. 1>&2
+echo Please set the JAVA_HOME variable in your environment to match the 1>&2
+echo location of your Java installation. 1>&2
+
+goto fail
+
+:findJavaFromJavaHome
+set JAVA_HOME=%JAVA_HOME:"=%
+set JAVA_EXE=%JAVA_HOME%/bin/java.exe
+
+if exist "%JAVA_EXE%" goto execute
+
+echo. 1>&2
+echo ERROR: JAVA_HOME is set to an invalid directory: %JAVA_HOME% 1>&2
+echo. 1>&2
+echo Please set the JAVA_HOME variable in your environment to match the 1>&2
+echo location of your Java installation. 1>&2
+
+goto fail
+
+:execute
+@rem Setup the command line
+
+set CLASSPATH=%APP_HOME%\gradle\wrapper\gradle-wrapper.jar
+
+
+@rem Execute Gradle
+"%JAVA_EXE%" %DEFAULT_JVM_OPTS% %JAVA_OPTS% %GRADLE_OPTS% "-Dorg.gradle.appname=%APP_BASE_NAME%" -classpath "%CLASSPATH%" org.gradle.wrapper.GradleWrapperMain %*
+
+:end
+@rem End local scope for the variables with windows NT shell
+if %ERRORLEVEL% equ 0 goto mainEnd
+
+:fail
+rem Set variable GRADLE_EXIT_CONSOLE if you need the _script_ return code instead of
+rem the _cmd.exe /c_ return code!
+set EXIT_CODE=%ERRORLEVEL%
+if %EXIT_CODE% equ 0 set EXIT_CODE=1
+if not ""=="%GRADLE_EXIT_CONSOLE%" exit %EXIT_CODE%
+exit /b %EXIT_CODE%
+
+:mainEnd
+if "%OS%"=="Windows_NT" endlocal
+
+:omega
+</file>
+
+<file path="prd.md">
+# 커뮤니티 사이트 PRD (Product Requirements Document)
+
+## 1. 프로젝트 개요
+
+### 1.1 프로젝트 목표
+- 사용자들이 자유롭게 소통할 수 있는 커뮤니티 플랫폼 개발
+- 게시글 작성, 댓글, 좋아요 등의 기본 커뮤니티 기능 제공
+- 실시간 소통이 가능한 현대적인 웹 애플리케이션 구축
+
+### 1.2 기술 스택
+- **Backend**: Spring Boot 3.x, Spring Security, JPA/Hibernate
+- **Frontend**: React 18, Tailwind CSS
+- **Database**: MySQL 
+- **인증**: oauth2
+- **인가**: jwt 
+- **Build Tool**: Gradle
+
+## 2. 핵심 기능
+
+### 2.1 사용자 관리
+- **회원가입/로그인**
+  - 이메일 기반 회원가입
+  - 소셜 로그인 (Google) 옵션
+  - 이메일 인증 기능
+  - 비밀번호 재설정
+
+- **프로필 관리**
+  - 프로필 사진 업로드
+  - 닉네임, 자기소개 수정
+  - 활동 내역 조회
+
+### 2.2 게시판 기능
+- **게시글 관리**
+  - 게시글 작성/수정/삭제
+  - 카테고리별 게시판 구성
+  - 이미지 파일 업로드
+  - 마크다운 에디터 지원
+  - 게시글 검색 기능
+
+- **댓글 시스템**
+  - 댓글 작성/수정/삭제
+  - 대댓글 기능
+  - 댓글 좋아요/싫어요
+
+### 2.3 소셜 기능
+- **좋아요/북마크**
+  - 게시글 좋아요/싫어요
+  - 게시글 북마크
+  - 내가 좋아요한 게시글 모음
+
+- **팔로우 시스템**
+  - 다른 사용자 팔로우/언팔로우
+  - 팔로잉/팔로워 목록
+  - 팔로우한 사용자 게시글 피드
+
+### 2.4 관리자 기능
+- **사용자 관리**
+  - 사용자 목록 조회
+  - 사용자 정지/복구
+  - 권한 관리
+
+- **게시글 관리**
+  - 부적절한 게시글 삭제
+  - 신고 처리
+  - 공지사항 관리
+
+## 3. 화면 구성
+
+### 3.1 메인 페이지
+- 최신 게시글 목록
+- 인기 게시글 목록
+- 카테고리별 최신 게시글
+- 검색 기능
+
+### 3.2 게시판 페이지
+- 카테고리별 게시글 목록
+- 페이징 처리
+- 정렬 기능 (최신순, 인기순, 조회순)
+- 필터 기능
+
+### 3.3 게시글 상세 페이지
+- 게시글 내용 표시
+- 댓글 목록
+- 좋아요/북마크 버튼
+- 공유 기능
+
+### 3.4 사용자 페이지
+- 개인 프로필
+- 작성한 게시글 목록
+- 댓글 목록
+- 좋아요한 게시글 목록
+
+## 4. 데이터베이스 설계
+
+### 4.1 주요 테이블
+- **users**: 사용자 정보
+- **posts**: 게시글 정보
+- **comments**: 댓글 정보
+- **categories**: 카테고리 정보
+- **likes**: 좋아요 정보
+- **follows**: 팔로우 관계
+- **bookmarks**: 북마크 정보
+
+### 4.2 ERD 주요 관계
+- User 1:N Post
+- User 1:N Comment
+- Post 1:N Comment
+- User M:N User (팔로우)
+- User M:N Post (좋아요, 북마크)
+
+## 5. API 설계
+
+### 5.1 인증 API
+- `POST /api/auth/register` - 회원가입
+- `POST /api/auth/login` - 로그인
+- `POST /api/auth/logout` - 로그아웃
+- `POST /api/auth/refresh` - 토큰 갱신
+
+### 5.2 게시글 API
+- `GET /api/posts` - 게시글 목록 조회
+- `GET /api/posts/{id}` - 게시글 상세 조회
+- `POST /api/posts` - 게시글 작성
+- `PUT /api/posts/{id}` - 게시글 수정
+- `DELETE /api/posts/{id}` - 게시글 삭제
+
+### 5.3 댓글 API
+- `GET /api/posts/{postId}/comments` - 댓글 목록 조회
+- `POST /api/posts/{postId}/comments` - 댓글 작성
+- `PUT /api/comments/{id}` - 댓글 수정
+- `DELETE /api/comments/{id}` - 댓글 삭제
+
+### 5.4 사용자 API
+- `GET /api/users/profile` - 내 프로필 조회
+- `PUT /api/users/profile` - 프로필 수정
+- `GET /api/users/{id}` - 사용자 정보 조회
+- `POST /api/users/{id}/follow` - 팔로우
+- `DELETE /api/users/{id}/follow` - 언팔로우
+
+## 6. 비기능 요구사항
+
+### 6.1 보안
+- oauth2기반 인증
+- CORS 설정
+- SQL Injection 방지
+- XSS 방지
+- CSRF 방지
+
+### 6.2 성능
+- 데이터베이스 인덱스 최적화
+- 페이징 처리
+- 이미지 최적화
+- 캐싱 전략
+
+### 6.3 사용성
+- 반응형 디자인
+- 직관적인 UI/UX
+- 빠른 로딩 시간
+- 접근성 고려
+
+## 7. 개발 계획
+
+### 7.1 Phase 1 (핵심 기능)
+- 사용자 인증 시스템
+- 기본 게시판 기능
+- 댓글 시스템
+
+### 7.2 Phase 2 (소셜 기능)
+- 좋아요/북마크 기능
+- 팔로우 시스템
+- 검색 기능
+
+### 7.3 Phase 3 (고급 기능)
+- 관리자 기능
+- 알림 시스템
+- 실시간 채팅
+
+## 8. 배포 및 운영
+
+### 8.1 배포 환경
+
+- Docker 컨테이너 사용
+- CI/CD 파이프라인 구축
+
+### 8.2 모니터링
+- 애플리케이션 로그 관리
+- 성능 모니터링
+- 에러 추적 시스템
+
+## 9. 예상 일정
+- **설계 및 환경 구축**: 1주
+- **Phase 1 개발**: 3주
+- **Phase 2 개발**: 2주
+- **Phase 3 개발**: 2주
+- **테스트 및 배포**: 1주
+
+총 예상 기간: 약 9주
+</file>
+
+</files>
